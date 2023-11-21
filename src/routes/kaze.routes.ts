@@ -1,11 +1,12 @@
 import { Router, Response, Request } from "express";
 import kazeController from "../controllers/kaze.controllers";
 import { login } from "../controllers/auth.controllers";
+import validateData from "../utils/validData";
 
 const router = Router();
 
 router.get('/index', kazeController.index);
-router.post('/login', async (req: Request, res: Response) => {
+router.post('/login', validateData(['username', 'password']), async (req: Request, res: Response) => {
     const { username, password } = req.body;
   
     try {
