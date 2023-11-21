@@ -13,7 +13,7 @@ app.use(express.urlencoded({extended: true}));
 
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('Hello, Express!');
+  res.status(200).send('Hello, Kaze!');
 });
 
 
@@ -22,3 +22,6 @@ app.use('/api', router);
 app.listen(port, () => {
   console.log(`Kaze-api running on http://localhost:${port}`.magenta.bold);
 });
+
+
+export default app;

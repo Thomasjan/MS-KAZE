@@ -10,13 +10,14 @@ router.post('/login', async (req: Request, res: Response) => {
   
     try {
       await login(username, password);
-      res.send('Login successful');
+        res.status(200).send('Login successful');
     } catch (error) {
       console.error(error);
-      res.status(500).send('Internal Server Error');
+      res.status(500).send('Login failed');
     }
 });
 
 router.get('/testConnection', kazeController.testConnection);
+router.get('/getJobs', kazeController.getJobs);
 
 export default router;
