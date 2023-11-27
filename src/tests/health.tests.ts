@@ -1,5 +1,5 @@
 // sample.test.ts
-import { expect } from 'chai';
+import { assert, expect } from 'chai';
 import app from '../index';
 
 describe('Sample Test', () => {
@@ -9,14 +9,25 @@ describe('Sample Test', () => {
   });
 });
 
-describe('API lauch', () => {
+describe('API launch', () => {
+  let server: any;
+
+  before(async () => {
+    // Start the app before all tests
+    server = await app.listen(5000);
+  });
+
   it('should return 200', async () => {
-    //start the app
-    await app.listen(5000);
-    //make request
+    // Make request
     const result = await fetch('http://localhost:5000/');
-    //expect result
-    expect(result.status).to.equal(200);
-    ;
+    // Expect result
+    assert.equal(result.status, 200);
+  });
+
+  // Add more tests as needed
+
+  after(async () => {
+    // Close the app after all tests
+    await server.close();
   });
 });
