@@ -1,17 +1,17 @@
 //dataMapper
 
-interface Jobs { 
+type Jobs = { 
     id: string;
     job_reference: string;
     job_title: string;
-    job_adress: string;
+    job_address: string;
     zip_code: string;
     city: string;
     job_start_date: string;
     job_end_date: string;
 };
 
-interface Actions {
+type Actions = {
     ACT_NUMERO: string;
     ACT_OBJET: string;
     PCF_RUE: string;
@@ -31,10 +31,10 @@ const dataMapper = (data: any, table: string) => {
 
             case 'Actions':
                 
-            const actions: Actions = {
+            const actions = {
                 ACT_NUMERO: data.job_reference,
                 ACT_OBJET: data.job_title,
-                PCF_RUE: data.job_adress,
+                PCF_RUE: data.job_address,
                 PCF_CP: data.zip_code,
                 PCF_VILLE: data.city,
                 ACT_DATE: data.job_start_date,
@@ -49,11 +49,11 @@ const dataMapper = (data: any, table: string) => {
         //Gestimum vers Kaze
 
             case 'Jobs':
-                const jobs: Jobs = {
+                const jobs = {
                     id: data.XXX_IDMKAZE,
                     job_reference: data.ACT_NUMERO,
                     job_title: data.ACT_OBJET,
-                    job_adress: data.PCF_RUE,
+                    job_address: data.PCF_RUE,
                     zip_code: data.PCF_CP,
                     city: data.PCF_VILLE,
                     job_start_date: data.ACT_DATE,
@@ -66,4 +66,6 @@ const dataMapper = (data: any, table: string) => {
         default:
         return undefined;
     }
-    }
+}
+
+export default dataMapper;
