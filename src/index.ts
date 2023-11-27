@@ -5,7 +5,6 @@ const app = express();
 const port = 3000;
 
 import router from './routes/router';
-import axios from 'axios';
 
 
 app.use(express.json());

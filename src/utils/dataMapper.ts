@@ -1,47 +1,66 @@
 //dataMapper
 
+interface Jobs { 
+    id: string;
+    job_reference: string;
+    job_title: string;
+    job_adress: string;
+    zip_code: string;
+    city: string;
+    job_start_date: string;
+    job_end_date: string;
+};
+
+interface Actions {
+    ACT_NUMERO: string;
+    ACT_OBJET: string;
+    PCF_RUE: string;
+    PCF_CP: string;
+    PCF_VILLE: string;
+    ACT_DATE: string;
+    ACT_FIN: string;
+    XXX_IDMKAZE: string;
+};
+
+
 const dataMapper = (data: any, table: string) => {
 
     switch (table) {
-        case "Tiers":
-        return {
-            id: data.id,
-            name: data.name,
-            description: data.description,
-            createdAt: data.createdAt,
-            userId: data.userId,
-        };
+        
+        //Kaze vers Gestimum
+
+            case 'Actions':
+                
+            const actions: Actions = {
+                ACT_NUMERO: data.job_reference,
+                ACT_OBJET: data.job_title,
+                PCF_RUE: data.job_adress,
+                PCF_CP: data.zip_code,
+                PCF_VILLE: data.city,
+                ACT_DATE: data.job_start_date,
+                ACT_FIN: data.job_end_date,
+                XXX_IDMKAZE: data.id, // (Workflow)
+            };
+
+            return actions;
 
 
-        case "Articles":
-        return {
-            id: data.id,
-            name: data.name,
-            description: data.description,
-            price: data.price,
-            createdAt: data.createdAt,
-            userId: data.userId,
-        };
 
+        //Gestimum vers Kaze
 
-        case "Contacts":
-        return {
-            id: data.id,
-            name: data.name,
-            description: data.description,
-            createdAt: data.createdAt,
-            userId: data.userId,
-        };
+            case 'Jobs':
+                const jobs: Jobs = {
+                    id: data.XXX_IDMKAZE,
+                    job_reference: data.ACT_NUMERO,
+                    job_title: data.ACT_OBJET,
+                    job_adress: data.PCF_RUE,
+                    zip_code: data.PCF_CP,
+                    city: data.PCF_VILLE,
+                    job_start_date: data.ACT_DATE,
+                    job_end_date: data.ACT_FIN,
+                }; 
 
-
-        case "Affaires":
-        return {
-            id: data.id,
-            name: data.name,
-            description: data.description,
-            createdAt: data.createdAt,
-            userId: data.userId,
-        };
+                return jobs;
 
 
         default:
