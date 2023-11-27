@@ -19,10 +19,12 @@ const gestimumController = {
                 'x-api-key': process.env.GESTIMUM_API_KEY
             }
         };
+        const query = Object.keys(req.query).map(key => key + '=' + req.query[key]).join('&');
 
-        axios.get(`${GESTIMUM_API_URL}/affaires/`, config)
+        
+        axios.get(`${GESTIMUM_API_URL}/affaires/?${query}`, config)
             .then((response) => {
-                console.log(response.data);
+                console.log('retrieved'.yellow + ' ' + `${response.data.count}`.green.bold + ' ' + 'affaires'.yellow);
                 return res.send(response.data);
             })
             .catch((error) => {
