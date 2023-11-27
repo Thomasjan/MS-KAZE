@@ -17,7 +17,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 
-app.use('/api', router);
+app.use('/api/v1', router);
 
 app.listen(port, () => {
   console.log(`Kaze-api running on http://localhost:${port}`.magenta.bold);
