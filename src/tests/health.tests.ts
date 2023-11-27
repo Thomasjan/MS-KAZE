@@ -17,12 +17,16 @@ describe('API launch', () => {
     server = await app.listen(5000);
   });
 
+
+
   it('should return 200', async () => {
     // Make request
     const result = await fetch('http://localhost:5000/');
     // Expect result
     assert.equal(result.status, 200);
   });
+
+  
 
   // Add more tests as needed
 

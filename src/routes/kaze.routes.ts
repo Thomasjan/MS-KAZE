@@ -20,5 +20,6 @@ router.post('/login', validateData(['username', 'password']), async (req: Reques
 
 router.get('/testConnection', kazeController.testConnection);
 router.get('/getJobs', kazeController.getJobs);
+router.post('/createJob', kazeController.createJob);
 
 export default router;
