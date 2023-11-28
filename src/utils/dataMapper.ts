@@ -18,7 +18,7 @@ type Actions = {
     PCF_CP: string;
     PCF_VILLE: string;
     ACT_DATE: string;
-    ACT_FIN: string;
+    ACT_DATFIN: string;
     XXX_IDMKAZE: string;
 };
 
@@ -38,7 +38,7 @@ const dataMapper = (data: any, table: string) => {
                 PCF_CP: data.zip_code,
                 PCF_VILLE: data.city,
                 ACT_DATE: data.job_start_date,
-                ACT_FIN: data.job_end_date,
+                ACT_DATFIN: data.job_end_date,
                 XXX_IDMKAZE: data.id, // (Workflow)
             };
 
@@ -57,7 +57,7 @@ const dataMapper = (data: any, table: string) => {
                     zip_code: data.PCF_CP,
                     city: data.PCF_VILLE,
                     job_start_date: data.ACT_DATE,
-                    job_end_date: data.ACT_FIN,
+                    job_end_date: data.ACT_DATFIN,
                 }; 
 
                 return jobs;

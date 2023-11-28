@@ -7,12 +7,25 @@ import dataMapper from './utils/dataMapper';
 let job = job_json;
 let lastAction;
 
+const login = async () => {
+    console.log('login()')
+    axios.post('http://localhost:3000/api/v1/kaze/login')
+    .then((response) => {
+        console.log(response.data);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+}
+
 const fetchActions = async () => {
     console.log('fetchActions()')
     try{
         const response = await axios.get('http://localhost:3000/api/v1/gestimum/actions');
         // lastAction = response.data.actions[0];
-        return response.data.actions[0];
+        //random number between 0 and 40
+        const random = Math.floor(Math.random() * 40);
+        return response.data.actions[random];
     }
     catch(error){
         console.log(error);
@@ -34,19 +47,25 @@ const postJob = async (job: any) => {
 }
 
     
+login()
+.then(() => {
+    fetchActions()
+    .then((data) => {
+        lastAction = data;
+        // console.log(lastAction);
+        if (!lastAction) {
+            throw new Error('No action found');
+        }
 
-fetchActions()
-.then((data) => {
-    lastAction = data;
-    // console.log(lastAction);
+        const mappedData  = dataMapper(lastAction, 'Jobs');
+        console.log(mappedData);
+        if (mappedData && 'job_title' in mappedData) {
+            // TypeScript now knows that 'mappedData' has a 'job_title' property
+            job.workflow.children[0].job_title = mappedData.job_title;
+            job.workflow.children[0].job_reference = mappedData.job_reference;
+            
+        }
 
-    const mappedData  = dataMapper(lastAction, 'Jobs');
-    console.log(mappedData);
-    if (mappedData && 'job_title' in mappedData) {
-        // TypeScript now knows that 'mappedData' has a 'job_title' property
-        job.workflow.children[0].job_title = mappedData.job_title;
-    }
-
-    postJob(job)
-
+        postJob(job)
+    });
 });

@@ -7,11 +7,11 @@ export const login = async (username: string, password: string): Promise<void> =
     console.log('login()'.cyan);
 
     const user = {
-      login: 'thomas.jankowski@gestimum.com',
-      password: 'kaze_password',
-      // login: process.env.KAZE_USERNAME,
-      // password: process.env.KAZE_PASSWORD,
+      login: process.env.KAZE_USERNAME,
+      password: process.env.KAZE_PASSWORD,
     }
+
+    console.log('user: ', user)
 
     console.log(user);
   try {
