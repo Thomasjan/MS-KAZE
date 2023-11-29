@@ -7,5 +7,6 @@ const router = Router();
 router.get('/index', gestimumController.index);
 router.get('/affaires/', gestimumController.getAffaires);
 router.get('/actions/', gestimumController.getActions);
+router.get('/getTier/:id', gestimumController.getTier);
 
 export default router;

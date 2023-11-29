@@ -1,0 +1,8 @@
+{
+    "type": "widget_text",
+    "id": "template_type",
+    "label": "Code Type d'intervention",
+    "access": 133,
+    "data_type": "string",
+    "data": "ACT_TYPE"
+}

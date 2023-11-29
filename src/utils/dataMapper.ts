@@ -9,6 +9,8 @@ type Jobs = {
     city: string;
     job_start_date: string;
     job_end_date: string;
+
+    sync_kaze: boolean;
 };
 
 type Actions = {
@@ -52,12 +54,28 @@ const dataMapper = (data: any, table: string) => {
                 const jobs = {
                     id: data.XXX_IDMKAZE,
                     job_reference: data.ACT_NUMERO,
+                    job_type: data.ACT_TYPE,
                     job_title: data.ACT_OBJET,
-                    job_address: data.PCF_RUE,
-                    zip_code: data.PCF_CP,
-                    city: data.PCF_VILLE,
+                    job_desc: data.ACT_DESC,
+                    job_companie_code: data.code,
+                    job_companie_name: data.raison_sociale,
+                    job_address: data.adresse,
+                    zip_code: data.code_postal,
+                    city: data.ville,
+                    job_contact: data.CCT_NUMERO,
                     job_start_date: data.ACT_DATE,
                     job_end_date: data.ACT_DATFIN,
+                    job_expiration: data.ACT_DATECH,
+
+                    last_maj: data.XXX_DTKAZE,
+                    sync_kaze: data.XXX_IDMKAZE,
+                    template_navigation: data.XXX_GKNAV,
+                    template_photo: data.XXX_GKIMAGE,
+                    template_signature: data.XXX_GKSIGN,
+                    template_time_follow: data.XXX_GKTRAC,
+                    template_blank: data.XXX_GKVIDE,
+                    template_inspection: data.XXX_GKINSP,
+
                 }; 
 
                 return jobs;

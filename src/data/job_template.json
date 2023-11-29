@@ -1,0 +1,41 @@
+{
+  "target_id": "company_id",
+  "workflow":{
+      "type": "workflow",
+      "id": "root",
+      "children": [
+        
+        {
+          "type": "template_job_info",
+          "id": "template_info",
+          "label": "Résumé mission",
+          "access": 133,
+          "generate_documents": [
+    
+          ],
+          "city": "Paris",
+          "state": "IDF",
+          "country_code": "fr",
+          "zip_code": 75013,
+          "job_title": "ACT_OBJET",
+          "job_reference": "ACT_NUMERO",
+          "job_address": "8 Rue des Peupliers, Paris",
+          "job_location": "48.82498140000001,2.353615",
+          "performer_estimation": 60,
+          "files": [
+    
+          ],
+          "children": [
+            {
+              "type": "section",
+              "id": "template_section",
+              "direction": "col",
+              "children": [
+                
+              ]
+            }
+          ]
+        }
+      ]
+  }
+}

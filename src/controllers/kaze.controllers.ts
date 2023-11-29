@@ -3,7 +3,6 @@ import e, { Request, Response, response } from 'express';
 import { getAuthToken } from './auth.controllers';
 import axios from 'axios';
 
-import job_json from '../data/job.json';
 
 const kazeController = {
     index: (req: Request, res: Response) => {
@@ -41,8 +40,8 @@ const kazeController = {
     createJob: async (req: Request, res: Response) => {
             
             const authToken = getAuthToken();
-            // const json =  job_json;
             const json = req.body;
+            console.log('JSON: ', json)
             try{
                 const response = await axios.post('https://app.kaze.so/api/jobs.json', json, {
                     headers: {

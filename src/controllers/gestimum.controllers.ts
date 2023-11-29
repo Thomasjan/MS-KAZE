@@ -52,6 +52,25 @@ const gestimumController = {
                 return res.send(error);
             });
     },
+    
+    getTier: (req: Request, res: Response) => {
+        console.log('getTier()'.yellow)
+        const config = {
+            'headers': {
+                'x-api-key': process.env.GESTIMUM_API_KEY
+            }
+        };
+
+        axios.get(`${GESTIMUM_API_URL}/clients/code/${req.params.id}`, config)
+            .then((response) => {
+                console.log('retrieved tier code: '.yellow + ' ' + `${response.data.client.code}`.green.bold);
+                return res.send(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+                return res.send(error);
+            });
+    }
 
     
 }
