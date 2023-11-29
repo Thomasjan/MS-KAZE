@@ -2,7 +2,6 @@
 
 import axios from 'axios';
 import dataMapper from './utils/dataMapper';
-import { clear } from 'console';
 import 'colors';
 
 import job_template from './data/job_template.json';
