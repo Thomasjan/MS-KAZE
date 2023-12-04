@@ -8,10 +8,9 @@
           "access": 133,
           "type": "template_job_info",
           "id": "template_info",
-          "job_title": "taxi - 27043987P6",
-          "job_reference": "27043987P6",
-          "job_address": "56000 VANNES",
-          "job_location": "47.6617064,-2.7574616",
+          "job_title": "ACT_OBJET",
+          "job_reference": "ACT_NUMERO",
+          "job_address": "PCF_RUE",
           "job_due_date": 1663764821000,
           "label": "Résumé de la mission"
         },
@@ -77,7 +76,7 @@
           "label": "Départ du taxi",
           "reference": "pick-up_address",
           "display_expanded": true,
-          "address": "56000 VANNES",
+          "address": "PCF_RUE",
           "location": "47.6617064,-2.7574616",
           "beneficiary_phone": 33690591831,
           "performance_review": true

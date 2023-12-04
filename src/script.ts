@@ -11,8 +11,10 @@ import template_client from './data/template_client.json';
 import template_contact_num from './data/template_contact_num.json';
 
 import kaze_template from './data/kaze_template.json';
+import workflow_template from './data/workflow_exemple.json';
 
 import jsonMapper from './utils/jsonMapper';
+import { json } from 'stream/consumers';
 
 
 const login = async () => {
@@ -59,6 +61,7 @@ const postJob = async (job: any) => {
     
     try{
         const response = await axios.post('http://localhost:3000/api/v1/kaze/createJob', job);
+        console.log('POST Success'.rainbow)
         return response.data;
     }
     catch(error){
@@ -97,7 +100,7 @@ const main = async () => {
 
     const job = job_template;
 
-    const fields = {
+    const fields: Object = {
         ACT_NUMERO: data.ACT_NUMERO,
         PCF_CODE: data.PCF_CODE,
         CCT_NUMERO: data.CCT_NUMERO,
@@ -125,15 +128,14 @@ const main = async () => {
       
     (job.workflow.children[0].children[0].children as Array<Object>) = jsonArray;
 
-    const updatedJson: any = jsonMapper(job, fields);
-    console.log('updatedJson: ', updatedJson.workflow.children[0].children[0].children);
+    const updatedJson: Object = jsonMapper(job, fields);
+    const kazeJSON: Object = jsonMapper(kaze_template, fields);
+    const finalWorkflow: Object =  jsonMapper(workflow_template, fields);
 
-    // console.log('job: ', job.workflow.children[0]);
 
-    const kazeJSON = kaze_template;
-    console.log('kazeJSON: '.rainbow, kazeJSON);
+    console.log('posting job...'.magenta, finalWorkflow);
 
-    postJob(updatedJson)
+    postJob(finalWorkflow)
     
 }
 
