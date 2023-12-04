@@ -1,0 +1,15 @@
+{
+    "type": "template_navigation",
+    "id": "d25d01b9-dd3b-4030-97ac-bc0f86ac9d7f",
+    "label": "Navigation",
+    "access": 133,
+    "generate_documents": [],
+    "city": "PCF_VILLE",
+    "state": "IDF",
+    "country_code": "fr",
+    "zip_code": "PCF_CP",
+    "beneficiary_phone": 612457865,
+    "address": "PCF_RUE",
+    "location": "48.8243356,2.3533179",
+    "details": "détails adress batiment 1 ..."
+}

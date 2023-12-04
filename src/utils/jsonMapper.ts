@@ -1,6 +1,7 @@
 
 
-function jsonMapper(json, fields) {
+//function to replace the values of a json object with the values of a given object
+function jsonMapper(json: Object, fields: Object): Object {
     if (typeof json === 'object') {
       if (Array.isArray(json)) {
         json.forEach((item, index) => {

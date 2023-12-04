@@ -1,0 +1,226 @@
+{
+    "target_id": "my-company-id",
+    "workflow": {
+      "type": "workflow",
+      "id": "root",
+      "children": [
+        {
+          "access": 133,
+          "type": "template_job_info",
+          "id": "template_info",
+          "job_title": "taxi - 27043987P6",
+          "job_reference": "27043987P6",
+          "job_address": "56000 VANNES",
+          "job_location": "47.6617064,-2.7574616",
+          "job_due_date": 1663764821000,
+          "label": "Résumé de la mission"
+        },
+        {
+          "access": 133,
+          "type": "template_blank",
+          "id": "vehicle_information",
+          "label": "Information et départ Taxi",
+          "sms_send": true,
+          "sms_link": true,
+          "sms_sender": "Assistance",
+          "sms_body": "Votre taxi est en route, suivez son avancement :",
+          "sms_phone": 33690591831,
+          "display_expanded": true,
+          "children": [
+            {
+              "access": 133,
+              "type": "section",
+              "id": "8712bbe5-6ef9-40b6-bb9a-e51db577fb8b",
+              "direction": "col",
+              "bold": true,
+              "children": [
+                {
+                  "access": 133,
+                  "type": "widget_text",
+                  "id": "driver",
+                  "label": "Compagnie de taxi",
+                  "data_type": "string",
+                  "data": "non communiqué"
+                },
+                {
+                  "access": 133,
+                  "type": "widget_text",
+                  "id": "model",
+                  "label": "Modèle véhicule",
+                  "data_type": "string",
+                  "data": "non communiqué"
+                },
+                {
+                  "access": 133,
+                  "type": "widget_text",
+                  "id": "car_registration",
+                  "label": "Immatriculation véhicule",
+                  "data_type": "string",
+                  "data": "non communiqué"
+                },
+                {
+                  "access": 133,
+                  "type": "widget_text",
+                  "id": "car_color",
+                  "label": "Couleur véhicule",
+                  "data_type": "string",
+                  "data": "non communiqué"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "access": 133,
+          "type": "template_navigation",
+          "id": "pick_up_address",
+          "label": "Départ du taxi",
+          "reference": "pick-up_address",
+          "display_expanded": true,
+          "address": "56000 VANNES",
+          "location": "47.6617064,-2.7574616",
+          "beneficiary_phone": 33690591831,
+          "performance_review": true
+        },
+        {
+          "access": 33,
+          "type": "template_blank",
+          "id": "check_client",
+          "label": "Prise en charge du bénéficiaire",
+          "children": [
+            {
+              "access": 33,
+              "type": "section",
+              "id": "2bfceecf-ca09-4a76-85c9-ded3515e935c",
+              "direction": "col",
+              "children": [
+                {
+                  "access": 33,
+                  "type": "widget_switch",
+                  "id": "beneficiary_ok",
+                  "label": "Le client est-il bien pris en charge?",
+                  "data_type": "checkbox",
+                  "data": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "template_blank",
+          "id": "finish_address",
+          "label": "Lieu d'arrivée",
+          "access": 33,
+          "display_expanded": true,
+          "children": [
+            {
+              "type": "section",
+              "id": "d2888e45-55f5-470c-badd-e6867631ae72",
+              "access": 33,
+              "direction": "col",
+              "children": [
+                {
+                  "type": "widget_switch",
+                  "id": "beneficiary_arrived",
+                  "label": "Le bénéficiaire a bien été déposé à l'adresse d'arrivée",
+                  "access": 33,
+                  "data_type": "checkbox"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "template_blank",
+          "id": "evaluation_section",
+          "label": "Evaluation",
+          "access": 303,
+          "sms_send": true,
+          "sms_link": true,
+          "sms_sender": "Fidelia",
+          "sms_body": "Notez votre course en cliquant sur le lien suivant",
+          "sms_phone": 33690591831,
+          "display_expanded": true,
+          "children": [
+            {
+              "type": "section",
+              "id": "evaluation",
+              "label": "Evaluation",
+              "access": 303,
+              "direction": "col",
+              "children": [
+                {
+                  "type": "widget_select",
+                  "id": "57e08764-f3d6-4b87-bca5-21a14b8d298b",
+                  "label": "Délai d’attente",
+                  "reference": "delai",
+                  "access": 303,
+                  "data_type": "select",
+                  "options_list": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8",
+                    "9",
+                    "10"
+                  ]
+                },
+                {
+                  "type": "widget_select",
+                  "id": "52843064-e7b4-46f7-b7e7-0e726fd61fb7",
+                  "label": "Propreté du véhicule",
+                  "reference": "proprete",
+                  "access": 303,
+                  "data_type": "select",
+                  "options_list": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8",
+                    "9",
+                    "10"
+                  ]
+                },
+                {
+                  "type": "widget_select",
+                  "id": "2c6fcc17-2750-4aab-8461-6eae8e659c1c",
+                  "label": "Professionnalisme du chauffeur (amabilité, conduite)",
+                  "reference": "professionnalisme",
+                  "access": 303,
+                  "data_type": "select",
+                  "options_list": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8",
+                    "9",
+                    "10"
+                  ]
+                },
+                {
+                  "type": "widget_text",
+                  "id": "7055c4e6-c0af-4ef4-a84a-3e8cd683884f",
+                  "label": "Avez-vous quelque-chose à ajouter ?",
+                  "reference": "comment_assure",
+                  "access": 303,
+                  "data_type": "text"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }

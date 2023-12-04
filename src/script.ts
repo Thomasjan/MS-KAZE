@@ -9,7 +9,9 @@ import template_type from './data/template_type.json';
 import template_description from './data/template_description.json';
 import template_client from './data/template_client.json';
 import template_contact_num from './data/template_contact_num.json';
-import { type } from 'os';
+
+import kaze_template from './data/kaze_template.json';
+
 import jsonMapper from './utils/jsonMapper';
 
 
@@ -123,15 +125,15 @@ const main = async () => {
       
     (job.workflow.children[0].children[0].children as Array<Object>) = jsonArray;
 
-    const updatedJson = jsonMapper(job, fields);
+    const updatedJson: any = jsonMapper(job, fields);
     console.log('updatedJson: ', updatedJson.workflow.children[0].children[0].children);
 
     // console.log('job: ', job.workflow.children[0]);
 
-    
+    const kazeJSON = kaze_template;
+    console.log('kazeJSON: '.rainbow, kazeJSON);
 
     postJob(updatedJson)
-
     
 }
 

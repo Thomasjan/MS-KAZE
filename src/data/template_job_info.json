@@ -1,0 +1,42 @@
+{
+    "type": "template_job_info",
+    "id": "f8816f82-3393-49f4-af78-fbc5d8616cd4",
+    "label": "Résumé mission",
+    "access": 133,
+    "completed": true,
+    "completed_at": 1701695866609,
+    "completed_location": "0.00000000,0.00000000",
+    "generate_documents": [],
+    "city": "Paris",
+    "state": "IDF",
+    "country_code": "fr",
+    "zip_code": 75013,
+    "job_title": "Titre",
+    "job_reference": "REF0009",
+    "job_due_date": 1701685140000,
+    "job_start_date": 1701685140000,
+    "job_end_date": 1701857940000,
+    "job_address": "14 Rue des Peupliers, Paris",
+    "job_location": "48.8243356,2.3533179",
+    "performer_estimation": 60,
+    "performer_duration": "0.4962686790333333",
+    "files": [],
+    "children": [
+        {
+            "type": "section",
+            "id": "b5422772-bc85-4e91-bb16-83e7150f7151",
+            "label": "Section",
+            "access": 111,
+            "direction": "col",
+            "children": [
+                {
+                    "type": "widget_text",
+                    "id": "4d01d41f-42c4-49dd-a4ff-b00bbc8fa565",
+                    "label": "Numéro de téléphone",
+                    "access": 133,
+                    "data_type": "phone"
+                }
+            ]
+        }
+    ]
+}
