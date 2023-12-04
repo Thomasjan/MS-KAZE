@@ -10,6 +10,7 @@ import template_description from './data/template_description.json';
 import template_client from './data/template_client.json';
 import template_contact_num from './data/template_contact_num.json';
 import { type } from 'os';
+import jsonMapper from './utils/jsonMapper';
 
 
 const login = async () => {
@@ -66,6 +67,8 @@ const postJob = async (job: any) => {
 
 
 
+
+
 const main = async () => {
     console.log('main()'.red.underline)
     // await login();
@@ -92,36 +95,42 @@ const main = async () => {
 
     const job = job_template;
 
-    job.workflow.children[0].job_reference = data.ACT_NUMERO;
-    job.workflow.children[0].job_title = data.ACT_OBJET;
-    job.workflow.children[0].job_address = data.adresse;
-    job.workflow.children[0].zip_code = data.code_postal;
-    job.workflow.children[0].city = data.ville;
+    const fields = {
+        ACT_NUMERO: data.ACT_NUMERO,
+        PCF_CODE: data.PCF_CODE,
+        CCT_NUMERO: data.CCT_NUMERO,
+        ACT_OBJET: data.ACT_OBJET,
+        ACT_TYPE: data.ACT_TYPE,
+        ACT_DESC: data.ACT_DESC,
+        ACT_DATE: data.ACT_DATE,
+        ACT_DATFIN: data.ACT_DATFIN,
+        ACT_DATECH: data.ACT_DATECH,
+        PCF_RS: data.PCF_RS,
+        PCF_EMAIL: data.PCF_EMAIL || 'no_email@gmail.com',
+        PCF_VILLE: data.PCF_VILLE,
+        PCF_CP: data.PCF_CP,
+        PCF_RUE: data.PCF_RUE,
+        XXX_IDMKAZE: data.XXX_IDMKAZE,
+        
+    }
 
-    template_type.data = data.ACT_TYPE;
-    template_description.data = data.ACT_DESC;
-    template_client.address = data.adresse;
-    template_client.address_title = data.adresse;
-    template_client.zip_code =data.code_postal;
-    template_client.city = data.ville;
-    template_client.name = data.raison_sociale;
-    template_client.email = tier.client.PCF_EMAIL;
-
-
-      const jsonArray: any = [
+      const jsonArray: Array<Object> = [
         template_type,
         template_description,
         template_client,
         template_contact_num
     ];
       
-    (job.workflow.children[0].children[0].children as any) = jsonArray;
+    (job.workflow.children[0].children[0].children as Array<Object>) = jsonArray;
 
-    console.log('job: ', job.workflow.children[0]);
+    const updatedJson = jsonMapper(job, fields);
+    console.log('updatedJson: ', updatedJson.workflow.children[0].children[0].children);
+
+    // console.log('job: ', job.workflow.children[0]);
 
     
 
-    postJob(job)
+    postJob(updatedJson)
 
     
 }

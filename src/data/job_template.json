@@ -13,14 +13,13 @@
           "generate_documents": [
     
           ],
-          "city": "Paris",
+          "city": "PCF_VILLE",
           "state": "IDF",
           "country_code": "fr",
-          "zip_code": 75013,
+          "zip_code": "PCF_CP",
           "job_title": "ACT_OBJET",
           "job_reference": "ACT_NUMERO",
-          "job_address": "8 Rue des Peupliers, Paris",
-          "job_location": "48.82498140000001,2.353615",
+          "job_address": "PCF_RUE",
           "performer_estimation": 60,
           "files": [
     

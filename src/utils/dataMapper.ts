@@ -41,7 +41,7 @@ const dataMapper = (data: any, table: string) => {
                 PCF_VILLE: data.city,
                 ACT_DATE: data.job_start_date,
                 ACT_DATFIN: data.job_end_date,
-                XXX_IDMKAZE: data.id, // (Workflow)
+                XXX_IDMKAZE: data.id,
             };
 
             return actions;
