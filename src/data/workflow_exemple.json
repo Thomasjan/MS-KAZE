@@ -37,16 +37,19 @@
         ]
       },
       {
-        "access": 133,
         "type": "template_navigation",
-        "id": "pick_up_address",
-        "label": "Départ du taxi",
-        "reference": "pick-up_address",
-        "display_expanded": true,
+        "id": "d25d01b9-dd3b-4030-97ac-bc0f86ac9d7f",
+        "label": "Navigation",
+        "access": 133,
+        "generate_documents": [],
+        "city": "PCF_VILLE",
+        "state": "IDF",
+        "country_code": "fr",
+        "zip_code": "PCF_CP",
+        "beneficiary_phone": 612457865,
         "address": "PCF_RUE",
-        "location": "47.6617064,-2.7574616",
-        "beneficiary_phone": 33690591831,
-        "performance_review": true
+        "location": "48.8243356,2.3533179",
+        "details": "détails adress batiment 1 ..."
       },
       {
         "type": "template_photo",
