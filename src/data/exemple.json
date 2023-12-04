@@ -1,0 +1,76 @@
+{
+  "target_id": "company_id",
+  "workflow":{
+      "type": "workflow",
+      "id": "root",
+      "children": [
+        
+        {
+          "type": "template_job_info",
+          "id": "template_info",
+          "label": "Résumé mission",
+          "access": 133,
+          "generate_documents": [
+    
+          ],
+          "city": "PCF_VILLE",
+          "state": "IDF",
+          "country_code": "fr",
+          "zip_code": "PCF_CP",
+          "job_title": "ACT_OBJET",
+          "job_reference": "ACT_NUMERO",
+          "job_address": "PCF_RUE",
+          "performer_estimation": 60,
+          "files": [
+    
+          ],
+          "children": [
+            {
+              "type": "section",
+              "id": "template_section",
+              "direction": "col",
+              "children": [
+                {
+                  "type": "widget_text",
+                  "id": "template_type",
+                  "label": "Code Type d'intervention",
+                  "access": 133,
+                  "data_type": "string",
+                  "data": "ACT_TYPE"
+                },
+                {
+                  "type": "widget_client",
+                  "id": "template_client",
+                  "label": "Client",
+                  "access": 133,
+                  "city": "PCF_VILLE",
+                  "country_code": "fr",
+                  "zip_code": 0,
+                  "client_type": "regular",
+                  "name": "PCF_RS",
+                  "email": "PCF_EMAIL",
+                  "address_title": "PCF_RUE",
+                  "address": "PCF_RUE"
+              },
+              {
+                "type": "widget_text",
+                "id": "template_contact_num",
+                "label": "Numéro de téléphone",
+                "access": 133,
+                "data_type": "phone"
+              },
+              {
+                "type": "widget_text",
+                "id": "template_description",
+                "label": "Descriptif",
+                "access": 133,
+                "data_type": "string",
+                "data": "ACT_DESC"
+              }
+              ]
+            }
+          ]
+        }
+      ]
+  }
+}
