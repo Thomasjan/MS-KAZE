@@ -9,11 +9,12 @@ import template_type from './data/template_type.json';
 import template_description from './data/template_description.json';
 import template_client from './data/template_client.json';
 import template_contact_num from './data/template_contact_num.json';
+import { type } from 'os';
 
 
 const login = async () => {
-    console.log('login()'.cyan)
-    axios.post('http://localhost:3000/api/v1/kaze/login')
+    console.log('login()...'.cyan)
+    await axios.post('http://localhost:3000/api/v1/kaze/login')
     .then((response) => {
         console.log(response.data);
     })
@@ -67,7 +68,8 @@ const postJob = async (job: any) => {
 
 const main = async () => {
     console.log('main()'.red.underline)
-    await login();
+    // await login();
+    
     const lastAction = await fetchActions();
     const tier = await fetchTier(lastAction.PCF_CODE);
     // console.log('tier: ', tier);
@@ -88,23 +90,37 @@ const main = async () => {
 
     console.log('data: ', data);
 
-    // const job = dataMapper(data, 'Jobs');
-    // console.log('job: ', job);
-
     const job = job_template;
-    // console.log('job: ', job);
 
-    const jsonArray: any = [
+    job.workflow.children[0].job_reference = data.ACT_NUMERO;
+    job.workflow.children[0].job_title = data.ACT_OBJET;
+    job.workflow.children[0].job_address = data.adresse;
+    job.workflow.children[0].zip_code = data.code_postal;
+    job.workflow.children[0].city = data.ville;
+
+    template_type.data = data.ACT_TYPE;
+    template_description.data = data.ACT_DESC;
+    template_client.address = data.adresse;
+    template_client.address_title = data.adresse;
+    template_client.zip_code =data.code_postal;
+    template_client.city = data.ville;
+    template_client.name = data.raison_sociale;
+    template_client.email = tier.client.PCF_EMAIL;
+
+
+      const jsonArray: any = [
         template_type,
         template_description,
         template_client,
         template_contact_num
-    ]
-    console.log('jsonArray: ', jsonArray)
+    ];
+      
+    (job.workflow.children[0].children[0].children as any) = jsonArray;
 
-    job.workflow.children[0].children[0].children = jsonArray;
+    console.log('job: ', job.workflow.children[0]);
 
-    console.log('job: ', job.workflow.children[0].children[0]);
+    
+
     postJob(job)
 
     
@@ -112,4 +128,12 @@ const main = async () => {
 
 
 ///launch script
-main();
+login().then(() => {
+    main();
+})
+.catch((error) => {
+    console.log(error);
+});
+
+
+

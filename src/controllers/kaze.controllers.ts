@@ -19,8 +19,7 @@ const kazeController = {
 
     getJobs: async (req: Request, res: Response) => {
 
-        const authToken = getAuthToken();
-
+        const authToken = await getAuthToken();
         try{
             const response = await axios.get('https://app.kaze.so/api/jobs.json', {
                 headers: {
@@ -39,9 +38,11 @@ const kazeController = {
 
     createJob: async (req: Request, res: Response) => {
             
-            const authToken = getAuthToken();
+            const authToken = await getAuthToken();
+            console.log('authTokenPOST: '.yellow, authToken);
+
             const json = req.body;
-            console.log('JSON: ', json)
+            console.log('JSON: ', json.workflow.children[0].children[0])
             try{
                 const response = await axios.post('https://app.kaze.so/api/jobs.json', json, {
                     headers: {
