@@ -22,6 +22,7 @@ type Actions = {
     ACT_DATE: string;
     ACT_DATFIN: string;
     XXX_IDMKAZE: string;
+    ACT_DATECH: string;
 };
 
 
@@ -33,18 +34,19 @@ const dataMapper = (data: any, table: string) => {
 
             case 'Actions':
                 
-            const actions = {
-                ACT_NUMERO: data.job_reference,
-                ACT_OBJET: data.job_title,
-                PCF_RUE: data.job_address,
-                PCF_CP: data.zip_code,
-                PCF_VILLE: data.city,
-                ACT_DATE: data.job_start_date,
-                ACT_DATFIN: data.job_end_date,
+            const fields = {
                 XXX_IDMKAZE: data.id,
-            };
+                ACT_NUMERO: data.children[0]?.job_reference,
+                ACT_OBJET: data.children[0]?.job_title,
+                PCF_RUE: data.children[0]?.job_address,
+                PCF_CP: data.children[0]?.zip_code,
+                PCF_VILLE: data.children[0]?.city,
+                ACT_DATE: data.children[0]?.job_start_date,
+                ACT_DATFIN: data.children[0]?.job_end_date,
+                ACT_DATECH: data.children[0]?.job_due_date,
+            }
 
-            return actions;
+            return fields;
 
 
 

@@ -3,6 +3,7 @@ require('dotenv').config();
 
 let authToken: string | null = null;
 
+// Login to Kaze
 export const login = async (username: string, password: string): Promise<void> => {
     console.log('login()'.cyan);
 
@@ -31,6 +32,7 @@ export const login = async (username: string, password: string): Promise<void> =
   }
 };
 
+// Get the auth token
 export const getAuthToken = (): string | null => {
   return authToken;
 };

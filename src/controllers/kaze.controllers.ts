@@ -17,6 +17,7 @@ const kazeController = {
         res.send(authToken);
     },
 
+    //get all jobs from Kaze
     getJobs: async (req: Request, res: Response) => {
 
         const authToken = await getAuthToken();
@@ -36,13 +37,33 @@ const kazeController = {
         }
     },
 
+    //get job by id from Kaze
+    getJob: async (req: Request, res: Response) => {
+        const id = req.params.id;
+        const authToken = await getAuthToken();
+        try{
+            const response = await axios.get(`https://app.kaze.so/api/jobs/${id}.json`, {
+                headers: {
+                    Authorization: `${authToken}`,
+                    "Content-Type": "application/json"
+                }
+            });
+            console.log(response.data);
+            res.send(response.data);
+        }
+        catch(error){
+            console.log(error);
+            res.status(500).send(error);
+        }
+    },
+
+    //post job to Kaze
     createJob: async (req: Request, res: Response) => {
             
             const authToken = await getAuthToken();
             console.log('authTokenPOST: '.yellow, authToken);
 
             const json = req.body;
-            // console.log('JSON: ', json.workflow.children[0].children[0])
             try{
                 const response = await axios.post('https://app.kaze.so/api/jobs.json', json, {
                     headers: {

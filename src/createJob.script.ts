@@ -1,7 +1,6 @@
 //script to get localhost:3000/api/v1/affaires
 
 import axios from 'axios';
-import dataMapper from './utils/dataMapper';
 import 'colors';
 
 import job_template from './data/job_template.json';
@@ -14,9 +13,10 @@ import kaze_template from './data/kaze_template.json';
 import workflow_template from './data/workflow_exemple.json';
 
 import jsonMapper from './utils/jsonMapper';
-import { json } from 'stream/consumers';
+import dataMapper from './utils/dataMapper';
 
 
+//login to kaze
 const login = async () => {
     console.log('login()...'.cyan)
     await axios.post('http://localhost:3000/api/v1/kaze/login')
@@ -28,6 +28,7 @@ const login = async () => {
     });
 }
 
+//fetch actions from gestimum
 const fetchActions = async () => {
     console.log('fetchActions()'.magenta)
     const display = `?display=["ACT_NUMERO","PCF_CODE","CCT_NUMERO","ACT_OBJET","ACT_TYPE","ACT_DESC","ACT_DATE","ACT_DATFIN", "ACT_DATECH"]`
@@ -44,6 +45,7 @@ const fetchActions = async () => {
     }
 }
 
+//fetch tier of the action
 const fetchTier = async (id: string) => {
     console.log('fetchTier()'.magenta)
     try{
@@ -56,7 +58,8 @@ const fetchTier = async (id: string) => {
     }
 }
 
-const postJob = async (job: any) => {
+//post job to kaze
+const postJob = async (job: Object) => {
     console.log('postJob()'.magenta)
     
     try{
@@ -76,30 +79,31 @@ const postJob = async (job: any) => {
 
 const main = async () => {
     console.log('main()'.red.underline)
-    // await login();
     
+    //fetching actions
     const lastAction = await fetchActions();
+    //fetching tier of the action
     const tier = await fetchTier(lastAction.PCF_CODE);
-    // console.log('tier: ', tier);
-    // console.log('lastAction: ', lastAction);
 
+    //handle Errors
     if (!lastAction) {
         throw new Error('No action found');
     }
-
     if(!tier){
         throw new Error('No tier found');
     }
 
+    //data to send to kaze
     const data = {
         ...lastAction,
         ...tier.client
     }
-
     console.log('data: ', data);
+
 
     const job = job_template;
 
+    //create fields object
     const fields: Object = {
         ACT_NUMERO: data.ACT_NUMERO,
         PCF_CODE: data.PCF_CODE,
@@ -119,7 +123,8 @@ const main = async () => {
         
     }
 
-      const jsonArray: Array<Object> = [
+    //insert jsons into json
+    const jsonArray: Array<Object> = [
         template_type,
         template_description,
         template_client,
@@ -128,19 +133,20 @@ const main = async () => {
       
     (job.workflow.children[0].children[0].children as Array<Object>) = jsonArray;
 
+    //insert data into json
     const updatedJson: Object = jsonMapper(job, fields);
     const kazeJSON: Object = jsonMapper(kaze_template, fields);
     const finalWorkflow: Object =  jsonMapper(workflow_template, fields);
 
-
     console.log('posting job...'.magenta, finalWorkflow);
 
+    //post job to kaze
     postJob(finalWorkflow)
     
 }
 
 
-///launch script
+//launch script
 login().then(() => {
     main();
 })

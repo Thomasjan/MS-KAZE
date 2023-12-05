@@ -1,5 +1,6 @@
 import colors from 'colors';
 
+// validateData is a middleware that checks if the required fields are present in the request body
 const validateData = (requiredFields: string[]) => {
   const greenRequiredFields = requiredFields.map(field => colors.green(field)).join(', ');
 

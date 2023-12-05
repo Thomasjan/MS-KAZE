@@ -12,6 +12,7 @@ const gestimumController = {
         return res.send('Hello, Gestimum!');
     },
 
+    //get all affaires from Gestimum
     getAffaires: (req: Request, res: Response) => {
         console.log('getAffaires()'.yellow)
         const config = {
@@ -33,6 +34,7 @@ const gestimumController = {
             });
     },
 
+    //get all actions from Gestimum
     getActions: (req: Request, res: Response) => {
         console.log('getActions()'.yellow)
         const config = {
@@ -53,6 +55,7 @@ const gestimumController = {
             });
     },
     
+    //get Tier from Gestimum
     getTier: (req: Request, res: Response) => {
         console.log('getTier()'.yellow)
         const config = {
