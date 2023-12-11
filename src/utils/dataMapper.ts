@@ -1,31 +1,5 @@
 //dataMapper
 
-type Jobs = { 
-    id: string;
-    job_reference: string;
-    job_title: string;
-    job_address: string;
-    zip_code: string;
-    city: string;
-    job_start_date: string;
-    job_end_date: string;
-
-    sync_kaze: boolean;
-};
-
-type Actions = {
-    ACT_NUMERO: string;
-    ACT_OBJET: string;
-    PCF_RUE: string;
-    PCF_CP: string;
-    PCF_VILLE: string;
-    ACT_DATE: string;
-    ACT_DATFIN: string;
-    XXX_IDMKAZE: string;
-    ACT_DATECH: string;
-};
-
-
 const dataMapper = (data: any, table: string) => {
 
     switch (table) {
@@ -47,7 +21,6 @@ const dataMapper = (data: any, table: string) => {
             }
 
             return fields;
-
 
 
         //Gestimum vers Kaze

@@ -34,6 +34,7 @@ const gestimumController = {
             });
     },
 
+
     //get all actions from Gestimum
     getActions: (req: Request, res: Response) => {
         console.log('getActions()'.yellow)
@@ -73,7 +74,29 @@ const gestimumController = {
                 console.log(error);
                 return res.send(error);
             });
-    }
+    },
+
+    //update Actions in Gestimum
+    updateAction: (req: Request, res: Response) => {
+        console.log('updateAction()'.yellow)
+        const config = {
+            'headers': {
+                'x-api-key': process.env.GESTIMUM_API_KEY
+            }
+        };
+
+        axios.put(`${GESTIMUM_API_URL}/actions/updateAction/${req.params.id}`, req.body, config)
+            .then((response) => {
+                console.log('updated action: '.yellow + ' ' + `${response.data.action.id}`.green.bold);
+                return res.send(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+                return res.send(error);
+            });
+    },
+    
+    
 
     
 }

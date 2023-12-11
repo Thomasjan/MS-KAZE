@@ -8,5 +8,6 @@ router.get('/index', gestimumController.index);
 router.get('/affaires/', gestimumController.getAffaires);
 router.get('/actions/', gestimumController.getActions);
 router.get('/getTier/:id', gestimumController.getTier);
+router.put('/updateAction/:id', gestimumController.updateAction);
 
 export default router;

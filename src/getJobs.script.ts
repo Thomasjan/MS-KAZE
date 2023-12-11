@@ -1,6 +1,7 @@
 import axios from 'axios';
 import 'colors';
 import dataMapper from './utils/dataMapper';
+import Action from './models/Action';
 
 
 
@@ -14,6 +15,21 @@ const login = async () => {
     .catch((error) => {
         console.log(error);
     });
+}
+
+//fetch actions from gestimum with Sync kaze = 1
+const fetchActions = async () => {
+    console.log('fetchActions()'.magenta)
+    const display = `?display=["ACT_NUMERO","PCF_CODE","CCT_NUMERO","ACT_OBJET","ACT_TYPE","ACT_DESC","ACT_DATE","ACT_DATFIN", "ACT_DATECH", "XXX_DTKAZE", "XXX_IDMKAZE", "XXX_KAZE"]`
+    const select = `&XXX_KAZE=1`
+    try{
+        const response = await axios.get(`http://localhost:3000/api/v1/gestimum/actions/${display}${select}`);
+        return response.data.actions;
+    }
+    catch(error){
+        console.log(error);
+        return error;
+    }
 }
 
 //fetch jobs from Kaze
@@ -47,30 +63,70 @@ const main = async () => {
     console.log('main()'.red.underline)
     
     //fetching jobs from Kaze
-    const jobs = await fetchJobs();
+    const actions: Array<Action> = await fetchActions();
     //handle Errors
-    if (!jobs) {
-        throw new Error('No jobs found');
+    if (!actions) {
+        console.log('No actions found'.red)
+        throw new Error('No actions found');
     }
 
-    const firstjobId: String = jobs.data[0].id;
-    // console.log('firstjobId: '.cyan, firstjobId);
+    //get actions with XXX_IDMKAZE not null
+    const actionsWithIdKaze: Array<Action> = actions.filter((action) => {
+        return action.XXX_IDMKAZE;
+    });
 
-    //fetching jobID from Kaze
-    const jobID = await fetchjobID(firstjobId);
-    //handle Errors
-    if (!jobID) {
-        throw new Error('No jobID found');
-    }
-    // console.log('job: '.cyan, jobID);
+    actionsWithIdKaze.forEach(async (action) => {
+        //getJobID from Kaze
+        const jobID = await fetchjobID(action.XXX_IDMKAZE);
+        //handle Errors
+        if (!jobID) {
+            console.log('No jobID found for action: '.red, action.ACT_NUMERO);
+            throw new Error('No jobID found');
+        }
 
-    const workflow = jobID.workflow;
-    // console.log('workflow: '.cyan, workflow);
-    
-    const result = dataMapper(workflow, 'Actions');
-    console.log('result: '.cyan, result);
+        //get workflow from jobID
+        const workflow = jobID.workflow;
+        //handle Errors
+        if (!workflow) {
+            console.log('No workflow found for action: '.red, action.ACT_NUMERO);
+            throw new Error('No workflow found');
+        }
+
+        const data = dataMapper(workflow, 'Actions');
+        console.log('data: '.cyan, data);
+
+    });
     
 }
+
+// const main = async () => {
+//     console.log('main()'.red.underline)
+    
+//     //fetching jobs from Kaze
+//     const jobs = await fetchJobs();
+//     //handle Errors
+//     if (!jobs) {
+//         throw new Error('No jobs found');
+//     }
+
+//     const firstjobId: String = jobs.data[4].id;
+//     // console.log('firstjobId: '.cyan, firstjobId);
+
+//     //fetching jobID from Kaze
+//     const jobID = await fetchjobID(firstjobId);
+//     //handle Errors
+//     if (!jobID) {
+//         throw new Error('No jobID found');
+//     }
+//     // console.log('job: '.cyan, jobID);
+
+//     const workflow = jobID.workflow;
+//     // console.log('workflow: '.cyan, workflow);
+    
+//     const result = dataMapper(workflow, 'Actions');
+//     console.log('result: '.cyan, result);
+    
+// }
 
 login().then(() => {
     main();
