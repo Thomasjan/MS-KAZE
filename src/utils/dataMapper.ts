@@ -8,16 +8,18 @@ const dataMapper = (data: any, table: string) => {
 
             case 'Actions':
                 
-            const fields = {
+            const fields: any = {
                 XXX_IDMKAZE: data.id,
-                ACT_NUMERO: data.children[0]?.job_reference,
-                ACT_OBJET: data.children[0]?.job_title,
-                PCF_RUE: data.children[0]?.job_address,
-                PCF_CP: data.children[0]?.zip_code,
-                PCF_VILLE: data.children[0]?.city,
-                ACT_DATE: data.children[0]?.job_start_date,
-                ACT_DATFIN: data.children[0]?.job_end_date,
-                ACT_DATECH: data.children[0]?.job_due_date,
+                XXX_DTKAZE: data.updated_at,
+                ACT_OBJET: data.title,
+                ACT_NUMERO: data.reference,
+                ACT_STATUS: data.status_name,
+                PCF_RUE: data.workflow.children[0]?.job_address,
+                PCF_CP: data.workflow.children[0]?.zip_code,
+                PCF_VILLE: data.workflow.children[0]?.city,
+                ACT_DATE: data.workflow.children[0]?.job_start_date,
+                ACT_DATFIN: data.workflow.children[0]?.job_end_date,
+                ACT_DATECH: data.workflow.children[0]?.job_due_date,
             }
 
             return fields;

@@ -67,7 +67,7 @@ const postJob = async (job: Object) => {
         return response.data;
     }
     catch(error){
-        console.log(`POST ERROR`.red, error);
+        console.log(`POST ERROR`.red);
         return error;
     }
 }
@@ -80,7 +80,7 @@ const updateAction = async (id: string, data: Object) => {
         return response.data;
     }
     catch(error){
-        console.log(`UPDATE ERROR ${id}`.red, error);
+        console.log(`UPDATE ERROR ${id}`.red);
         return error;
     }
 }
@@ -125,25 +125,13 @@ const main = async () => {
         }
     }
 
-
-    
 }
 
-
-//launch script
-login().then(() => {
-    main();
-})
-.catch((error) => {
-    console.log(error);
-});
-
-
+//create Job in Kaze
 const createJob = async (action: Action) => {
     const tier = await fetchTier(action.PCF_CODE);
 
         //handle Errors
-        
         if(!tier){
             console.log('No tier found'.red)
             throw new Error('No tier found');
@@ -174,7 +162,7 @@ const createJob = async (action: Action) => {
             XXX_IDMKAZE: data.XXX_IDMKAZE,
             
         }
-        console.log('fields: '.yellow, fields)
+        // console.log('fields: '.yellow, fields)
 
         if(!fields.ACT_NUMERO || !fields.PCF_CODE || !fields.CCT_NUMERO || !fields.ACT_OBJET || !fields.ACT_TYPE || !fields.PCF_RS){
             console.log(`Missing fields (${action.ACT_NUMERO})`.red)
@@ -226,4 +214,16 @@ const createJob = async (action: Action) => {
 
         return 'passed'.bgGreen;
 }
+
+
+//launch script
+login().then(() => {
+    main();
+})
+.catch((error) => {
+    console.log(error);
+});
+
+
+
 

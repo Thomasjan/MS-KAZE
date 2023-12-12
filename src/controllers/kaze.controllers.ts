@@ -21,14 +21,18 @@ const kazeController = {
     getJobs: async (req: Request, res: Response) => {
 
         const authToken = await getAuthToken();
+        const body = req.body;
+        console.log('body: '.yellow, body)
         try{
             const response = await axios.get('https://app.kaze.so/api/jobs.json', {
                 headers: {
                     Authorization: `${authToken}`,
                     "Content-Type": "application/json"
-                }
+                },
+                params: body
+                
             });
-            console.log(response.data);
+            // console.log(response.data);
             res.send(response.data);
         }
         catch(error){
