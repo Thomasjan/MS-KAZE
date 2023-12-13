@@ -20,6 +20,13 @@ const dataMapper = (data: any, table: string) => {
                 ACT_DATE: data.workflow.children[0]?.job_start_date,
                 ACT_DATFIN: data.workflow.children[0]?.job_end_date,
                 ACT_DATECH: data.workflow.children[0]?.job_due_date,
+
+                XXX_GKNAV: template_navigation(data.workflow.children[1]),
+                XXX_GKIMA: template_photo(data.workflow.children[2]),
+                XXX_GKSIGN: template_signature(data.workflow.children[3]), 
+                XXX_GKVIDE: template_blank(data.workflow.children[4]),
+                // XXX_GKTRAC 
+                // XXX_GKINSP 
             }
 
             return fields;
@@ -61,6 +68,29 @@ const dataMapper = (data: any, table: string) => {
         default:
         return undefined;
     }
+}
+
+
+const template_navigation = (data: any) => {
+    return `
+    Ville: ${data.city}, ${data.zip_code} \n
+    Adresse: ${data.address}, ${data.details} \n
+    Contact:  ${data.beneficiary_phone} \n`
+}
+
+const template_photo = (data: any) => {
+    return `
+    Instructions: ${data.annotation_tips} \n
+    Photo: ${JSON.stringify(data.photos[0])}`
+}
+
+const template_signature = (data: any) => {
+    return `
+    Signature ${data.terms}: ${data.signature}`
+}
+
+const template_blank = (data: any) => {
+    return JSON.stringify(data)
 }
 
 export default dataMapper;

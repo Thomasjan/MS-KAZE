@@ -1,4 +1,5 @@
 import axios from 'axios';
+import logger from '../logger';
 require('dotenv').config();
 
 let authToken: string | null = null;
@@ -12,9 +13,6 @@ export const login = async (username: string, password: string): Promise<void> =
       password: process.env.KAZE_PASSWORD,
     }
 
-    console.log('user: ', user)
-
-    console.log(user);
   try {
     const response = await axios.post('https://app.kaze.so/api/login.json', {user}, {
         headers: {
@@ -26,9 +24,9 @@ export const login = async (username: string, password: string): Promise<void> =
     authToken = response.data.token;
     console.log('login ' + 'successful'.green);
     console.log('authToken: ', authToken?.red);
-  } catch (error) {
+  } catch (error: any) {
     console.log('login ' + 'failed'.red)
-    throw error;
+    logger.error(new Error('login error -> ' + error.response.data));
   }
 };
 

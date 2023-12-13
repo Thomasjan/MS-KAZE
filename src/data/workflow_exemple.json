@@ -46,7 +46,7 @@
         "state": "IDF",
         "country_code": "fr",
         "zip_code": "PCF_CP",
-        "beneficiary_phone": 612457865,
+        "beneficiary_phone": "CCT_TELM",
         "address": "PCF_RUE",
         "location": "48.8243356,2.3533179",
         "details": "détails adress batiment 1 ..."

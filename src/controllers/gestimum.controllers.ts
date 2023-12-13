@@ -3,6 +3,7 @@
 require('dotenv').config();
 import { Request, Response } from 'express';
 import axios from 'axios';
+import logger from '../logger';
 
 const GESTIMUM_API_URL = process.env.GESTIMUM_API_URL;
 
@@ -30,6 +31,7 @@ const gestimumController = {
             })
             .catch((error) => {
                 console.log(error);
+                logger.error(new Error('getAffaires error -> ' + error.response.data));
                 return res.send(error);
             });
     },
@@ -52,6 +54,7 @@ const gestimumController = {
             })
             .catch((error) => {
                 console.log(error);
+                logger.error(new Error('getActions error -> ' + error.response.data));
                 return res.send(error);
             });
     },
@@ -72,6 +75,27 @@ const gestimumController = {
             })
             .catch((error) => {
                 console.log(error);
+                logger.error(new Error('getTier error -> ' + error.response.data));
+                return res.send(error);
+            });
+    },
+
+    getContact: (req: Request, res: Response) => {
+        console.log('getContact()'.yellow)
+        const config = {
+            'headers': {
+                'x-api-key': process.env.GESTIMUM_API_KEY
+            }
+        };
+
+        axios.get(`${GESTIMUM_API_URL}/utilisateurs/code/${req.params.id}`, config)
+            .then((response) => {
+                console.log('retrieved contact: '.yellow + ' ' + `${response.data.utilisateur.CCT_NUMERO}`.green.bold);
+                return res.send(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+                logger.error(new Error('getContact error -> ' + error.response.data));
                 return res.send(error);
             });
     },
@@ -92,6 +116,7 @@ const gestimumController = {
             })
             .catch((error) => {
                 console.log(error);
+                logger.error(new Error('updateAction error -> ' + error.response.data));
                 return res.send(error);
             });
     },

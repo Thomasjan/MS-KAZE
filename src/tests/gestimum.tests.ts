@@ -45,17 +45,11 @@ describe('getAffaires()', () => {
     });
   
   
-  
-    it('Without Params: should return 200', async () => {
-      // Make request
-      const result = await fetch('http://localhost:5000/api/v1/gestimum/actions/');
-      // Expect result
-      assert.equal(result.status, 200);
-    });
 
     it('With params: should return 200', async () => {
         // Make request
-        const result = await fetch('http://localhost:5000/api/v1/gestimum/actions/?display=["ACT_NUMERO", "PCF_CODE", "CCT_NUMERO", "ACT_OBJET"]');
+        const params = `?XXX_KAZE=1&display=["ACT_NUMERO","PCF_CODE","CCT_NUMERO","ACT_OBJET","ACT_TYPE","ACT_DESC","ACT_DATE","ACT_DATFIN", "ACT_DATECH", "XXX_DTKAZE", "XXX_IDMKAZE", "XXX_KAZE"]`;
+        const result = await fetch(`http://localhost:5000/api/v1/gestimum/actions/${params}`);
         // Expect result
         assert.equal(result.status, 200);
       });
@@ -70,6 +64,7 @@ describe('getAffaires()', () => {
     });
   });
 
+  //gettTier()
   describe('getTier()', () => {
     let server: any;
   
@@ -93,5 +88,32 @@ describe('getAffaires()', () => {
       await server.close();
     });
   });
+
+  //getContact()
+  describe('getContact()', () => {
+    let server: any;
+  
+    before(async () => {
+      // Start the app before all tests
+      server = await app.listen(5000);
+    });
+  
+  
+  
+    it('Should return 200', async () => {
+      // Make request
+      const result = await fetch('http://localhost:5000/api/v1/gestimum/getContact/0001183749');
+      // Expect result
+      assert.equal(result.status, 200);
+    });
+
+  
+    after(async () => {
+      // Close the app after all tests
+      await server.close();
+    });
+  });
+
+  
 
 

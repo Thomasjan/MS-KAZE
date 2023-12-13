@@ -7,7 +7,9 @@
     "test": "ts-mocha --exit src/tests/**/*.tests.ts",
     "start": "ts-node src/index.ts",
     "dev": "nodemon src/index.ts",
-    "build": "npm test && tsc"
+    "build": "npm test && tsc",
+    "start-getJobs": "node -e \"setInterval(() => { require('child_process').execSync('ts-node src/scripts/getJobs.script.ts', {stdio:[0,1,2]}); }, 10000)\"",
+    "start-createJobs": "node -e \"setInterval(() => { require('child_process').execSync('ts-node src/scripts/createJobs.script.ts', {stdio:[0,1,2]}); }, 10000)\""
   },
   "keywords": [],
   "author": "",
@@ -20,6 +22,7 @@
     "@types/express": "^4.17.21",
     "@types/mocha": "^10.0.5",
     "@types/node": "^20.9.3",
+    "@types/winston": "^2.4.4",
     "chai": "^4.3.10",
     "chai-http": "^4.4.0",
     "mocha": "^10.2.0",
@@ -34,6 +37,7 @@
     "axios": "^1.6.2",
     "colors": "^1.4.0",
     "dotenv": "^16.3.1",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "winston": "^3.11.0"
   }
 }
