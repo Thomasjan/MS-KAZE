@@ -20,11 +20,12 @@ const dataMapper = (data: any, table: string) => {
                 ACT_DATE: data.workflow.children[0]?.job_start_date,
                 ACT_DATFIN: data.workflow.children[0]?.job_end_date,
                 ACT_DATECH: data.workflow.children[0]?.job_due_date,
+                ACT_DESC: data.workflow.children[1].children[0].children[0].data,
 
-                XXX_GKNAV: template_navigation(data.workflow.children[1]),
-                XXX_GKIMA: template_photo(data.workflow.children[2]),
-                XXX_GKSIGN: template_signature(data.workflow.children[3]), 
-                XXX_GKVIDE: template_blank(data.workflow.children[4]),
+                XXX_GKNAV: template_navigation(data.workflow.children[2]),
+                XXX_GKIMA: template_photo(data.workflow.children[3]),
+                XXX_GKSIGN: template_signature(data.workflow.children[4]), 
+                XXX_GKVIDE: template_blank(data.workflow.children[5]),
                 // XXX_GKTRAC 
                 // XXX_GKINSP 
             }
@@ -94,3 +95,43 @@ const template_blank = (data: any) => {
 }
 
 export default dataMapper;
+
+
+//function to get info from workflow
+export const flattenWorkflow = (data: any, flattened: any = {}) => {
+    if (data.children && data.children.length > 0) {
+      data.children.forEach((child: any) => {
+        flattened = flattenWorkflow(child, flattened);
+      });
+    } else {
+      // Check for relevant properties and assign them to flattened object
+      if (data.data_type === 'string' || data.data_type === 'phone' || data.data_type === 'text' || data.data_type === 'image') {
+        flattened[data.label] = data.data || data.instruction || data.annotation_tips || undefined;
+      } else if (data.type === 'template_navigation') {
+        flattened['navigation'] = {
+          city: data.city,
+          state: data.state,
+          country_code: data.country_code,
+          zip_code: data.zip_code,
+          beneficiary_phone: data.beneficiary_phone,
+          address: data.address,
+          location: data.location,
+          details: data.details
+        };
+      } else if (data.type === 'template_photo') {
+        flattened['photo'] = {
+          photo_count: data.photo_count,
+          photos: data.photos.map((photo: any) => ({
+            type: photo.data_type,
+            instruction: photo.instruction
+          })),
+          annotation_tips: data.annotation_tips
+        };
+      } else if (data.type === 'template_signature') {
+        flattened['signature'] = {
+          terms: data.terms
+        };
+      }
+    }
+    return flattened;
+  };

@@ -1,6 +1,5 @@
 import express, {NextFunction, Request, Response} from 'express';
 import 'colors';
-import winston from 'winston';
 
 const app = express();
 const port = 3000;

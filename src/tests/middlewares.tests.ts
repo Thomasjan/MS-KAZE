@@ -149,9 +149,6 @@ describe('jsonMapper Middleware', () => {
   const newjson = jsonMapper(json, fields);
 
   expect(newjson).to.deep.equal(expectedjson);
-  // expected 1+1 = 2
-  // expect(1+1).to.equal(2);
-
   done();
   });
 

@@ -1,6 +1,7 @@
 // sample.test.ts
 import { assert, expect } from 'chai';
 import app from '../index';
+import logger from '../logger';
 
 describe('Sample Test', () => {
   it('should add two numbers', () => {
@@ -27,11 +28,22 @@ describe('API launch', () => {
   });
 
   
-
-  // Add more tests as needed
-
   after(async () => {
     // Close the app after all tests
     await server.close();
   });
 });
+
+
+//test logger
+describe('logger', () => {
+  it('should log error', async () => {
+    // Assuming logger.error is an asynchronous function
+    const loggerInstance = logger.error(new Error('test error'));
+    // Wait for the logging operation to complete (if asynchronous)
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    // Instead of expecting undefined, check if the logger instance is truthy
+    expect(loggerInstance).to.be.ok;
+  });
+});
+

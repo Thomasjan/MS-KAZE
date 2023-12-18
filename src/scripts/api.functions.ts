@@ -28,6 +28,7 @@ const fetchActions = async () => {
     }
 }
 
+//fetch action from gestimum with Sync kaze = 1
 const fetchAction = async (id: String) => {
     console.log(`fetchAction(${id})`.magenta)
     const display = `?display=["ACT_NUMERO","PCF_CODE","CCT_NUMERO","ACT_OBJET","ACT_TYPE","ACT_DESC","ACT_DATE","ACT_DATFIN", "ACT_DATECH", "XXX_DTKAZE", "XXX_IDMKAZE", "XXX_KAZE"]`

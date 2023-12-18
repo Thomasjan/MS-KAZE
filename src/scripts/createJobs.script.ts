@@ -1,6 +1,6 @@
 //script to get localhost:3000/api/v1/affaires
 
-import workflow_template from '../data/workflow_exemple.json';
+import workflow_template from '../data/workflow_exemple';
 
 import jsonMapper from '../utils/jsonMapper';
 import Action from '../models/Action';
@@ -12,6 +12,9 @@ import logger from '../logger';
 /* ----------------------------------------SYNC CreateJObs-------------------------------------------------- */
 const createJob = async (action: Action) => {
     let result = 'Passed';
+    if(!action?.PCF_CODE ) return 'No PCF_CODE found'.red;
+    if(!action?.CCT_NUMERO ) return 'No CCT_NUMERO found'.red;
+
     const tier = await fetchTier(action.PCF_CODE);
     const contact = await fetchContact(action.CCT_NUMERO);
 
