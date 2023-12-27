@@ -118,3 +118,113 @@
 {"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-18T12:54:19.170Z"}
 {"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-18T12:54:27.618Z"}
 {"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-18T12:54:27.661Z"}
+{"level":"error","message":"TypeError: Cannot read properties of undefined (reading 'data')","stack":"Error: TypeError: Cannot read properties of undefined (reading 'data')\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\scripts\\getJobs.script.ts:134:18\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2023-12-27T11:27:49.179Z"}
+{"level":"error","message":"TypeError: Cannot read properties of undefined (reading 'data')","stack":"Error: TypeError: Cannot read properties of undefined (reading 'data')\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\scripts\\getJobs.script.ts:134:18\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2023-12-27T11:27:56.786Z"}
+{"level":"error","message":"TypeError: Cannot read properties of undefined (reading 'data')","stack":"Error: TypeError: Cannot read properties of undefined (reading 'data')\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\scripts\\getJobs.script.ts:134:18\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2023-12-27T11:28:06.878Z"}
+{"level":"error","message":"TypeError: Cannot read properties of undefined (reading 'data')","stack":"Error: TypeError: Cannot read properties of undefined (reading 'data')\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\scripts\\getJobs.script.ts:134:18\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2023-12-27T11:28:17.295Z"}
+{"level":"error","message":"TypeError: Cannot read properties of undefined (reading 'data')","stack":"Error: TypeError: Cannot read properties of undefined (reading 'data')\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\scripts\\getJobs.script.ts:134:18\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2023-12-27T11:28:26.777Z"}
+{"level":"error","message":"TypeError: Cannot read properties of undefined (reading 'data')","stack":"Error: TypeError: Cannot read properties of undefined (reading 'data')\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\scripts\\getJobs.script.ts:134:18\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2023-12-27T11:28:36.919Z"}
+{"level":"error","message":"TypeError: Cannot read properties of undefined (reading 'data')","stack":"Error: TypeError: Cannot read properties of undefined (reading 'data')\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\scripts\\getJobs.script.ts:134:18\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2023-12-27T11:28:46.700Z"}
+{"level":"error","message":"TypeError: Cannot read properties of undefined (reading 'data')","stack":"Error: TypeError: Cannot read properties of undefined (reading 'data')\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\scripts\\getJobs.script.ts:134:18\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2023-12-27T11:28:56.737Z"}
+{"level":"error","message":"TypeError: Cannot read properties of undefined (reading 'data')","stack":"Error: TypeError: Cannot read properties of undefined (reading 'data')\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\scripts\\getJobs.script.ts:134:18\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2023-12-27T11:29:06.746Z"}
+{"level":"error","message":"TypeError: Cannot read properties of undefined (reading 'data')","stack":"Error: TypeError: Cannot read properties of undefined (reading 'data')\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\scripts\\getJobs.script.ts:134:18\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2023-12-27T11:29:17.401Z"}
+{"level":"error","message":"test error","stack":"Error: test error\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\tests\\health.tests.ts:42:41\n    at Generator.next (<anonymous>)\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\tests\\health.tests.ts:8:71\n    at new Promise (<anonymous>)\n    at __awaiter (C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\tests\\health.tests.ts:4:12)\n    at Context.<anonymous> (C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\tests\\health.tests.ts:40:37)\n    at callFn (C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\node_modules\\mocha\\lib\\runnable.js:366:21)\n    at Test.Runnable.run (C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\node_modules\\mocha\\lib\\runnable.js:354:5)\n    at Runner.runTest (C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\node_modules\\mocha\\lib\\runner.js:666:10)\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\node_modules\\mocha\\lib\\runner.js:789:12\n    at next (C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\node_modules\\mocha\\lib\\runner.js:581:14)\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\node_modules\\mocha\\lib\\runner.js:591:7\n    at next (C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\node_modules\\mocha\\lib\\runner.js:474:14)\n    at Immediate._onImmediate (C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\node_modules\\mocha\\lib\\runner.js:559:5)\n    at processImmediate (node:internal/timers:476:21)","timestamp":"2023-12-27T11:29:36.250Z"}
+{"level":"error","message":"TypeError: Cannot read properties of undefined (reading 'data')","stack":"Error: TypeError: Cannot read properties of undefined (reading 'data')\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\scripts\\getJobs.script.ts:134:18\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2023-12-27T11:33:08.459Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T11:45:26.541Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T11:45:26.626Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T11:45:34.660Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T11:45:34.703Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T11:45:44.498Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T11:45:44.544Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T11:45:54.455Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T11:45:54.500Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T11:46:04.426Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T11:46:04.506Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T11:46:14.449Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T11:46:14.499Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T11:46:24.509Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T11:46:24.552Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T11:46:34.468Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T11:46:34.518Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T11:46:44.574Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T11:46:44.626Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T11:46:54.579Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T11:46:54.640Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T11:47:06.298Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T11:47:06.345Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T11:47:15.355Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T11:47:15.452Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T11:47:24.908Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T11:47:25.049Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T11:47:34.979Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T11:47:35.026Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:02:59.851Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:02:59.901Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:03:09.671Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:03:09.723Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:03:19.887Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:03:19.942Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:03:29.764Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:03:29.821Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:03:39.721Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:03:39.779Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:03:49.720Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:03:49.780Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:03:59.713Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:03:59.765Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:04:09.749Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:04:09.791Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:04:19.894Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:04:19.941Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:04:29.807Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:04:29.851Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:04:42.638Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:04:42.692Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:04:49.823Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:04:49.866Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:04:59.768Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:04:59.809Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:05:09.883Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:05:09.942Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:05:19.910Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:05:19.951Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:05:29.883Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:05:29.939Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:05:39.789Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:05:39.835Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:05:50.930Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:05:50.988Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:05:59.918Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:05:59.986Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:06:12.685Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:06:12.746Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:06:21.879Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:06:22.055Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:06:32.922Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:06:32.995Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:06:40.808Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:06:40.852Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:06:52.899Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:06:52.947Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:07:03.425Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:07:03.507Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:07:12.704Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:07:12.750Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:07:19.983Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:07:20.029Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:07:29.850Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:07:29.894Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:07:40.801Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:07:40.842Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:33:24.172Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:33:24.223Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:33:32.251Z"}
+{"level":"error","message":"Missing required field ACT_OBJET","timestamp":"2023-12-27T12:33:32.357Z"}
+{"level":"error","message":"updateAction error -> [object Object]","stack":"Error: updateAction error -> [object Object]\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\controllers\\gestimum.controllers.ts:119:30\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2023-12-27T12:40:13.802Z"}
+{"level":"error","message":"updateAction error -> [object Object]","stack":"Error: updateAction error -> [object Object]\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\controllers\\gestimum.controllers.ts:119:30\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2023-12-27T12:40:24.913Z"}
+{"level":"error","message":"updateAction error -> [object Object]","stack":"Error: updateAction error -> [object Object]\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\controllers\\gestimum.controllers.ts:119:30\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2023-12-27T12:40:33.830Z"}
+{"level":"error","message":"updateAction error -> [object Object]","stack":"Error: updateAction error -> [object Object]\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\controllers\\gestimum.controllers.ts:119:30\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2023-12-27T12:40:45.068Z"}
+{"level":"error","message":"updateAction error -> [object Object]","stack":"Error: updateAction error -> [object Object]\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\controllers\\gestimum.controllers.ts:119:30\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2023-12-27T12:40:54.086Z"}
+{"level":"error","message":"updateAction error -> [object Object]","stack":"Error: updateAction error -> [object Object]\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\controllers\\gestimum.controllers.ts:119:30\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2023-12-27T12:41:04.189Z"}
+{"level":"error","message":"updateAction error -> [object Object]","stack":"Error: updateAction error -> [object Object]\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\controllers\\gestimum.controllers.ts:119:30\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2023-12-27T12:41:14.678Z"}
+{"level":"error","message":"TypeError: Cannot read properties of undefined (reading 'data')","stack":"Error: TypeError: Cannot read properties of undefined (reading 'data')\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\scripts\\getJobs.script.ts:134:18\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2023-12-27T12:43:25.662Z"}

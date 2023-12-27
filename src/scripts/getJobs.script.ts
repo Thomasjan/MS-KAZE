@@ -94,7 +94,7 @@ const main = async () => {
     //fetching Finish Jobs from Kaze
     const body: Object = {
         filter: {
-            status: "in_progress", //TODO: change to "finished"
+            status: "completed",
         }
     }
     const jobs: Array<Object> = await fetchJobs(body);

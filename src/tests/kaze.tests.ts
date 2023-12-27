@@ -45,7 +45,7 @@ describe('login()', () => {
       // Make request
         const body: Object = {
             filter: {
-                status: "in_progress", //TODO: change to "finished"
+                status: "completed",
             }
         }
         const result = await axios.get(`http://localhost:3000/api/v1/kaze/getJobs/`, {

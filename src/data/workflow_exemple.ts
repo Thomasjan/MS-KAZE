@@ -5,13 +5,12 @@ const workflow: Object = {
     "id": "root",
     "children": [
       {
-        "access": 133,
+        "access": 333,
         "type": "template_job_info",
         "id": "template_info",
         "job_title": "ACT_OBJET",
         "job_reference": "ACT_NUMERO",
         "job_address": "PCF_RUE",
-        "job_due_date": 1663764821000,
         "label": "Résumé de la mission",
         "performer_estimation": 60,
         "files": [
@@ -22,7 +21,7 @@ const workflow: Object = {
             "type": "section",
             "id": "template_section",
             "label": "Section",
-            "access": 111,
+            "access": 311,
             "direction": "col",
             "children": [
               {
@@ -65,7 +64,7 @@ const workflow: Object = {
         "type": "template_blank",
         "id": "template_blank",
         "label": "Vierge",
-        "access": 133,
+        "access": 333,
         "generate_documents": [
   
         ],
@@ -80,7 +79,7 @@ const workflow: Object = {
                 "type": "widget_text",
                 "id": "template_other_info",
                 "label": "Autres informations",
-                "access": 133,
+                "access": 333,
                 "data_type": "text",
                 "data": "ACT_DESC"
               }
@@ -93,7 +92,7 @@ const workflow: Object = {
         "type": "template_photo",
         "id": "template_photo",
         "label": "Photos",
-        "access": 131,
+        "access": 331,
         "generate_documents": [
   
         ],
@@ -102,7 +101,7 @@ const workflow: Object = {
           {
             "type": "widget_photo",
             "id": "template_photo_1",
-            "access": 131,
+            "access": 331,
             "data_type": "image",
             "instruction": "instructions sur la photo à prendre"
             
@@ -114,7 +113,7 @@ const workflow: Object = {
         "type": "template_signature",
         "id": "template_signature",
         "label": "Signature",
-        "access": 133,
+        "access": 333,
         "generate_documents": [
   
         ],
@@ -127,7 +126,7 @@ const workflow: Object = {
         "type": "template_navigation",
         "id": "template_navigation",
         "label": "Navigation",
-        "access": 133,
+        "access": 333,
         "generate_documents": [],
         "city": "PCF_VILLE",
         "state": "IDF",
@@ -135,7 +134,6 @@ const workflow: Object = {
         "zip_code": "PCF_CP",
         "beneficiary_phone": "CCT_TELM",
         "address": "PCF_RUE",
-        "location": "48.8243356,2.3533179",
         "details": "détails adress batiment 1 ..."
       },
       
