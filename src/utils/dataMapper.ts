@@ -1,6 +1,6 @@
 //dataMapper
 
-const dataMapper = (data: any, table: string) => {
+export const dataMapper = (data: any, table: string) => {
 
     switch (table) {
         
@@ -8,7 +8,7 @@ const dataMapper = (data: any, table: string) => {
 
             case 'Actions':
                 
-            const fields: any = {
+            const fields: Object = {
                 XXX_IDMKAZE: data.id,
                 XXX_DTKAZE: data.updated_at,
                 ACT_OBJET: data.title,
@@ -36,7 +36,7 @@ const dataMapper = (data: any, table: string) => {
         //Gestimum vers Kaze
 
             case 'Jobs':
-                const jobs = {
+                const jobs: Object = {
                     id: data.XXX_IDMKAZE,
                     job_reference: data.ACT_NUMERO,
                     job_type: data.ACT_TYPE,
@@ -60,11 +60,9 @@ const dataMapper = (data: any, table: string) => {
                     template_time_follow: data.XXX_GKTRAC,
                     template_blank: data.XXX_GKVIDE,
                     template_inspection: data.XXX_GKINSP,
-
                 }; 
 
                 return jobs;
-
 
         default:
         return undefined;
@@ -76,25 +74,23 @@ const template_navigation = (data: any) => {
     return `
     Ville: ${data.city}, ${data.zip_code} \n
     Adresse: ${data.address}, ${data.details} \n
-    Contact:  ${data.beneficiary_phone} \n`
+    Contact:  ${data.beneficiary_phone} \n`;
 }
 
 const template_photo = (data: any) => {
     return `
     Instructions: ${data.annotation_tips} \n
-    Photo: ${JSON.stringify(data.photos[0])}`
+    Photo: ${JSON.stringify(data.photos[0])}`;
 }
 
 const template_signature = (data: any) => {
     return `
-    Signature ${data.terms}: ${data.signature}`
+    Signature ${data.terms}: ${data.signature}`;
 }
 
 const template_blank = (data: any) => {
-    return JSON.stringify(data)
+    return JSON.stringify(data);
 }
-
-export default dataMapper;
 
 
 //function to get info from workflow

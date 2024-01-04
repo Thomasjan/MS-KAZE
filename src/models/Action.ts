@@ -2,6 +2,8 @@ type Action = {
     ACT_NUMERO: string;
     ACT_OBJET: string;
     CCT_NUMERO: string;
+    CCT_TELM: string;
+    CCT_EMAIL: string;
     PCF_CODE: string;
     PCF_RUE: string;
     PCF_CP: string;

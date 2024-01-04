@@ -30,7 +30,8 @@ const fetchActions = async () => {
 
 //fetch action from gestimum with Sync kaze = 1
 const fetchAction = async (id: String) => {
-    console.log(`fetchAction(${id})`.magenta)
+    const ID = `${id}`.green;
+    console.log(`fetchAction(${ID})`.magenta)
     const display = `?display=["ACT_NUMERO","PCF_CODE","CCT_NUMERO","ACT_OBJET","ACT_TYPE","ACT_DESC","ACT_DATE","ACT_DATFIN", "ACT_DATECH", "XXX_DTKAZE", "XXX_IDMKAZE", "XXX_KAZE"]`
     const select = `&XXX_KAZE=1&XXX_IDMKAZE=${id}`
     try{
@@ -61,7 +62,8 @@ const fetchJobs = async (body: Object) => {
 
 //fetch jobID from Kaze
 const fetchjobID = async (id: String) => {
-    console.log('fetchjobID()'.magenta)
+    const ID = `${id}`.green;
+    console.log(`fetchjobID(${ID})`.magenta)
     try{
         const response = await axios.get(`http://localhost:3000/api/v1/kaze/getJobs/${id}`);
         return response.data;
@@ -73,7 +75,8 @@ const fetchjobID = async (id: String) => {
 
 //update action in Gestimum
 const updateAction = async (id: string, data: Object) => {
-    console.log(`updateAction(${id})`.magenta)
+    const ID = `${id}`.green;
+    console.log(`updateAction(${ID})`.magenta)
     try{
         const response = await axios.put(`http://localhost:3000/api/v1/gestimum/updateAction/${id}`, data);
         console.log('PUT Success'.green,)
@@ -88,7 +91,8 @@ const updateAction = async (id: string, data: Object) => {
 
 //fetch tier of the action
 const fetchTier = async (id: string) => {
-    console.log('fetchTier()'.magenta)
+    const ID = `${id}`.green;
+    console.log(`fetchTier(${ID})`.magenta)
     try{
         const response = await axios.get(`http://localhost:3000/api/v1/gestimum/getTier/${id}`);
         return response.data;
@@ -100,7 +104,8 @@ const fetchTier = async (id: string) => {
 
 //fetch contact of the action
 const fetchContact = async (id: string) => {
-    console.log('fetchContact()'.magenta)
+    const ID = `${id}`.green;
+    console.log(`fetchContact(${ID})`.magenta)
     try{
         const response = await axios.get(`http://localhost:3000/api/v1/gestimum/getContact/${id}`);
         return response.data;

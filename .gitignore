@@ -6,3 +6,6 @@ node_modules
 package-lock.json
 
 build
+
+error.log
+combined.log

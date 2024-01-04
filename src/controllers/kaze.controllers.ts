@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const kazeController = {
     index: (req: Request, res: Response) => {
-        console.log('Hello, Kaze!'.magenta.bold)
+        console.log('Hello, Kaze!'.magenta.bold);
         return res.send('Hello, Kaze!');
     },
     
@@ -22,7 +22,7 @@ const kazeController = {
 
         const authToken = await getAuthToken();
         const body = req.body;
-        console.log('body: '.yellow, body)
+        console.log('body: '.yellow, body);
         try{
             const response = await axios.get('https://app.kaze.so/api/jobs.json', {
                 headers: {

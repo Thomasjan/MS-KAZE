@@ -9,13 +9,13 @@ const GESTIMUM_API_URL = process.env.GESTIMUM_API_URL;
 
 const gestimumController = {
     index: (req: Request, res: Response) => {
-        console.log('Hello, Gestimum!'.yellow)
+        console.log('Hello, Gestimum!'.yellow);
         return res.send('Hello, Gestimum!');
     },
 
     //get all affaires from Gestimum
     getAffaires: (req: Request, res: Response) => {
-        console.log('getAffaires()'.yellow)
+        console.log('getAffaires()'.yellow);
         const config = {
             'headers': {
                 'x-api-key': process.env.GESTIMUM_API_KEY
@@ -39,7 +39,7 @@ const gestimumController = {
 
     //get all actions from Gestimum
     getActions: (req: Request, res: Response) => {
-        console.log('getActions()'.yellow)
+        console.log('getActions()'.yellow);
         const config = {
             'headers': {
                 'x-api-key': process.env.GESTIMUM_API_KEY
@@ -61,7 +61,7 @@ const gestimumController = {
     
     //get Tier from Gestimum
     getTier: (req: Request, res: Response) => {
-        console.log('getTier()'.yellow)
+        console.log('getTier()'.yellow);
         const config = {
             'headers': {
                 'x-api-key': process.env.GESTIMUM_API_KEY
@@ -81,7 +81,7 @@ const gestimumController = {
     },
 
     getContact: (req: Request, res: Response) => {
-        console.log('getContact()'.yellow)
+        console.log('getContact()'.yellow);
         const config = {
             'headers': {
                 'x-api-key': process.env.GESTIMUM_API_KEY
@@ -102,7 +102,7 @@ const gestimumController = {
 
     //update Actions in Gestimum
     updateAction: (req: Request, res: Response) => {
-        console.log('updateAction()'.yellow)
+        console.log('updateAction()'.yellow);
         const config = {
             'headers': {
                 'x-api-key': process.env.GESTIMUM_API_KEY

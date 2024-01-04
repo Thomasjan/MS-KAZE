@@ -1,8 +1,8 @@
-import dataMapper, { flattenWorkflow } from '../utils/dataMapper';
+import { flattenWorkflow, dataMapper } from '../utils/dataMapper';
 import Action from '../models/Action';
 import { fetchAction, fetchJobs, fetchjobID, login, updateAction } from './api.functions';
 import logger from '../logger';
-import axios from 'axios';
+import Job from '../models/Job';
 
 
 
@@ -10,37 +10,35 @@ import axios from 'axios';
 
 /* ----------------------------------------SYNC CreateJObs-------------------------------------------------- */
 const syncJobs = async (job: any) => {
-    let result = 'Passed'.bgBlue
+    let result = 'Passed'.bgBlue;
     //get Action from Gestimum (Job.id = Action.XXX_IDMKAZE)
     const action: Array<Action> = await fetchAction(job.id);
     // console.log('action: '.cyan, action);
     
     if(!action[0]){
-        console.log('No action found'.red)
+        console.log('No action found'.red);
         return result;
     }
 
     //check if Action.XXX_DTKAZE < Job.updated_at
     if(!action[0].XXX_DTKAZE || !(new Date(action[0].XXX_DTKAZE).getTime()+2 > job.updated_at)){
         // console.log(`${new Date(action[0].XXX_DTKAZE).getTime()} < ${job.updated_at}`.yellow, new Date(action[0].XXX_DTKAZE).getTime() < job.updated_at)
-        console.log('Action need to be updated'.yellow)
+        console.log('Action need to be updated'.yellow);
         //get Job from Kaze
-        const jobID: any = await fetchjobID(job.id);
+        const jobID = await fetchjobID(job.id);
         // console.log('jobID: '.cyan, jobID);
 
         if(!jobID){
-            console.log('No jobID found'.red)
+            console.log('No jobID found'.red);
             return 'No jobID found'.red;
         }
 
         // const workflow: any = jobID.workflow;
         // console.log('workflow: '.cyan, workflow.children[1].children[0].children[0].data);
         
-        //dataMapper
+        // dataMapper
         // const data = dataMapper(jobID, 'Actions');
-        // console.log('jobID: '.cyan, jobID)
         const data = flattenWorkflow(jobID.workflow);
-        // console.log('data: '.cyan, data);
 
         const newAction = {
             XXX_IDMKAZE: jobID.id,
@@ -54,8 +52,8 @@ const syncJobs = async (job: any) => {
             XXX_GKNAV: JSON.stringify(data.navigation),
             XXX_GKIMA: JSON.stringify(data.photo),
             XXX_GKSIGN: JSON.stringify(data.signature),
+            XXX_KAZEURL: jobID.bwa_link,
         }
-        // console.log('newAction: '.cyan, newAction);
 
         // const newAction = {
         //     XXX_IDMKAZE: data.XXX_IDMKAZE,
@@ -75,7 +73,12 @@ const syncJobs = async (job: any) => {
 
         //update Action with data
         console.log('updating action...: '.cyan);
-        const update: Object = await updateAction(newAction.ACT_NUMERO, newAction);
+        const update: Action = await updateAction(newAction.ACT_NUMERO, newAction);
+        if(!update){
+            console.log('Error updating action'.red);
+            return 'Error updating action'.red;
+        }
+
         // console.log('update: '.cyan, update);
         result = `Action updated`.bgGreen;
     }
@@ -88,7 +91,7 @@ const syncJobs = async (job: any) => {
 
 /* ----------------------------------------Main-------------------------------------------------- */
 const main = async () => {
-    console.log('main()'.red.underline)
+    console.log('main()'.red.underline);
     
     
     //fetching Finish Jobs from Kaze
@@ -97,32 +100,33 @@ const main = async () => {
             status: "completed",
         }
     }
-    const jobs: Array<Object> = await fetchJobs(body);
+    const jobs: Array<Job> = await fetchJobs(body);
     console.log('jobs finished: '.cyan, jobs.length);
 
     if (!jobs) {
-        console.log('No jobs found'.red)
+        console.log('No jobs found'.red);
         return 'No jobs found';
     }
    
     //foreach job 
-    jobs.forEach(async (job: any) => {
-    try {
-        await syncJobs(job)
-        .then(async (result) => {
-            console.log(`Result for job ${job.id}: ${result}`);
-            console.log('--------------------------------------------------------------'.america + '\n')
-        })
-        .catch((error) => {
-            console.log(`Error processing job ${job.id}`, error);
-        });
-        
+    for (const job of jobs) {
+        const jobID = `${job.id}`.green.bold;
+        console.log(`processing job ${jobID}`.yellow);
+        try {
+            await syncJobs(job)
+            .then(async (result) => {
+                console.log(`Result for job ${jobID}: ${result}`);
+                console.log('--------------------------------------------------------------'.america + '\n')
+            })
+            .catch((error) => {
+                console.log(`Error processing job ${jobID}`, error);
+            });
+            
+        }
+        catch (error) {
+            console.log(`Error processing job ${jobID}`, error);
+        }
     }
-    catch (error) {
-        console.log(`Error processing job ${job.id}`, error);
-    }
-})
-
 }
 
 //lauch main
