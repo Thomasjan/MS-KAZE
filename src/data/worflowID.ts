@@ -47,9 +47,7 @@ const workflowID = {
                 "details": "détails adress batiment 1 ..."
             }
         }
-        
     }
 }
 
 export default workflowID;
-

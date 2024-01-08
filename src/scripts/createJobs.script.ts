@@ -51,7 +51,7 @@ const createJob = async (action: Action) => {
             ACT_DESC: data.ACT_DESC,
             PCF_RS: data.PCF_RS,
             PCF_EMAIL: data.PCF_EMAIL || '',
-            XXX_IDMKAZE: data.XXX_IDMKAZE,
+            XXX_IDMKZ: data.XXX_IDMKZ,
             CCT_NOM: data.CCT_NOM,
             CCT_PRENOM: data.CCT_PRENOM,
         }
@@ -79,7 +79,7 @@ const createJob = async (action: Action) => {
         console.log(`posting job(${postingJob})`.yellow);
         // await postJob(finalWorkflow)
         // .then(async (response) => {
-        //     //insert response.id into Action XXX_IDMKAZE
+        //     //insert response.id into Action XXX_IDMKZ
         //     if(!response.id){
         //         console.log(`No id found (${action.ACT_NUMERO})`.red);
         //         logger.error(`No id found (${action.ACT_NUMERO})`);
@@ -88,8 +88,8 @@ const createJob = async (action: Action) => {
         //     }
 
         //     const data = {
-        //         XXX_IDMKAZE: response.id,
-        //         XXX_DTKAZE: new Date(),
+        //         XXX_IDMKZ: response.id,
+        //         XXX_DTKZ: new Date(),
         //     }
         //     //update action in gestimum
 
@@ -115,8 +115,8 @@ const createJob = async (action: Action) => {
             }
 
             const data = {
-                XXX_IDMKAZE: response.id,
-                XXX_DTKAZE: new Date(),
+                XXX_IDMKZ: response.id,
+                XXX_DTKZ: new Date(),
             }
             //update action in gestimum
 
@@ -144,7 +144,7 @@ const main = async () => {
 
     //actiions without XXX_IDMKAZE (No Job created in kaze)
     const actionsWithoutKazeID: Array<Action> = actions.filter((action) => {
-        return !action.XXX_IDMKAZE;
+        return !action.XXX_IDMKZ;
     });
     console.log('actionsWithoutKazeID: '.cyan, actionsWithoutKazeID.length);
 

@@ -17,7 +17,7 @@ const login = async () => {
 //fetch actions from gestimum with Sync kaze = 1
 const fetchActions = async () => {
     console.log('fetchActions()'.magenta)
-    const display = `?display=["ACT_NUMERO","PCF_CODE","CCT_NUMERO","ACT_OBJET","ACT_TYPE","ACT_DESC","ACT_DATE","ACT_DATFIN", "ACT_DATECH", "XXX_DTKAZE", "XXX_IDMKAZE", "XXX_KAZE"]`
+    const display = `?display=["ACT_NUMERO","PCF_CODE","CCT_NUMERO","ACT_OBJET","ACT_TYPE","ACT_DESC","ACT_DATE","ACT_DATFIN", "ACT_DATECH", "XXX_DTKZ", "XXX_IDMKZ", "XXX_KAZE"]`
     const select = `&XXX_KAZE=1`
     try{
         const response = await axios.get(`http://localhost:3000/api/v1/gestimum/actions/${display}${select}`);
@@ -32,8 +32,8 @@ const fetchActions = async () => {
 const fetchAction = async (id: String) => {
     const ID = `${id}`.green;
     console.log(`fetchAction(${ID})`.magenta)
-    const display = `?display=["ACT_NUMERO","PCF_CODE","CCT_NUMERO","ACT_OBJET","ACT_TYPE","ACT_DESC","ACT_DATE","ACT_DATFIN", "ACT_DATECH", "XXX_DTKAZE", "XXX_IDMKAZE", "XXX_KAZE"]`
-    const select = `&XXX_KAZE=1&XXX_IDMKAZE=${id}`
+    const display = `?display=["ACT_NUMERO","PCF_CODE","CCT_NUMERO","ACT_OBJET","ACT_TYPE","ACT_DESC","ACT_DATE","ACT_DATFIN", "ACT_DATECH", "XXX_DTKZ", "XXX_IDMKZ", "XXX_KAZE"]`
+    const select = `&XXX_KAZE=1&XXX_IDMKZ=${id}`
     try{
         const response = await axios.get(`http://localhost:3000/api/v1/gestimum/actions/${display}${select}`);
         return response.data.actions;

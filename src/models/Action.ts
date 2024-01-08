@@ -15,8 +15,8 @@ type Action = {
     ACT_DESC: string;
     PCF_RS: string;
     PCF_EMAIL: string;
-    XXX_IDMKAZE: string;
-    XXX_DTKAZE: string;
+    XXX_IDMKZ: string;
+    XXX_DTKZ: string;
     XXX_KAZE: string;
 };
 

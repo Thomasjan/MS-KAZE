@@ -21,7 +21,7 @@ const syncJobs = async (job: any) => {
     }
 
     //check if Action.XXX_DTKAZE < Job.updated_at
-    if(!action[0].XXX_DTKAZE || !(new Date(action[0].XXX_DTKAZE).getTime()+2 > job.updated_at)){
+    if(!action[0].XXX_DTKZ || !(new Date(action[0].XXX_DTKZ).getTime()+2 > job.updated_at)){
         // console.log(`${new Date(action[0].XXX_DTKAZE).getTime()} < ${job.updated_at}`.yellow, new Date(action[0].XXX_DTKAZE).getTime() < job.updated_at)
         console.log('Action need to be updated'.yellow);
         //get Job from Kaze
@@ -40,15 +40,15 @@ const syncJobs = async (job: any) => {
         const data: any = dataMapper(jobID, 'Actions');
 
         const newAction = {
-            XXX_IDMKAZE: data.XXX_IDMKAZE,
-            XXX_DTKAZE: new Date(data.XXX_DTKAZE),
+            XXX_IDMKZ: data.XXX_IDMKZ,
+            XXX_DTKZ: new Date(data.XXX_DTKZ),
             ACT_OBJET: data.ACT_OBJET,
             // ACT_NUMERO: data.ACT_NUMERO,
             ACT_DATE: new Date(data.ACT_DATE) ,
             ACT_DATFIN: new Date(data.ACT_DATFIN),
             ACT_DATECH: new Date(data.ACT_DATECH),
             ACT_DESC: data.ACT_DESC,
-            XXX_KAZEURL: jobID.bwa_link,
+            XXX_KZURL: jobID.bwa_link,
         }
 
         //update Action with data
@@ -58,7 +58,6 @@ const syncJobs = async (job: any) => {
             console.log('Error updating action'.red);
             return 'Error updating action'.red;
         }
-        
 
         // console.log('update: '.cyan, update);
         result = `Action updated`.bgGreen;
