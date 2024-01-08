@@ -131,6 +131,22 @@ const postJob = async (job: Object) => {
     }
 }
 
+//post job from WorkflowID to kaze
+const postJobFromWorkflowID = async (workflowID: string, job: Object) => {
+    const ID = `${workflowID}`.green;
+    console.log(`postJobFromWorkflowID(${ID})`.magenta)
+    
+    try{
+        const response = await axios.post(`http://localhost:3000/api/v1/kaze/createJobFromWorkflowID/${workflowID}`, job);
+        console.log('POST Success'.bgBlue, response.data)
+        return response.data;
+    }
+    catch(error: any){
+        console.log(`POST ERROR`.red);
+        logger.error(new Error('postJobFromWorkflowID error -> ' + error.response.data));
+    }
+}
+
 
 
 export { 
@@ -142,5 +158,6 @@ export {
     updateAction, 
     fetchTier, 
     fetchContact,
-    postJob 
+    postJob,
+    postJobFromWorkflowID
 }

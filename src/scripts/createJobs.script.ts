@@ -1,10 +1,10 @@
 //script to get localhost:3000/api/v1/affaires
 
-import workflow_template from '../data/workflow_exemple';
+import workflow_template from '../data/worflowID';
 
 import jsonMapper from '../utils/jsonMapper';
 import Action from '../models/Action';
-import { fetchActions, fetchContact, fetchTier, login, postJob, updateAction } from './api.functions';
+import { fetchActions, fetchContact, fetchTier, login, postJob, postJobFromWorkflowID, updateAction } from './api.functions';
 import logger from '../logger';
 
 
@@ -71,12 +71,40 @@ const createJob = async (action: Action) => {
 
         //this is the final json to send to kaze
         let json = JSON.parse(JSON.stringify(workflow_template));
-        const finalWorkflow: Object = jsonMapper(json, fields);
+        const finalWorkflow: any = jsonMapper(json, fields);
+        // console.log('finalWorkflow: '.yellow, finalWorkflow.data);
 
         const postingJob = `${action.ACT_NUMERO}`.rainbow;
         //post job to kaze
         console.log(`posting job(${postingJob})`.yellow);
-        await postJob(finalWorkflow)
+        // await postJob(finalWorkflow)
+        // .then(async (response) => {
+        //     //insert response.id into Action XXX_IDMKAZE
+        //     if(!response.id){
+        //         console.log(`No id found (${action.ACT_NUMERO})`.red);
+        //         logger.error(`No id found (${action.ACT_NUMERO})`);
+        //         result = 'Fail'.bgRed;
+        //         return;
+        //     }
+
+        //     const data = {
+        //         XXX_IDMKAZE: response.id,
+        //         XXX_DTKAZE: new Date(),
+        //     }
+        //     //update action in gestimum
+
+        //     console.log(`updating action... (${action.ACT_NUMERO})`.magenta);
+        //     await updateAction(action.ACT_NUMERO, data);
+        //     result = 'Success'.bgGreen;
+        // })
+        // .catch((error) => {
+        //     console.log(`Error posting job ${action.ACT_NUMERO}`.red);
+        //     logger.error(`Error posting job ${action.ACT_NUMERO}`);
+        //     result = 'Fail'.bgRed;
+        // });
+        const workflowID = finalWorkflow.workflow_id;
+
+        await postJobFromWorkflowID(workflowID, finalWorkflow)
         .then(async (response) => {
             //insert response.id into Action XXX_IDMKAZE
             if(!response.id){
@@ -96,11 +124,6 @@ const createJob = async (action: Action) => {
             await updateAction(action.ACT_NUMERO, data);
             result = 'Success'.bgGreen;
         })
-        .catch((error) => {
-            console.log(`Error posting job ${action.ACT_NUMERO}`.red);
-            logger.error(`Error posting job ${action.ACT_NUMERO}`);
-            result = 'Fail'.bgRed;
-        });
 
         //result
         return result;

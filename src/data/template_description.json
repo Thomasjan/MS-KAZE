@@ -1,8 +1,0 @@
-{
-    "type": "widget_text",
-    "id": "template_description",
-    "label": "Descriptif",
-    "access": 133,
-    "data_type": "string",
-    "data": "ACT_DESC"
-}
