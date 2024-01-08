@@ -45,13 +45,17 @@ const createJob = async (action: Action) => {
             PCF_VILLE: data.PCF_VILLE,
             ACT_DATE: data.ACT_DATE,
             ACT_DATFIN: data.ACT_DATFIN,
-            ACT_DATECH: data.ACT_DATECH,
+            //+ 1h to ACT_DATECH
+            ACT_DATECH: new Date(data.ACT_DATECH).getTime(),
             ACT_TYPE: data.ACT_TYPE,
             ACT_DESC: data.ACT_DESC,
             PCF_RS: data.PCF_RS,
             PCF_EMAIL: data.PCF_EMAIL || '',
             XXX_IDMKAZE: data.XXX_IDMKAZE,
+            CCT_NOM: data.CCT_NOM,
+            CCT_PRENOM: data.CCT_PRENOM,
         }
+
 
         // console.log('fields: '.yellow, fields)
         const requiredFields = ['ACT_NUMERO', 'PCF_CODE', 'CCT_NUMERO', 'ACT_OBJET', 'ACT_TYPE', 'PCF_RS', 'PCF_VILLE', 'PCF_CP', 'PCF_RUE'];

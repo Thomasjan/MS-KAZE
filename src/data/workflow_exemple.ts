@@ -13,6 +13,7 @@ const workflow: Object = {
         "job_address": "PCF_RUE",
         "label": "Résumé de la mission",
         "performer_estimation": 60,
+        "job_due_date": "ACT_DATECH",
         "files": [
   
         ],
@@ -26,11 +27,35 @@ const workflow: Object = {
             "children": [
               {
                 "type": "widget_text",
+                "id": "template_code_client",
+                "label": "Code Client",
+                "access": 133,
+                "data_type": "string",
+                "data": "PCF_CODE"
+              },
+              {
+                "type": "widget_text",
                 "id": "template_client",
                 "label": "Raison sociale",
                 "access": 133,
                 "data_type": "string",
                 "data": "PCF_RS"
+              },
+              {
+                "type": "widget_text",
+                "id": "template_contact_lastname",
+                "label": "Nom Contact",
+                "access": 133,
+                "data_type": "string",
+                "data": "CCT_NOM"
+              },
+              {
+                "type": "widget_text",
+                "id": "template_contact_name",
+                "label": "Prénom Contact",
+                "access": 133,
+                "data_type": "string",
+                "data": "CCT_PRENOM"
               },
               {
                 "type": "widget_text",

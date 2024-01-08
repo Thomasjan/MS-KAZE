@@ -37,47 +37,52 @@ const syncJobs = async (job: any) => {
         // console.log('workflow: '.cyan, workflow.children[1].children[0].children[0].data);
         
         // dataMapper
-        // const data = dataMapper(jobID, 'Actions');
-        const data = flattenWorkflow(jobID.workflow);
-
-        const newAction = {
-            XXX_IDMKAZE: jobID.id,
-            XXX_DTKAZE: new Date(jobID.updated_at),
-            ACT_OBJET: jobID.title,
-            ACT_NUMERO: jobID.reference,
-            ACT_DATE: new Date(jobID.start_date),
-            ACT_DATFIN: new Date(jobID.end_date),
-            ACT_DATECH: new Date(jobID.due_date),
-            ACT_DESC: data['Autres informations'],
-            XXX_GKNAV: JSON.stringify(data.navigation),
-            XXX_GKIMA: JSON.stringify(data.photo),
-            XXX_GKSIGN: JSON.stringify(data.signature),
-            XXX_KAZEURL: jobID.bwa_link,
-        }
+        const data: any = dataMapper(jobID, 'Actions');
+        // const data = flattenWorkflow(jobID.workflow);
 
         // const newAction = {
-        //     XXX_IDMKAZE: data.XXX_IDMKAZE,
-        //     XXX_DTKAZE: new Date(data.XXX_DTKAZE),
-        //     ACT_OBJET: data.ACT_OBJET,
-        //     ACT_NUMERO: data.ACT_NUMERO,
-        //     ACT_DATE: new Date(data.ACT_DATE) ,
-        //     ACT_DATFIN: new Date(data.ACT_DATFIN),
-        //     ACT_DATECH: new Date(data.ACT_DATECH),
-        //     ACT_DESC: data.ACT_DESC,
-        //     XXX_GKNAV: data.XXX_GKNAV,
-        //     XXX_GKIMA: data.XXX_GKIMA,
-        //     XXX_GKSIGN: data.XXX_GKSIGN,
-        //     XXX_GKVIDE: data.XXX_GKVIDE,
+        //     XXX_IDMKAZE: jobID.id,
+        //     XXX_DTKAZE: new Date(jobID.updated_at),
+        //     ACT_OBJET: jobID.title,
+        //     ACT_NUMERO: jobID.reference,
+        //     ACT_DATE: new Date(jobID.start_date),
+        //     ACT_DATFIN: new Date(jobID.end_date),
+        //     ACT_DATECH: new Date(jobID.due_date),
+        //     ACT_DESC: data['Autres informations'],
+        //     // XXX_GKNAV: JSON.stringify(data.navigation),
+        //     // XXX_GKIMA: JSON.stringify(data.photo),
+        //     // XXX_GKSIGN: JSON.stringify(data.signature),
+        //     XXX_KAZEURL: jobID.bwa_link,
         // }
+
+        const newAction = {
+            XXX_IDMKAZE: data.XXX_IDMKAZE,
+            XXX_DTKAZE: new Date(data.XXX_DTKAZE),
+            ACT_OBJET: data.ACT_OBJET,
+            // ACT_NUMERO: data.ACT_NUMERO,
+            ACT_DATE: new Date(data.ACT_DATE) ,
+            ACT_DATFIN: new Date(data.ACT_DATFIN),
+            ACT_DATECH: new Date(data.ACT_DATECH),
+            ACT_DESC: data.ACT_DESC,
+            XXX_KAZEURL: jobID.bwa_link,
+            
+
+            // XXX_GKNAV: data.XXX_GKNAV,
+            // XXX_GKIMA: data.XXX_GKIMA,
+            // XXX_GKSIGN: data.XXX_GKSIGN,
+            // XXX_GKVIDE: data.XXX_GKVIDE,
+        }
+        // console.log('newAction: '.cyan, newAction);
         
 
         //update Action with data
         console.log('updating action...: '.cyan);
-        const update: Action = await updateAction(newAction.ACT_NUMERO, newAction);
+        const update: Action = await updateAction(data.ACT_NUMERO, newAction);
         if(!update){
             console.log('Error updating action'.red);
             return 'Error updating action'.red;
         }
+        
 
         // console.log('update: '.cyan, update);
         result = `Action updated`.bgGreen;
