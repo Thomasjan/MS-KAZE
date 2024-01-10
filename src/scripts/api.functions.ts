@@ -9,8 +9,8 @@ const login = async () => {
     .then((response) => {
         console.log(response.data);
     })
-    .catch((error) => {
-        logger.error(new Error('login error -> ' + error.response.data));
+    .catch((error: any) => {
+        logger.error(new Error('login error -> ' + error.response));
     });
 }
 

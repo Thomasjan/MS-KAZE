@@ -1384,3 +1384,241 @@
 {"level":"info","message":"Script executed at: 2024-01-10T09:40:46.018Z","timestamp":"2024-01-10T09:40:46.018Z"}
 {"level":"info","message":"Script executed at: 2024-01-10T09:40:46.058Z","timestamp":"2024-01-10T09:40:46.058Z"}
 {"level":"info","message":"Script executed at: 2024-01-10T09:40:46.060Z","timestamp":"2024-01-10T09:40:46.060Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:50:15.025Z","timestamp":"2024-01-10T09:50:15.026Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:50:15.107Z","timestamp":"2024-01-10T09:50:15.107Z"}
+{"level":"error","message":"Missing required field ACT_OBJET for action 0000000577}","timestamp":"2024-01-10T09:50:15.153Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:50:15.154Z","timestamp":"2024-01-10T09:50:15.155Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:50:15.158Z","timestamp":"2024-01-10T09:50:15.159Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:51:14.876Z","timestamp":"2024-01-10T09:51:14.878Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:51:14.942Z","timestamp":"2024-01-10T09:51:14.943Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:51:16.122Z","timestamp":"2024-01-10T09:51:16.123Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:51:16.124Z","timestamp":"2024-01-10T09:51:16.125Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:51:16.128Z","timestamp":"2024-01-10T09:51:16.129Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:51:28.367Z","timestamp":"2024-01-10T09:51:28.369Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:51:28.526Z","timestamp":"2024-01-10T09:51:28.527Z"}
+{"level":"error","message":"updateAction error -> [object Object]","stack":"Error: updateAction error -> [object Object]\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\controllers\\gestimum.controllers.ts:119:30\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T09:51:28.882Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:51:28.891Z","timestamp":"2024-01-10T09:51:28.892Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:51:28.893Z","timestamp":"2024-01-10T09:51:28.894Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:51:28.951Z","timestamp":"2024-01-10T09:51:28.952Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:51:29.006Z","timestamp":"2024-01-10T09:51:29.007Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:51:29.054Z","timestamp":"2024-01-10T09:51:29.055Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:51:29.104Z","timestamp":"2024-01-10T09:51:29.105Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:51:29.155Z","timestamp":"2024-01-10T09:51:29.156Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:51:29.206Z","timestamp":"2024-01-10T09:51:29.206Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:51:29.266Z","timestamp":"2024-01-10T09:51:29.266Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:51:29.319Z","timestamp":"2024-01-10T09:51:29.320Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:51:29.376Z","timestamp":"2024-01-10T09:51:29.377Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:51:29.437Z","timestamp":"2024-01-10T09:51:29.437Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:51:29.486Z","timestamp":"2024-01-10T09:51:29.487Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:51:29.552Z","timestamp":"2024-01-10T09:51:29.552Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:51:29.621Z","timestamp":"2024-01-10T09:51:29.622Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:51:29.665Z","timestamp":"2024-01-10T09:51:29.666Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:51:29.710Z","timestamp":"2024-01-10T09:51:29.710Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:51:29.756Z","timestamp":"2024-01-10T09:51:29.757Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:51:29.832Z","timestamp":"2024-01-10T09:51:29.833Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:51:29.911Z","timestamp":"2024-01-10T09:51:29.913Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:51:29.919Z","timestamp":"2024-01-10T09:51:29.921Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:58:02.199Z","timestamp":"2024-01-10T09:58:02.201Z"}
+{"level":"error","message":"getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n","stack":"Error: getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\controllers\\gestimum.controllers.ts:57:30\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T09:58:02.486Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:58:04.870Z","timestamp":"2024-01-10T09:58:04.872Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:58:05.092Z","timestamp":"2024-01-10T09:58:05.093Z"}
+{"level":"error","message":"getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n","stack":"Error: getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\controllers\\gestimum.controllers.ts:57:30\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T09:58:05.190Z"}
+{"level":"error","message":"getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n","stack":"Error: getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\controllers\\gestimum.controllers.ts:57:30\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T09:58:05.292Z"}
+{"level":"error","message":"getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n","stack":"Error: getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\controllers\\gestimum.controllers.ts:57:30\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T09:58:05.374Z"}
+{"level":"error","message":"getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n","stack":"Error: getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\controllers\\gestimum.controllers.ts:57:30\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T09:58:05.439Z"}
+{"level":"error","message":"getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n","stack":"Error: getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\controllers\\gestimum.controllers.ts:57:30\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T09:58:05.507Z"}
+{"level":"error","message":"getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n","stack":"Error: getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\controllers\\gestimum.controllers.ts:57:30\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T09:58:05.566Z"}
+{"level":"error","message":"getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n","stack":"Error: getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\controllers\\gestimum.controllers.ts:57:30\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T09:58:05.626Z"}
+{"level":"error","message":"getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n","stack":"Error: getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\controllers\\gestimum.controllers.ts:57:30\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T09:58:05.692Z"}
+{"level":"error","message":"getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n","stack":"Error: getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\controllers\\gestimum.controllers.ts:57:30\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T09:58:05.783Z"}
+{"level":"error","message":"getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n","stack":"Error: getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\controllers\\gestimum.controllers.ts:57:30\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T09:58:05.847Z"}
+{"level":"error","message":"getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n","stack":"Error: getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\controllers\\gestimum.controllers.ts:57:30\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T09:58:05.914Z"}
+{"level":"error","message":"getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n","stack":"Error: getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\controllers\\gestimum.controllers.ts:57:30\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T09:58:05.983Z"}
+{"level":"error","message":"getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n","stack":"Error: getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\controllers\\gestimum.controllers.ts:57:30\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T09:58:06.048Z"}
+{"level":"error","message":"getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n","stack":"Error: getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\controllers\\gestimum.controllers.ts:57:30\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T09:58:06.119Z"}
+{"level":"error","message":"getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n","stack":"Error: getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\controllers\\gestimum.controllers.ts:57:30\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T09:58:06.180Z"}
+{"level":"error","message":"getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n","stack":"Error: getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\controllers\\gestimum.controllers.ts:57:30\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T09:58:06.242Z"}
+{"level":"error","message":"getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n","stack":"Error: getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\controllers\\gestimum.controllers.ts:57:30\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T09:58:06.314Z"}
+{"level":"error","message":"getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n","stack":"Error: getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\controllers\\gestimum.controllers.ts:57:30\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T09:58:06.378Z"}
+{"level":"error","message":"getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n","stack":"Error: getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\controllers\\gestimum.controllers.ts:57:30\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T09:58:06.443Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T09:58:06.448Z","timestamp":"2024-01-10T09:58:06.449Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:06:48.633Z","timestamp":"2024-01-10T10:06:48.640Z"}
+{"level":"error","message":"getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n","stack":"Error: getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\controllers\\gestimum.controllers.ts:57:30\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T10:06:48.712Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:12:57.485Z","timestamp":"2024-01-10T10:12:57.487Z"}
+{"level":"error","message":"getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n","stack":"Error: getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\controllers\\gestimum.controllers.ts:57:30\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T10:12:57.646Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:16:48.683Z","timestamp":"2024-01-10T10:16:48.687Z"}
+{"level":"error","message":"getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n","stack":"Error: getActions error -> <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\controllers\\gestimum.controllers.ts:57:30\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T10:16:48.761Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:24:20.945Z","timestamp":"2024-01-10T10:24:20.946Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:24:21.197Z","timestamp":"2024-01-10T10:24:21.198Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:24:21.207Z","timestamp":"2024-01-10T10:24:21.207Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:25:20.812Z","timestamp":"2024-01-10T10:25:20.815Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:25:20.969Z","timestamp":"2024-01-10T10:25:20.970Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:25:20.974Z","timestamp":"2024-01-10T10:25:20.975Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:25:39.294Z","timestamp":"2024-01-10T10:25:39.295Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:25:39.473Z","timestamp":"2024-01-10T10:25:39.475Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:25:39.590Z","timestamp":"2024-01-10T10:25:39.591Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:25:39.784Z","timestamp":"2024-01-10T10:25:39.785Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:25:39.963Z","timestamp":"2024-01-10T10:25:39.963Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:25:40.079Z","timestamp":"2024-01-10T10:25:40.080Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:25:40.279Z","timestamp":"2024-01-10T10:25:40.280Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:25:40.457Z","timestamp":"2024-01-10T10:25:40.458Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:25:40.737Z","timestamp":"2024-01-10T10:25:40.738Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:25:40.966Z","timestamp":"2024-01-10T10:25:40.966Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:25:41.158Z","timestamp":"2024-01-10T10:25:41.159Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:25:41.286Z","timestamp":"2024-01-10T10:25:41.286Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:25:41.401Z","timestamp":"2024-01-10T10:25:41.402Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:25:41.506Z","timestamp":"2024-01-10T10:25:41.507Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:25:41.653Z","timestamp":"2024-01-10T10:25:41.654Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:25:41.921Z","timestamp":"2024-01-10T10:25:41.922Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:25:42.039Z","timestamp":"2024-01-10T10:25:42.040Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:25:42.164Z","timestamp":"2024-01-10T10:25:42.166Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:25:42.392Z","timestamp":"2024-01-10T10:25:42.393Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:25:42.627Z","timestamp":"2024-01-10T10:25:42.629Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:25:42.753Z","timestamp":"2024-01-10T10:25:42.753Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:25:42.758Z","timestamp":"2024-01-10T10:25:42.758Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:26:21.351Z","timestamp":"2024-01-10T10:26:21.353Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:26:23.980Z","timestamp":"2024-01-10T10:26:23.981Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:26:23.983Z","timestamp":"2024-01-10T10:26:23.983Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:26:23.988Z","timestamp":"2024-01-10T10:26:23.989Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:26:23.992Z","timestamp":"2024-01-10T10:26:23.993Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:26:41.497Z","timestamp":"2024-01-10T10:26:41.499Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:26:41.677Z","timestamp":"2024-01-10T10:26:41.680Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:26:41.790Z","timestamp":"2024-01-10T10:26:41.791Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:26:41.995Z","timestamp":"2024-01-10T10:26:41.997Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:26:42.134Z","timestamp":"2024-01-10T10:26:42.136Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:26:42.317Z","timestamp":"2024-01-10T10:26:42.318Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:26:42.425Z","timestamp":"2024-01-10T10:26:42.426Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:26:43.109Z","timestamp":"2024-01-10T10:26:43.110Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:26:43.308Z","timestamp":"2024-01-10T10:26:43.309Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:26:43.558Z","timestamp":"2024-01-10T10:26:43.559Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:26:43.718Z","timestamp":"2024-01-10T10:26:43.719Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:26:43.849Z","timestamp":"2024-01-10T10:26:43.849Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:26:44.020Z","timestamp":"2024-01-10T10:26:44.021Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:26:44.136Z","timestamp":"2024-01-10T10:26:44.137Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:26:44.338Z","timestamp":"2024-01-10T10:26:44.339Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:26:44.455Z","timestamp":"2024-01-10T10:26:44.456Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:26:44.616Z","timestamp":"2024-01-10T10:26:44.618Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:26:44.824Z","timestamp":"2024-01-10T10:26:44.826Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:26:44.972Z","timestamp":"2024-01-10T10:26:44.973Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:26:45.144Z","timestamp":"2024-01-10T10:26:45.145Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:26:45.336Z","timestamp":"2024-01-10T10:26:45.338Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:26:45.349Z","timestamp":"2024-01-10T10:26:45.354Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:27:21.275Z","timestamp":"2024-01-10T10:27:21.280Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:27:21.406Z","timestamp":"2024-01-10T10:27:21.407Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:27:21.415Z","timestamp":"2024-01-10T10:27:21.417Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:27:39.796Z","timestamp":"2024-01-10T10:27:39.798Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:27:39.963Z","timestamp":"2024-01-10T10:27:39.964Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:27:40.490Z","timestamp":"2024-01-10T10:27:40.490Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:27:40.493Z","timestamp":"2024-01-10T10:27:40.494Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:27:40.600Z","timestamp":"2024-01-10T10:27:40.601Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:27:40.688Z","timestamp":"2024-01-10T10:27:40.689Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:27:40.782Z","timestamp":"2024-01-10T10:27:40.782Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:27:41.009Z","timestamp":"2024-01-10T10:27:41.010Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:27:41.254Z","timestamp":"2024-01-10T10:27:41.255Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:27:41.373Z","timestamp":"2024-01-10T10:27:41.375Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:27:41.497Z","timestamp":"2024-01-10T10:27:41.498Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:27:41.723Z","timestamp":"2024-01-10T10:27:41.723Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:27:41.830Z","timestamp":"2024-01-10T10:27:41.832Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:27:42.024Z","timestamp":"2024-01-10T10:27:42.025Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:27:42.162Z","timestamp":"2024-01-10T10:27:42.163Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:27:42.232Z","timestamp":"2024-01-10T10:27:42.232Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:27:42.331Z","timestamp":"2024-01-10T10:27:42.331Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:27:42.487Z","timestamp":"2024-01-10T10:27:42.488Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:27:42.650Z","timestamp":"2024-01-10T10:27:42.651Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:27:42.740Z","timestamp":"2024-01-10T10:27:42.741Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:27:42.963Z","timestamp":"2024-01-10T10:27:42.963Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:27:43.066Z","timestamp":"2024-01-10T10:27:43.067Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:27:43.207Z","timestamp":"2024-01-10T10:27:43.208Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:27:43.210Z","timestamp":"2024-01-10T10:27:43.213Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:32:48.795Z","timestamp":"2024-01-10T10:32:48.797Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:32:50.847Z","timestamp":"2024-01-10T10:32:50.848Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:32:50.851Z","timestamp":"2024-01-10T10:32:50.851Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:32:50.859Z","timestamp":"2024-01-10T10:32:50.859Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:32:50.863Z","timestamp":"2024-01-10T10:32:50.864Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:32:51.099Z","timestamp":"2024-01-10T10:32:51.101Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:32:51.262Z","timestamp":"2024-01-10T10:32:51.263Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:32:51.337Z","timestamp":"2024-01-10T10:32:51.337Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:32:51.403Z","timestamp":"2024-01-10T10:32:51.403Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:32:51.474Z","timestamp":"2024-01-10T10:32:51.475Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:32:51.546Z","timestamp":"2024-01-10T10:32:51.547Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:32:51.617Z","timestamp":"2024-01-10T10:32:51.617Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:32:51.680Z","timestamp":"2024-01-10T10:32:51.681Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:32:51.754Z","timestamp":"2024-01-10T10:32:51.755Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:32:51.831Z","timestamp":"2024-01-10T10:32:51.832Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:32:51.896Z","timestamp":"2024-01-10T10:32:51.897Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:32:51.965Z","timestamp":"2024-01-10T10:32:51.966Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:32:52.031Z","timestamp":"2024-01-10T10:32:52.032Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:32:52.091Z","timestamp":"2024-01-10T10:32:52.092Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:32:52.156Z","timestamp":"2024-01-10T10:32:52.157Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:32:52.221Z","timestamp":"2024-01-10T10:32:52.221Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:32:52.286Z","timestamp":"2024-01-10T10:32:52.287Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:32:52.354Z","timestamp":"2024-01-10T10:32:52.354Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:32:52.419Z","timestamp":"2024-01-10T10:32:52.420Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:32:52.505Z","timestamp":"2024-01-10T10:32:52.506Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:32:52.584Z","timestamp":"2024-01-10T10:32:52.585Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:32:52.656Z","timestamp":"2024-01-10T10:32:52.657Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:32:52.660Z","timestamp":"2024-01-10T10:32:52.660Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:33:48.512Z","timestamp":"2024-01-10T10:33:48.513Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:33:48.607Z","timestamp":"2024-01-10T10:33:48.608Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:33:48.613Z","timestamp":"2024-01-10T10:33:48.613Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:33:50.781Z","timestamp":"2024-01-10T10:33:50.782Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:33:50.987Z","timestamp":"2024-01-10T10:33:50.988Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:33:51.327Z","timestamp":"2024-01-10T10:33:51.329Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:33:51.332Z","timestamp":"2024-01-10T10:33:51.333Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:33:51.402Z","timestamp":"2024-01-10T10:33:51.403Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:33:51.462Z","timestamp":"2024-01-10T10:33:51.463Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:33:51.526Z","timestamp":"2024-01-10T10:33:51.527Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:33:51.621Z","timestamp":"2024-01-10T10:33:51.621Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:33:51.689Z","timestamp":"2024-01-10T10:33:51.690Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:33:51.763Z","timestamp":"2024-01-10T10:33:51.763Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:33:51.838Z","timestamp":"2024-01-10T10:33:51.839Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:33:51.908Z","timestamp":"2024-01-10T10:33:51.909Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:33:51.975Z","timestamp":"2024-01-10T10:33:51.976Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:33:52.085Z","timestamp":"2024-01-10T10:33:52.086Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:33:52.165Z","timestamp":"2024-01-10T10:33:52.166Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:33:52.249Z","timestamp":"2024-01-10T10:33:52.250Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:33:52.328Z","timestamp":"2024-01-10T10:33:52.329Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:33:52.404Z","timestamp":"2024-01-10T10:33:52.405Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:33:52.475Z","timestamp":"2024-01-10T10:33:52.476Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:33:52.542Z","timestamp":"2024-01-10T10:33:52.542Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:33:52.606Z","timestamp":"2024-01-10T10:33:52.606Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:33:52.673Z","timestamp":"2024-01-10T10:33:52.674Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:33:52.741Z","timestamp":"2024-01-10T10:33:52.742Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:33:52.808Z","timestamp":"2024-01-10T10:33:52.809Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T10:33:52.812Z","timestamp":"2024-01-10T10:33:52.812Z"}
+{"level":"error","message":"TypeError: Cannot read properties of undefined (reading 'data')","stack":"Error: TypeError: Cannot read properties of undefined (reading 'data')\n    at /usr/src/app/src/scripts/getJobs.script.ts:128:18\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T10:46:10.702Z"}
+{"level":"error","message":"TypeError: Cannot read properties of undefined (reading 'data')","stack":"Error: TypeError: Cannot read properties of undefined (reading 'data')\n    at /usr/src/app/src/scripts/getJobs.script.ts:128:18\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T10:47:20.402Z"}
+{"level":"error","message":"TypeError: Cannot read properties of undefined (reading 'data')","stack":"Error: TypeError: Cannot read properties of undefined (reading 'data')\n    at /usr/src/app/src/scripts/getJobs.script.ts:128:18\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T10:53:17.215Z"}
+{"level":"error","message":"TypeError: Cannot read properties of undefined (reading 'data')","stack":"Error: TypeError: Cannot read properties of undefined (reading 'data')\n    at /usr/src/app/src/scripts/getJobs.script.ts:128:18\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T10:53:59.007Z"}
+{"level":"error","message":"TypeError: Cannot read properties of undefined (reading 'data')","stack":"Error: TypeError: Cannot read properties of undefined (reading 'data')\n    at /usr/src/app/src/scripts/getJobs.script.ts:128:18\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T10:54:49.720Z"}
+{"level":"error","message":"TypeError: Cannot read properties of undefined (reading 'data')","stack":"Error: TypeError: Cannot read properties of undefined (reading 'data')\n    at /usr/src/app/src/scripts/getJobs.script.ts:128:18\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T11:08:41.506Z"}
+{"level":"error","message":"TypeError: Cannot read properties of undefined (reading 'data')","stack":"Error: TypeError: Cannot read properties of undefined (reading 'data')\n    at /usr/src/app/src/scripts/getJobs.script.ts:128:18\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T11:13:41.314Z"}
+{"level":"error","message":"TypeError: Cannot read properties of undefined (reading 'data')","stack":"Error: TypeError: Cannot read properties of undefined (reading 'data')\n    at /usr/src/app/src/scripts/getJobs.script.ts:128:18\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T11:21:12.444Z"}
+{"level":"error","message":"TypeError: Cannot read properties of undefined (reading 'data')","stack":"Error: TypeError: Cannot read properties of undefined (reading 'data')\n    at /usr/src/app/src/scripts/getJobs.script.ts:128:18\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T13:02:03.005Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T13:36:59.356Z","timestamp":"2024-01-10T13:36:59.358Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T13:36:59.562Z","timestamp":"2024-01-10T13:36:59.563Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T13:36:59.573Z","timestamp":"2024-01-10T13:36:59.577Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T13:37:02.086Z","timestamp":"2024-01-10T13:37:02.087Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T13:37:02.291Z","timestamp":"2024-01-10T13:37:02.292Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T13:37:02.407Z","timestamp":"2024-01-10T13:37:02.408Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T13:37:02.518Z","timestamp":"2024-01-10T13:37:02.519Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T13:37:02.625Z","timestamp":"2024-01-10T13:37:02.626Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T13:37:03.197Z","timestamp":"2024-01-10T13:37:03.198Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T13:37:03.463Z","timestamp":"2024-01-10T13:37:03.469Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T13:37:03.702Z","timestamp":"2024-01-10T13:37:03.705Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T13:37:03.883Z","timestamp":"2024-01-10T13:37:03.885Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T13:37:04.011Z","timestamp":"2024-01-10T13:37:04.012Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T13:37:04.098Z","timestamp":"2024-01-10T13:37:04.098Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T13:37:04.205Z","timestamp":"2024-01-10T13:37:04.206Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T13:37:04.330Z","timestamp":"2024-01-10T13:37:04.331Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T13:37:04.444Z","timestamp":"2024-01-10T13:37:04.444Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T13:37:04.613Z","timestamp":"2024-01-10T13:37:04.613Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T13:37:04.845Z","timestamp":"2024-01-10T13:37:04.846Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T13:37:05.023Z","timestamp":"2024-01-10T13:37:05.023Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T13:37:05.146Z","timestamp":"2024-01-10T13:37:05.146Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T13:37:05.288Z","timestamp":"2024-01-10T13:37:05.290Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T13:37:05.449Z","timestamp":"2024-01-10T13:37:05.451Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T13:37:05.587Z","timestamp":"2024-01-10T13:37:05.588Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T13:37:05.751Z","timestamp":"2024-01-10T13:37:05.753Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T13:37:05.940Z","timestamp":"2024-01-10T13:37:05.947Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T13:37:05.956Z","timestamp":"2024-01-10T13:37:05.957Z"}
