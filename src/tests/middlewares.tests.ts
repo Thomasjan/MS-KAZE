@@ -4,7 +4,7 @@ import app from '../index';
 import validateData from '../utils/validData';
 import express, {Request, Response} from 'express';
 
-import exempleJson from '../data/exemple.json';
+import exempleJson from '../data/workflow_exemple';
 import jsonMapper from '../utils/jsonMapper';
 import exp from 'constants';
 import { assert } from 'console';
@@ -62,7 +62,7 @@ describe('jsonMapper Middleware', () => {
       PCF_VILLE: 'test_PCF_VILLE',
       PCF_CP: 'test_PCF_CP',
       PCF_RUE: 'test_PCF_RUE',
-      XXX_IDMKAZE: 'test_XXX_IDMKAZE',
+      XXX_IDMKZ: 'test_XXX_IDMKZ',
   }
 
   const json: Object = exempleJson;

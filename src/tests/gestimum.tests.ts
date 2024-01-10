@@ -48,7 +48,7 @@ describe('getAffaires()', () => {
 
     it('With params: should return 200', async () => {
         // Make request
-        const params = `?XXX_KAZE=1&display=["ACT_NUMERO","PCF_CODE","CCT_NUMERO","ACT_OBJET","ACT_TYPE","ACT_DESC","ACT_DATE","ACT_DATFIN", "ACT_DATECH", "XXX_DTKAZE", "XXX_IDMKAZE", "XXX_KAZE"]`;
+        const params = `?XXX_KAZE=1&display=["ACT_NUMERO","PCF_CODE","CCT_NUMERO","ACT_OBJET","ACT_TYPE","ACT_DESC","ACT_DATE","ACT_DATFIN", "ACT_DATECH", "XXX_DTKZ", "XXX_IDMKZ", "XXX_KAZE"]`;
         const result = await fetch(`http://localhost:5000/api/v1/gestimum/actions/${params}`);
         // Expect result
         assert.equal(result.status, 200);

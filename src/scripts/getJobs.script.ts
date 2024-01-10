@@ -1,8 +1,9 @@
 import { flattenWorkflow, dataMapper } from '../utils/dataMapper';
 import Action from '../models/Action';
 import { fetchAction, fetchJobs, fetchjobID, login, updateAction } from './api.functions';
-import logger from '../logger';
+import logger, { logTimeToHistory } from '../logger';
 import Job from '../models/Job';
+import { log } from 'console';
 
 
 
@@ -11,7 +12,7 @@ import Job from '../models/Job';
 /* ----------------------------------------SYNC CreateJObs-------------------------------------------------- */
 const syncJobs = async (job: any) => {
     let result = 'Passed'.bgBlue;
-    //get Action from Gestimum (Job.id = Action.XXX_IDMKAZE)
+    //get Action from Gestimum (Job.id = Action.XXX_IDMKZ)
     const action: Array<Action> = await fetchAction(job.id);
     // console.log('action: '.cyan, action);
     
@@ -20,9 +21,9 @@ const syncJobs = async (job: any) => {
         return result;
     }
 
-    //check if Action.XXX_DTKAZE < Job.updated_at
+    //check if Action.XXX_DTKZE < Job.updated_at
     if(!action[0].XXX_DTKZ || !(new Date(action[0].XXX_DTKZ).getTime()+2 > job.updated_at)){
-        // console.log(`${new Date(action[0].XXX_DTKAZE).getTime()} < ${job.updated_at}`.yellow, new Date(action[0].XXX_DTKAZE).getTime() < job.updated_at)
+        // console.log(`${new Date(action[0].XXX_DTKZ).getTime()} < ${job.updated_at}`.yellow, new Date(action[0].XXX_DTKZ).getTime() < job.updated_at)
         console.log('Action need to be updated'.yellow);
         //get Job from Kaze
         const jobID = await fetchjobID(job.id);
@@ -60,7 +61,8 @@ const syncJobs = async (job: any) => {
         }
 
         // console.log('update: '.cyan, update);
-        result = `Action updated`.bgGreen;
+        result = `Action ${action[0].ACT_NUMERO} updated`.bgGreen;
+        logTimeToHistory(`[getJobsScript] Action ${action[0].ACT_NUMERO} updated at: ${new Date().toISOString()}`);
     }
     else{
         result = `Action already up to date`.bgBlue;
@@ -72,6 +74,7 @@ const syncJobs = async (job: any) => {
 /* ----------------------------------------Main-------------------------------------------------- */
 const main = async () => {
     console.log('main()'.red.underline);
+    logTimeToHistory(`[getJobsScript] Script executed at: ${new Date().toISOString()}`)    
     
     
     //fetching Finish Jobs from Kaze
@@ -82,6 +85,7 @@ const main = async () => {
     }
     const jobs: Array<Job> = await fetchJobs(body);
     console.log('jobs finished: '.cyan, jobs.length);
+    logTimeToHistory(`[getJobsScript] jobs finished: ${jobs.length}`);
 
     if (!jobs) {
         console.log('No jobs found'.red);
@@ -95,6 +99,7 @@ const main = async () => {
         try {
             await syncJobs(job)
             .then(async (result) => {
+                logTimeToHistory(`[getJobsScript] Result for job ${job.id}: ${result}`);
                 console.log(`Result for job ${jobID}: ${result}`);
                 console.log('--------------------------------------------------------------'.america + '\n')
             })
@@ -103,10 +108,14 @@ const main = async () => {
             });
             
         }
-        catch (error) {
+        catch (error: any) {
             console.log(`Error processing job ${jobID}`, error);
+            logger.error(new Error(error));
         }
+
     }
+
+    logTimeToHistory(`[getJobsScript] Script finished at: ${new Date().toISOString()} \n`);
 }
 
 //lauch main
