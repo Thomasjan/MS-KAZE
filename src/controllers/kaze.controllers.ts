@@ -67,9 +67,34 @@ const kazeController = {
             const authToken = await getAuthToken();
             console.log('authTokenPOST: '.yellow, authToken);
 
-            const json = req.body;
+            const json: JSON = req.body;
             try{
                 const response = await axios.post('https://app.kaze.so/api/jobs.json', json, {
+                    headers: {
+                        Authorization: `${authToken}`,
+                        "Content-Type": "application/json"
+                    }
+                });
+                console.log(response.data);
+                res.send(response.data);
+            }
+            catch(error){
+                console.log(error);
+                res.status(500).send(error);
+            }
+        },
+
+    //createJobFromWorkflowID
+    createJobFromWorkflowID: async (req: Request, res: Response) => {
+            
+            const authToken = await getAuthToken();
+
+            const workflowID: String = req.params.id;
+            const json: JSON = req.body;
+
+            console.log('json: '.yellow, json);
+            try{
+                const response = await axios.post(`https://app.kaze.so/api/job_workflows/${workflowID}/job.json`, json, {
                     headers: {
                         Authorization: `${authToken}`,
                         "Content-Type": "application/json"

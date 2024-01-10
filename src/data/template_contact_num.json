@@ -1,7 +1,0 @@
-{
-    "type": "widget_text",
-    "id": "template_contact_num",
-    "label": "Numéro de téléphone",
-    "access": 133,
-    "data_type": "phone"
-}
