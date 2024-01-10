@@ -50,6 +50,7 @@ const syncJobs = async (job: any) => {
             ACT_DATECH: new Date(data.ACT_DATECH),
             ACT_DESC: data.ACT_DESC,
             XXX_KZURL: jobID.bwa_link,
+            ACT_ETAT: 'T',
         }
 
         //update Action with data
