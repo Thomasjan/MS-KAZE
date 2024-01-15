@@ -4,10 +4,8 @@ import app from '../index';
 import validateData from '../utils/validData';
 import express, {Request, Response} from 'express';
 
-import exempleJson from '../data/workflow_exemple';
+import exempleJson from '../data/worflowID';
 import jsonMapper from '../utils/jsonMapper';
-import exp from 'constants';
-import { assert } from 'console';
 
 chai.use(chaiHttp);
 const { expect } = chai;
@@ -62,88 +60,65 @@ describe('jsonMapper Middleware', () => {
       PCF_VILLE: 'test_PCF_VILLE',
       PCF_CP: 'test_PCF_CP',
       PCF_RUE: 'test_PCF_RUE',
-      XXX_IDMKZ: 'test_XXX_IDMKZ',
+      CCT_NOM: 'test_CCT_NOM',
+      CCT_PRENOM: 'test_CCT_PRENOM',
+      CCT_EMAIL: 'test_CCT_EMAIL',
+      CCT_TELM: 'test_CCT_TELM',
   }
 
   const json: Object = exempleJson;
 
-  const expectedjson = 
-    {
-      "target_id": "company_id",
-      "workflow":{
-          "type": "workflow",
-          "id": "root",
-          "children": [
-            
-            {
-              "type": "template_job_info",
-              "id": "template_info",
-              "label": "Résumé mission",
-              "access": 133,
-              "generate_documents": [
-        
-              ],
-              "city": "test_PCF_VILLE",
-              "state": "IDF",
-              "country_code": "fr",
-              "zip_code": "test_PCF_CP",
-              "job_title": "test_ACT_OBJET",
-              "job_reference": "test_ACT_NUMERO",
-              "job_address": "test_PCF_RUE",
-              "performer_estimation": 60,
-              "files": [
-        
-              ],
-              "children": [
-                {
-                  "type": "section",
-                  "id": "template_section",
-                  "direction": "col",
-                  "children": [
-                    {
-                      "type": "widget_text",
-                      "id": "template_type",
-                      "label": "Code Type d'intervention",
-                      "access": 133,
-                      "data_type": "string",
-                      "data": "test_ACT_TYPE"
-                    },
-                    {
-                      "type": "widget_client",
-                      "id": "template_client",
-                      "label": "Client",
-                      "access": 133,
-                      "city": "test_PCF_VILLE",
-                      "country_code": "fr",
-                      "zip_code": 0,
-                      "client_type": "regular",
-                      "name": "test_PCF_RS",
-                      "email": "test_PCF_EMAIL",
-                      "address_title": "test_PCF_RUE",
-                      "address": "test_PCF_RUE",
-                  },
-                  {
-                    "type": "widget_text",
-                    "id": "template_contact_num",
-                    "label": "Numéro de téléphone",
-                    "access": 133,
-                    "data_type": "phone",
-                  },
-                  {
-                    "type": "widget_text",
-                    "id": "template_description",
-                    "label": "Descriptif",
-                    "access": 133,
-                    "data_type": "string",
-                    "data": "test_ACT_DESC"
-                  }
-                  ]
-                }
-              ]
+  const expectedjson = {
+    "workflow_id": "1ae90d89-d1ac-4ce3-a297-995d64ebab10",
+    "target_id": "my-company-id",
+    "data": {
+        "f8816f82-3393-49f4-af78-fbc5d8616cd4": {
+            "f8816f82-3393-49f4-af78-fbc5d8616cd4": {
+                "job_title": "test_ACT_OBJET",
+                "job_reference": "test_ACT_NUMERO",
+                "job_address": "test_PCF_RUE",
+                "job_due_date": "test_ACT_DATECH"
+            },
+            "code_client":{
+                "data": "test_PCF_CODE"
+            },
+            "raison_sociale":{
+                "data": "test_PCF_RS"
+            },
+            "nom_contact":{
+                "data": "test_CCT_NOM"
+            },
+            "prenom_contact":{
+                "data": "test_CCT_PRENOM"
+            },
+            "email_contact":{
+                "data": "test_CCT_EMAIL"
+            },
+            "tel_contact":{
+                "data": "test_CCT_TELM"
+            },
+            "type_mission":{
+                "data": "test_ACT_TYPE"
             }
-          ]
-      }
+        },
+        "9cf4cd30-7eed-4c3d-8269-dc32e0928b20":{
+            "job_description": {
+                "data": "test_ACT_DESC"
+            }
+        },
+        "d25d01b9-dd3b-4030-97ac-bc0f86ac9d7f": {
+            "d25d01b9-dd3b-4030-97ac-bc0f86ac9d7f": {
+                "city": "test_PCF_VILLE",
+                "country_code": "fr",
+                "zip_code": "test_PCF_CP",
+                "beneficiary_phone": "test_CCT_TELM",
+                "address": "test_PCF_RUE",
+                "details": "détails adress batiment 1 ..."
+            }
+        }
     }
+}
+    
 
   it('should return the expected JSON', (done) => {
   const newjson = jsonMapper(json, fields);
