@@ -1622,3 +1622,10 @@
 {"level":"info","message":"Script executed at: 2024-01-10T13:37:05.751Z","timestamp":"2024-01-10T13:37:05.753Z"}
 {"level":"info","message":"Script executed at: 2024-01-10T13:37:05.940Z","timestamp":"2024-01-10T13:37:05.947Z"}
 {"level":"info","message":"Script executed at: 2024-01-10T13:37:05.956Z","timestamp":"2024-01-10T13:37:05.957Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T15:57:38.833Z","timestamp":"2024-01-10T15:57:38.851Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T15:57:39.071Z","timestamp":"2024-01-10T15:57:39.073Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T15:57:40.846Z","timestamp":"2024-01-10T15:57:40.901Z"}
+{"level":"error","message":"login error -> undefined","stack":"Error: login error -> undefined\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\scripts\\api.functions.ts:13:22\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T15:57:49.229Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T15:57:49.245Z","timestamp":"2024-01-10T15:57:49.253Z"}
+{"level":"error","message":"login error -> undefined","stack":"Error: login error -> undefined\n    at C:\\Users\\thomas-jan\\Desktop\\Kaze\\kaze-api\\src\\scripts\\api.functions.ts:13:22\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-10T15:58:37.411Z"}
+{"level":"info","message":"Script executed at: 2024-01-10T15:58:37.424Z","timestamp":"2024-01-10T15:58:37.426Z"}
