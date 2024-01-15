@@ -3,43 +3,24 @@ import { assert } from 'chai';
 import app from '../index';
 import axios from 'axios';
 import { login } from '../scripts/api.functions';
-
+import request from 'supertest';
 
 
 //test login
 describe('login()', () => {
-    let server: any;
-  
-    before(async () => {
-      // Start the app before all tests
-      server = await app.listen(5000);
-    });
-  
+    
     it('Should return 200', async () => {
-      const result = await axios.post('http://localhost:3000/api/v1/kaze/login')
+      const result = await request(app).post(`/api/v1/kaze/login`)
       // Expect result
       assert.equal(result.status, 200);
     });
   
-    after(async () => {
-      // Close the app after all tests
-      await server.close();
-    });
 });
 
 
 //getFinishedJobs
   describe('getFinishedJobs()', () => {
-    let server: any;
-  
-    before(async () => {
-      // Start the app before all tests
-      server = await app.listen(5000);
-    });
-  
     
-   
-  
     it('Should return 200', async () => {
       await login();
       // Make request
@@ -48,21 +29,14 @@ describe('login()', () => {
                 status: "completed",
             }
         }
-        const result = await axios.get(`http://localhost:3000/api/v1/kaze/getJobs/`, {
-            headers: {
-                "Content-Type": "application/json"
-            },
-            data: body
-        });
+        const result = await request(app)
+        .get(`/api/v1/kaze/getJobs/`)
+        .set('Content-Type', 'application/json') // Add any headers you need
+        .send({body});
       // Expect result
       assert.equal(result.status, 200);
     });
 
-  
-    after(async () => {
-      // Close the app after all tests
-      await server.close();
-    });
   });
 
   

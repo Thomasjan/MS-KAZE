@@ -1,86 +1,52 @@
 // sample.test.ts
-import { assert, expect } from 'chai';
+import chai, { assert } from 'chai';
 import app from '../index';
-
+import request from 'supertest';
+import GestimumController from '../controllers/gestimum.controllers';
+const expect = chai.expect;
 
   describe('getActions()', () => {
-    let server: any;
-  
-    before(async () => {
-      // Start the app before all tests
-      server = await app.listen(5000);
-    });
-  
-  
-
+    
     it('With params: should return 200', async () => {
         // Make request
-        const params = `?XXX_KAZE=1&display=["ACT_NUMERO","PCF_CODE","CCT_NUMERO","ACT_OBJET","ACT_TYPE","ACT_DESC","ACT_DATE","ACT_DATFIN", "ACT_DATECH", "XXX_DTKZ", "XXX_IDMKZ", "XXX_KAZE"]&XXX_KAZE=1`;
-        const result = await fetch(`http://localhost:5000/api/v1/gestimum/actions/${params}`);
+        const params = `?XXX_KAZE=1&display=["ACT_NUMERO","PCF_CODE","CCT_NUMERO","ACT_OBJET","ACT_TYPE","ACT_DESC","ACT_DATE","ACT_DATFIN", "ACT_DATECH", "XXX_DTKZ", "XXX_IDMKZ", "XXX_KAZE"]`;
+        const result: any = await request(app).get(`/api/v1/gestimum/actions/${params}`)
         // Expect result
         assert.equal(result.status, 200);
+        expect(result.body.actions).to.be.an('array');
       });
   
-    
-  
-    // Add more tests as needed
-  
-    after(async () => {
-      // Close the app after all tests
-      await server.close();
-    });
   });
 
   //gettTier()
   describe('getTier()', () => {
-    let server: any;
-  
-    before(async () => {
-      // Start the app before all tests
-      server = await app.listen(5000);
-    });
-  
-  
-  
+
     it('Should return 200', async () => {
       // Make request
-      const result = await fetch('http://localhost:5000/api/v1/gestimum/getTier/DAMIE001');
+      const result = await request(app).get(`/api/v1/gestimum/getTier/DAMIE001`)
       // Expect result
+      expect(result.body.client).to.be.an('object');
       assert.equal(result.status, 200);
     });
 
-  
-    after(async () => {
-      // Close the app after all tests
-      await server.close();
-    });
   });
 
   //getContact()
   describe('getContact()', () => {
-    let server: any;
-  
-    before(async () => {
-      // Start the app before all tests
-      server = await app.listen(5000);
-    });
-  
-  
   
     it('Should return 200', async () => {
       // Make request
-      const result = await fetch('http://localhost:5000/api/v1/gestimum/getContact/0001183749');
-      // Expect result
+      const result = await request(app).get(`/api/v1/gestimum/getContact/0001183749`)
+      // Expect result*
+      expect(result.body.utilisateur).to.be.an('object');
       assert.equal(result.status, 200);
     });
 
-  
-    after(async () => {
-      // Close the app after all tests
-      await server.close();
-    });
   });
 
+
+
+  
   
 
 

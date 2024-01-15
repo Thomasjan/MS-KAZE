@@ -2,6 +2,7 @@
 import { assert, expect } from 'chai';
 import app from '../index';
 import logger from '../logger';
+import request from 'supertest';
 
 describe('Sample Test', () => {
   it('should add two numbers', () => {
@@ -10,28 +11,18 @@ describe('Sample Test', () => {
   });
 });
 
+
 describe('API launch', () => {
-  let server: any;
-
-  before(async () => {
-    // Start the app before all tests
-    server = await app.listen(5000);
-  });
-
-
 
   it('should return 200', async () => {
     // Make request
-    const result = await fetch('http://localhost:5000/');
+    //api correctly laucnhed test
+    const result = await request(app).get(`/`)
+    
     // Expect result
     assert.equal(result.status, 200);
   });
 
-  
-  after(async () => {
-    // Close the app after all tests
-    await server.close();
-  });
 });
 
 
@@ -45,5 +36,17 @@ describe('logger', () => {
     // Instead of expecting undefined, check if the logger instance is truthy
     expect(loggerInstance).to.be.ok;
   });
+});
+
+//Error 404 route not found
+describe('Error 404', () => {
+
+  it('should return 404', async () => {
+    // Make request
+    const result = await request(app).get(`/api/v1/non-existent-route/`)
+    // Expect result
+    assert.equal(result.status, 404);
+  });
+
 });
 
