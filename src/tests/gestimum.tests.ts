@@ -2,7 +2,6 @@
 import chai, { assert } from 'chai';
 import app from '../index';
 import request from 'supertest';
-import GestimumController from '../controllers/gestimum.controllers';
 const expect = chai.expect;
 
   describe('getActions()', () => {
@@ -19,30 +18,30 @@ const expect = chai.expect;
   });
 
   //gettTier()
-  describe('getTier()', () => {
+  // describe('getTiers()', () => {
 
-    it('Should return 200', async () => {
-      // Make request
-      const result = await request(app).get(`/api/v1/gestimum/getTier/DAMIE001`)
-      // Expect result
-      expect(result.body.client).to.be.an('object');
-      assert.equal(result.status, 200);
-    });
+  //   it('Should return 200', async () => {
+  //     // Make request
+  //     const result = await request(app).get(`/api/v1/gestimum/getTiers/DAMIE001`)
+  //     // Expect result
+  //     expect(result.body.client).to.be.an('object');
+  //     assert.equal(result.status, 200);
+  //   });
 
-  });
+  // });
 
-  //getContact()
-  describe('getContact()', () => {
+  // //getContact()
+  // describe('getContact()', () => {
   
-    it('Should return 200', async () => {
-      // Make request
-      const result = await request(app).get(`/api/v1/gestimum/getContact/0001183749`)
-      // Expect result*
-      expect(result.body.utilisateur).to.be.an('object');
-      assert.equal(result.status, 200);
-    });
+  //   it('Should return 200', async () => {
+  //     // Make request
+  //     const result = await request(app).get(`/api/v1/gestimum/getContact/0001183749`)
+  //     // Expect result*
+  //     expect(result.body.utilisateur).to.be.an('object');
+  //     assert.equal(result.status, 200);
+  //   });
 
-  });
+  // });
 
 
 

@@ -90,15 +90,16 @@ const updateAction = async (id: string, data: Object) => {
 
 
 //fetch tier of the action
-const fetchTier = async (id: string) => {
+const fetchTiers = async (id: string) => {
     const ID = `${id}`.green;
-    console.log(`fetchTier(${ID})`.magenta)
+    console.log(`fetchTiers(${ID})`.magenta)
     try{
-        const response = await axios.get(`http://localhost:3000/api/v1/gestimum/getTier/${id}`);
+        const response = await axios.get(`http://localhost:3000/api/v1/gestimum/getTiers/${id}`);
         return response.data;
     }
     catch(error: any){
-        logger.error(new Error('fetchTier error -> ' + error.response.data));
+        logger.error(new Error('fetchTiers error -> ' + error.response.data));
+        return error
     }
 }
 
@@ -156,7 +157,7 @@ export {
     fetchJobs, 
     fetchjobID, 
     updateAction, 
-    fetchTier, 
+    fetchTiers, 
     fetchContact,
     postJob,
     postJobFromWorkflowID

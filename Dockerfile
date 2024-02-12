@@ -16,8 +16,10 @@ COPY . .
 # Copy the custom entrypoint script
 COPY entrypoint.sh .
 
+# Set execute permissions for the entrypoint script
+RUN chmod +x entrypoint.sh
 # Expose the port that your app is running on
 EXPOSE 3000
 
 # Run the custom entrypoint script
-CMD ["./entrypoint.sh"]
+CMD ["bash", "entrypoint.sh"]

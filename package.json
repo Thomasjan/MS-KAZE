@@ -8,8 +8,8 @@
     "start": "ts-node src/index.ts",
     "dev": "nodemon src/index.ts",
     "build": "npm test && tsc",
-    "start-getJobs": "node -e \"setInterval(() => { require('child_process').execSync('ts-node src/scripts/getJobs.script.ts', {stdio:[0,1,2]}); }, 60000)\"",
-    "start-createJobs": "node -e \"setInterval(() => { require('child_process').execSync('ts-node src/scripts/createJobs.script.ts', {stdio:[0,1,2]}); }, 60000)\""
+    "start-getJobs": "node -e \"setInterval(() => { require('child_process').execSync('ts-node src/scripts/getJobs.script.ts', {stdio:[0,1,2]}); }, 10000)\"",
+    "start-createJobs": "node -e \"setInterval(() => { require('child_process').execSync('ts-node src/scripts/createJobs.script.ts', {stdio:[0,1,2]}); }, 10000)\""
   },
   "keywords": [],
   "author": "",

@@ -8,7 +8,7 @@ const router = Router();
 router.get('/index', gestimumController.index);
 router.get('/affaires/', gestimumController.getAffaires);
 router.get('/actions/', gestimumController.getActions);
-router.get('/getTier/:id', gestimumController.getTier);
+router.get('/getTiers/:id', gestimumController.getTiers);
 router.get('/getContact/:id', gestimumController.getContact);
 router.put('/updateAction/:id', gestimumController.updateAction);
 

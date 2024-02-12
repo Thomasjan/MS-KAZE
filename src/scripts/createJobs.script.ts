@@ -4,7 +4,7 @@ import workflow_template from '../data/worflowID';
 
 import jsonMapper from '../utils/jsonMapper';
 import Action from '../models/Action';
-import { fetchActions, fetchContact, fetchTier, login, postJob, postJobFromWorkflowID, updateAction } from './api.functions';
+import { fetchActions, fetchContact, fetchTiers, login, postJob, postJobFromWorkflowID, updateAction } from './api.functions';
 import logger, { logTimeToHistory } from '../logger';
 
 
@@ -12,12 +12,32 @@ import logger, { logTimeToHistory } from '../logger';
 /* ----------------------------------------SYNC CreateJobs-------------------------------------------------- */
 const createJob = async (action: Action) => {
     let result = 'Passed';
-    if(!action?.PCF_CODE ) return 'No PCF_CODE found'.red;
-    if(!action?.CCT_NUMERO ) return 'No CCT_NUMERO found'.red;
+    if(!action?.PCF_CODE ) {
+        await updateAction(action.ACT_NUMERO, {XXX_ETATKZ: 'No PCF_CODE found'})
+        return 'No PCF_CODE found'.red;
+    }
+    if(!action?.CCT_NUMERO ){
+        await updateAction(action.ACT_NUMERO, {XXX_ETATKZ: 'No CCT_NUMERO found'}) 
+        return 'No CCT_NUMERO found'.red;
+    }
 
     //fetch tier and contact
-    const tier = await fetchTier(action.PCF_CODE);
+    const tier = await fetchTiers(action.PCF_CODE)
+    if(tier.Erreur) {
+        console.log('TIER', tier.Erreur)
+        logger.error(`fetchTiers (${action.PCF_CODE}) -> `, tier.Erreur)
+        await updateAction(action.ACT_NUMERO, {XXX_ETATKZ: tier.Erreur})
+        return tier.Erreur;
+    }
+    
     const contact = await fetchContact(action.CCT_NUMERO);
+    if(contact.Erreur) {
+        console.log('CONTACT', contact.Erreur)
+        logger.error(`fetchContact (${action.CCT_NUMERO}) -> `, contact.Erreur)
+        await updateAction(action.ACT_NUMERO, {XXX_ETATKZ: contact.Erreur})
+        return contact.Erreur;
+    }
+
 
         //handle Errors
         if(!tier){
@@ -65,6 +85,10 @@ const createJob = async (action: Action) => {
             const fieldID = `${field}`.yellow;
             if(!fields[field]){
                 logger.error(`Missing required field ${field} for action ${action.ACT_NUMERO}}`);
+                const data = {
+                    XXX_ETATKZ: `Missing required field "${field}"`
+                }
+                await updateAction(action.ACT_NUMERO, data);
                 return `Missing required field ${fieldID}`.red;
             }
         }
@@ -72,36 +96,11 @@ const createJob = async (action: Action) => {
         //this is the final json to send to kaze
         let json = JSON.parse(JSON.stringify(workflow_template));
         const finalWorkflow: any = jsonMapper(json, fields);
-        // console.log('finalWorkflow: '.yellow, finalWorkflow.data);
 
         const postingJob = `${action.ACT_NUMERO}`.rainbow;
         //post job to kaze
         console.log(`posting job(${postingJob})`.yellow);
-        // await postJob(finalWorkflow)
-        // .then(async (response) => {
-        //     //insert response.id into Action XXX_IDMKZ
-        //     if(!response.id){
-        //         console.log(`No id found (${action.ACT_NUMERO})`.red);
-        //         logger.error(`No id found (${action.ACT_NUMERO})`);
-        //         result = 'Fail'.bgRed;
-        //         return;
-        //     }
-
-        //     const data = {
-        //         XXX_IDMKZ: response.id,
-        //         XXX_DTKZ: new Date(),
-        //     }
-        //     //update action in gestimum
-
-        //     console.log(`updating action... (${action.ACT_NUMERO})`.magenta);
-        //     await updateAction(action.ACT_NUMERO, data);
-        //     result = 'Success'.bgGreen;
-        // })
-        // .catch((error) => {
-        //     console.log(`Error posting job ${action.ACT_NUMERO}`.red);
-        //     logger.error(`Error posting job ${action.ACT_NUMERO}`);
-        //     result = 'Fail'.bgRed;
-        // });
+        
         const workflowID = finalWorkflow.workflow_id;
 
         await postJobFromWorkflowID(workflowID, finalWorkflow)
@@ -117,6 +116,7 @@ const createJob = async (action: Action) => {
             const data = {
                 XXX_IDMKZ: response.id,
                 XXX_DTKZ: new Date(),
+                XXX_ETATKZ: 'Success'
             }
             //update action in gestimum
 

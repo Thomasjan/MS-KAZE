@@ -61,8 +61,8 @@ const gestimumController = {
     },
     
     //get Tier from Gestimum
-    getTier: (req: Request, res: Response) => {
-        console.log('getTier()'.yellow);
+    getTiers: (req: Request, res: Response) => {
+        console.log('getTiers()'.yellow);
         const config = {
             'headers': {
                 'x-api-key': process.env.GESTIMUM_API_KEY
@@ -75,9 +75,9 @@ const gestimumController = {
                 return res.send(response.data);
             })
             .catch((error) => {
-                console.log(error);
-                logger.error(new Error('getTier error -> ' + error.response.data));
-                return res.send(error);
+                console.log("getTier Error: ", error.response.data);
+                logger.error(new Error('getTiers error -> ' + error.response.data));
+                return res.send(error.response.data);
             });
     },
 
