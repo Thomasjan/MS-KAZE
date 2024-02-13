@@ -13,18 +13,17 @@ import logger, { logTimeToHistory } from '../logger';
 const createJob = async (action: Action) => {
     let result = 'Passed';
     if(!action?.PCF_CODE ) {
-        await updateAction(action.ACT_NUMERO, {XXX_KZETAT: 'No PCF_CODE found'})
+        await updateAction(action.ACT_NUMERO, {XXX_KZETAT: "Echec - Le Tiers doit être renseigné"})
         return 'No PCF_CODE found'.red;
     }
     if(!action?.CCT_NUMERO ){
-        await updateAction(action.ACT_NUMERO, {XXX_KZETAT: 'No CCT_NUMERO found'}) 
+        await updateAction(action.ACT_NUMERO, {XXX_KZETAT: "Echec - Le Contact doit être renseigné"}) 
         return 'No CCT_NUMERO found'.red;
     }
 
     //fetch tier and contact
     const tier = await fetchTiers(action.PCF_CODE)
     if(tier.Erreur) {
-        console.log('TIER', tier.Erreur)
         logger.error(`fetchTiers (${action.PCF_CODE}) -> `, tier.Erreur)
         await updateAction(action.ACT_NUMERO, {XXX_KZETAT: tier.Erreur})
         return tier.Erreur;
@@ -32,7 +31,6 @@ const createJob = async (action: Action) => {
     
     const contact = await fetchContact(action.CCT_NUMERO);
     if(contact.Erreur) {
-        console.log('CONTACT', contact.Erreur)
         logger.error(`fetchContact (${action.CCT_NUMERO}) -> `, contact.Erreur)
         await updateAction(action.ACT_NUMERO, {XXX_KZETAT: contact.Erreur})
         return contact.Erreur;
@@ -86,10 +84,18 @@ const createJob = async (action: Action) => {
             if(!fields[field]){
                 logger.error(`Missing required field ${field} for action ${action.ACT_NUMERO}}`);
                 const data = {
-                    XXX_KZETAT: `Missing required field "${field}"`
+                    XXX_KZETAT: `Echec - Le champ "${field}" doit être renseigné`
                 }
                 await updateAction(action.ACT_NUMERO, data);
                 return `Missing required field ${fieldID}`.red;
+            }
+            if(!fields.CCT_EMAIL && !fields.CCT_TELM){
+                logger.error(`Missing required field CCT_EMAIL or CCT_TELM for action ${action.ACT_NUMERO}}`);
+                const data = {
+                    XXX_KZETAT: `Echec - L'Email et/ou le Téléphone du contact doit être renseigné`
+                }
+                await updateAction(action.ACT_NUMERO, data);
+                return `Missing required field CCT_EMAIL or CCT_TELM`.red;
             }
         }
 
