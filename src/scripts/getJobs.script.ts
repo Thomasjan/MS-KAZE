@@ -12,7 +12,7 @@ import { log } from 'console';
 /* ----------------------------------------SYNC CreateJObs-------------------------------------------------- */
 const syncJobs = async (job: any) => {
     let result = 'Passed'.bgBlue;
-    //get Action from Gestimum (Job.id = Action.XXX_IDMKZ)
+    //get Action from Gestimum (Job.id = Action.XXX_KZIDM)
     const action: Array<Action> = await fetchAction(job.id);
     // console.log('action: '.cyan, action);
     
@@ -21,9 +21,9 @@ const syncJobs = async (job: any) => {
         return result;
     }
 
-    //check if Action.XXX_DTKZE < Job.updated_at
-    if(!action[0].XXX_DTKZ || !(new Date(action[0].XXX_DTKZ).getTime()+2 > job.updated_at)){
-        // console.log(`${new Date(action[0].XXX_DTKZ).getTime()} < ${job.updated_at}`.yellow, new Date(action[0].XXX_DTKZ).getTime() < job.updated_at)
+    //check if Action.XXX_KZDTE < Job.updated_at
+    if(!action[0].XXX_KZDT || !(new Date(action[0].XXX_KZDT).getTime()+2 > job.updated_at)){
+        // console.log(`${new Date(action[0].XXX_KZDT).getTime()} < ${job.updated_at}`.yellow, new Date(action[0].XXX_KZDT).getTime() < job.updated_at)
         console.log('Action need to be updated'.yellow);
         //get Job from Kaze
         const jobID = await fetchjobID(job.id);
@@ -41,8 +41,8 @@ const syncJobs = async (job: any) => {
         const data: any = dataMapper(jobID, 'Actions');
 
         const newAction = {
-            XXX_IDMKZ: data.XXX_IDMKZ,
-            XXX_DTKZ: new Date(data.XXX_DTKZ),
+            XXX_KZIDM: data.XXX_KZIDM,
+            XXX_KZDT: new Date(data.XXX_KZDT),
             ACT_OBJET: data.ACT_OBJET,
             // ACT_NUMERO: data.ACT_NUMERO,
             ACT_DATE: new Date(data.ACT_DATE) ,

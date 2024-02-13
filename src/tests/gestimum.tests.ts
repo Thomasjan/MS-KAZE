@@ -8,7 +8,7 @@ const expect = chai.expect;
     
     it('With params: should return 200', async () => {
         // Make request
-        const params = `?XXX_KAZE=1&display=["ACT_NUMERO","PCF_CODE","CCT_NUMERO","ACT_OBJET","ACT_TYPE","ACT_DESC","ACT_DATE","ACT_DATFIN", "ACT_DATECH", "XXX_DTKZ", "XXX_IDMKZ", "XXX_KAZE"]`;
+        const params = `?XXX_KAZE=1&display=["ACT_NUMERO","PCF_CODE","CCT_NUMERO","ACT_OBJET","ACT_TYPE","ACT_DESC","ACT_DATE","ACT_DATFIN", "ACT_DATECH", "XXX_KZDT", "XXX_KZIDM", "XXX_KAZE"]`;
         const result: any = await request(app).get(`/api/v1/gestimum/actions/${params}`)
         // Expect result
         assert.equal(result.status, 200);

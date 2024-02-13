@@ -13,11 +13,11 @@ import logger, { logTimeToHistory } from '../logger';
 const createJob = async (action: Action) => {
     let result = 'Passed';
     if(!action?.PCF_CODE ) {
-        await updateAction(action.ACT_NUMERO, {XXX_ETATKZ: 'No PCF_CODE found'})
+        await updateAction(action.ACT_NUMERO, {XXX_KZETAT: 'No PCF_CODE found'})
         return 'No PCF_CODE found'.red;
     }
     if(!action?.CCT_NUMERO ){
-        await updateAction(action.ACT_NUMERO, {XXX_ETATKZ: 'No CCT_NUMERO found'}) 
+        await updateAction(action.ACT_NUMERO, {XXX_KZETAT: 'No CCT_NUMERO found'}) 
         return 'No CCT_NUMERO found'.red;
     }
 
@@ -26,7 +26,7 @@ const createJob = async (action: Action) => {
     if(tier.Erreur) {
         console.log('TIER', tier.Erreur)
         logger.error(`fetchTiers (${action.PCF_CODE}) -> `, tier.Erreur)
-        await updateAction(action.ACT_NUMERO, {XXX_ETATKZ: tier.Erreur})
+        await updateAction(action.ACT_NUMERO, {XXX_KZETAT: tier.Erreur})
         return tier.Erreur;
     }
     
@@ -34,7 +34,7 @@ const createJob = async (action: Action) => {
     if(contact.Erreur) {
         console.log('CONTACT', contact.Erreur)
         logger.error(`fetchContact (${action.CCT_NUMERO}) -> `, contact.Erreur)
-        await updateAction(action.ACT_NUMERO, {XXX_ETATKZ: contact.Erreur})
+        await updateAction(action.ACT_NUMERO, {XXX_KZETAT: contact.Erreur})
         return contact.Erreur;
     }
 
@@ -71,7 +71,7 @@ const createJob = async (action: Action) => {
             ACT_DESC: data.ACT_DESC,
             PCF_RS: data.PCF_RS,
             PCF_EMAIL: data.PCF_EMAIL || '',
-            XXX_IDMKZ: data.XXX_IDMKZ,
+            XXX_KZIDM: data.XXX_KZIDM,
             CCT_NOM: data.CCT_NOM,
             CCT_PRENOM: data.CCT_PRENOM,
         }
@@ -86,7 +86,7 @@ const createJob = async (action: Action) => {
             if(!fields[field]){
                 logger.error(`Missing required field ${field} for action ${action.ACT_NUMERO}}`);
                 const data = {
-                    XXX_ETATKZ: `Missing required field "${field}"`
+                    XXX_KZETAT: `Missing required field "${field}"`
                 }
                 await updateAction(action.ACT_NUMERO, data);
                 return `Missing required field ${fieldID}`.red;
@@ -105,7 +105,7 @@ const createJob = async (action: Action) => {
 
         await postJobFromWorkflowID(workflowID, finalWorkflow)
         .then(async (response) => {
-            //insert response.id into Action XXX_IDMKZ
+            //insert response.id into Action XXX_KZIDM
             if(!response.id){
                 console.log(`No id found (${action.ACT_NUMERO})`.red);
                 logger.error(`No id found (${action.ACT_NUMERO})`);
@@ -114,9 +114,9 @@ const createJob = async (action: Action) => {
             }
 
             const data = {
-                XXX_IDMKZ: response.id,
-                XXX_DTKZ: new Date(),
-                XXX_ETATKZ: 'Success'
+                XXX_KZIDM: response.id,
+                XXX_KZDT: new Date(),
+                XXX_KZETAT: 'Success'
             }
             //update action in gestimum
 
@@ -144,9 +144,9 @@ const main = async () => {
         throw new Error('No action found');
     }
 
-    //actiions without XXX_IDMKZ (No Job created in kaze)
+    //actiions without XXX_KZIDM (No Job created in kaze)
     const actionsWithoutKazeID: Array<Action> = actions.filter((action) => {
-        return !action.XXX_IDMKZ;
+        return !action.XXX_KZIDM;
     });
     console.log('actionsWithoutKazeID: '.cyan, actionsWithoutKazeID.length);
 

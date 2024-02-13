@@ -9,8 +9,8 @@ export const dataMapper = (data: any, table: string) => {
             case 'Actions':
                 
             const fields: Object = {
-                XXX_IDMKZ: data.id,
-                XXX_DTKZ: data.updated_at,
+                XXX_KZIDM: data.id,
+                XXX_KZDT: data.updated_at,
                 ACT_OBJET: data.title,
                 ACT_NUMERO: data.reference,
                 ACT_STATUS: data.status_name,
@@ -35,7 +35,7 @@ export const dataMapper = (data: any, table: string) => {
 
             case 'Jobs':
                 const jobs: Object = {
-                    id: data.XXX_IDMKZ,
+                    id: data.XXX_KZIDM,
                     job_reference: data.ACT_NUMERO,
                     job_type: data.ACT_TYPE,
                     job_title: data.ACT_OBJET,
@@ -50,8 +50,8 @@ export const dataMapper = (data: any, table: string) => {
                     job_end_date: data.ACT_DATFIN,
                     job_expiration: data.ACT_DATECH,
 
-                    last_maj: data.XXX_DTKZ,
-                    sync_kaze: data.XXX_IDMKZ,
+                    last_maj: data.XXX_KZDT,
+                    sync_kaze: data.XXX_KZIDM,
                     template_navigation: data.XXX_GKNAV,
                     template_photo: data.XXX_GKIMAGE,
                     template_signature: data.XXX_GKSIGN,
