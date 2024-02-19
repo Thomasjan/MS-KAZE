@@ -16,9 +16,19 @@ const createJob = async (action: Action) => {
         await updateAction(action.ACT_NUMERO, {XXX_KZETAT: "Echec - Le Tiers doit être renseigné"})
         return 'No PCF_CODE found'.red;
     }
+    let contact;
     if(!action?.CCT_NUMERO ){
-        await updateAction(action.ACT_NUMERO, {XXX_KZETAT: "Echec - Le Contact doit être renseigné"}) 
-        return 'No CCT_NUMERO found'.red;
+        contact = "";
+        // await updateAction(action.ACT_NUMERO, {XXX_KZETAT: "Echec - Le Contact doit être renseigné"}) 
+        // return 'No CCT_NUMERO found'.red;
+    }
+    else{
+        contact = await fetchContact(action.CCT_NUMERO);
+        if(contact.Erreur) {
+            logger.error(`fetchContact (${action.CCT_NUMERO}) -> `, contact.Erreur)
+            await updateAction(action.ACT_NUMERO, {XXX_KZETAT: contact.Erreur})
+            return contact.Erreur;
+        } 
     }
 
     //fetch tier and contact
@@ -29,13 +39,6 @@ const createJob = async (action: Action) => {
         return tier.Erreur;
     }
     
-    const contact = await fetchContact(action.CCT_NUMERO);
-    if(contact.Erreur) {
-        logger.error(`fetchContact (${action.CCT_NUMERO}) -> `, contact.Erreur)
-        await updateAction(action.ACT_NUMERO, {XXX_KZETAT: contact.Erreur})
-        return contact.Erreur;
-    }
-
 
         //handle Errors
         if(!tier){
@@ -47,7 +50,7 @@ const createJob = async (action: Action) => {
         const data = {
             ...action,
             ...tier.client,
-            ...contact.utilisateur,
+            ...contact?.utilisateur,
         }
 
         //create fields object
@@ -76,7 +79,7 @@ const createJob = async (action: Action) => {
 
 
         // console.log('fields: '.yellow, fields)
-        const requiredFields = ['ACT_NUMERO', 'PCF_CODE', 'CCT_NUMERO', 'ACT_OBJET', 'ACT_TYPE', 'PCF_RS', 'PCF_VILLE', 'PCF_CP', 'PCF_RUE'];
+        const requiredFields = ['ACT_NUMERO', 'PCF_CODE', 'ACT_OBJET', 'ACT_TYPE', 'PCF_RS', 'PCF_VILLE', 'PCF_CP', 'PCF_RUE', 'ACT_DATE'];
 
         //check if required fields are present
         for (const field of requiredFields) {
@@ -89,14 +92,14 @@ const createJob = async (action: Action) => {
                 await updateAction(action.ACT_NUMERO, data);
                 return `Missing required field ${fieldID}`.red;
             }
-            if(!fields.CCT_EMAIL && !fields.CCT_TELM){
-                logger.error(`Missing required field CCT_EMAIL or CCT_TELM for action ${action.ACT_NUMERO}}`);
-                const data = {
-                    XXX_KZETAT: `Echec - L'Email et/ou le Téléphone du contact doit être renseigné`
-                }
-                await updateAction(action.ACT_NUMERO, data);
-                return `Missing required field CCT_EMAIL or CCT_TELM`.red;
-            }
+            // if(!fields.CCT_EMAIL && !fields.CCT_TELM){
+            //     logger.error(`Missing required field CCT_EMAIL or CCT_TELM for action ${action.ACT_NUMERO}}`);
+            //     const data = {
+            //         XXX_KZETAT: `Echec - L'Email et/ou le Téléphone du contact doit être renseigné`
+            //     }
+            //     await updateAction(action.ACT_NUMERO, data);
+            //     return `Missing required field CCT_EMAIL or CCT_TELM`.red;
+            // }
         }
 
         //this is the final json to send to kaze
@@ -122,7 +125,8 @@ const createJob = async (action: Action) => {
             const data = {
                 XXX_KZIDM: response.id,
                 XXX_KZDT: new Date(),
-                XXX_KZETAT: 'Success'
+                XXX_KZETAT: 'Mission créée dans Kaze',
+                ACT_ETAT: 'Début',
             }
             //update action in gestimum
 

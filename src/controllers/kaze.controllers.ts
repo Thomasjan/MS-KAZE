@@ -1,5 +1,5 @@
 //gestimumController
-import e, { Request, Response, response } from 'express';
+import  { Request, Response } from 'express';
 import { getAuthToken } from './auth.controllers';
 import axios from 'axios';
 
@@ -107,7 +107,27 @@ const kazeController = {
                 console.log(error);
                 res.status(500).send(error);
             }
-        }
+        },
+
+        updateJob: async (req: Request, res: Response) => {
+            const id = req.params.id;
+            const authToken = await getAuthToken();
+            const json: JSON = req.body;
+            try{
+                const response = await axios.put(`https://app.kaze.so/api/jobs/${id}.json`, json, {
+                    headers: {
+                        Authorization: `${authToken}`,
+                        "Content-Type": "application/json"
+                    }
+                });
+                console.log(response.data);
+                res.send(response.data);
+            }
+            catch(error){
+                console.log(error);
+                res.status(500).send(error);
+            }
+        },
 
 
 }

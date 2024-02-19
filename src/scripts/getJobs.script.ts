@@ -50,7 +50,7 @@ const syncJobs = async (job: any) => {
             ACT_DATECH: new Date(data.ACT_DATECH),
             ACT_DESC: data.ACT_DESC,
             XXX_KZURL: jobID.bwa_link,
-            ACT_ETAT: 'T',
+            ACT_ETAT: 'Terminée',
         }
 
         //update Action with data
@@ -79,19 +79,35 @@ const main = async () => {
     
     
     //fetching Finish Jobs from Kaze
-    const body: Object = {
+    const finish: Object = {
         filter: {
             status: "completed",
         }
     }
-    const jobs: Array<Job> = await fetchJobs(body);
+    const jobs: Array<Job> = await fetchJobs(finish);
     console.log('jobs finished: '.cyan, jobs.length);
     logTimeToHistory(`[getJobsScript] jobs finished: ${jobs.length}`);
 
     if (!jobs) {
-        console.log('No jobs found'.red);
-        return 'No jobs found';
+        console.log('No finished jobs found'.red);
+        return 'No finished jobs found';
     }
+
+    // const not_started: Object = { 
+    //     filter: {
+    //         status: "waiting",
+    //     }
+    // }
+    // const jobsNotStarted: Array<Job> = await fetchJobs(not_started);
+    // console.log('jobs not started: '.cyan, jobsNotStarted.length);
+    // logTimeToHistory(`[getJobsScript] jobs not started: ${jobsNotStarted.length}`);
+
+    // if (!jobsNotStarted) {
+    //     console.log('No not started jobs found'.red);
+    //     return 'No not started jobs found';
+    // }
+
+    //TODO: if there is an ERP update and the job is not started, we need to update the job
    
     //foreach job 
     for (const job of jobs) {
