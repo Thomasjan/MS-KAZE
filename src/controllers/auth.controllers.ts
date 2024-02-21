@@ -26,7 +26,7 @@ export const login = async (username: string, password: string): Promise<void> =
     console.log('authToken: ', authToken?.red);
   } catch (error: any) {
     console.log('login ' + 'failed'.red);
-    logger.error(new Error('login error -> ' + error.response.data));
+    logger.error("Erreur d'authentification kaze " + error?.response?.data);
   }
 };
 

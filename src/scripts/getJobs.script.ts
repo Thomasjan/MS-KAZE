@@ -3,15 +3,16 @@ import Action from '../models/Action';
 import { fetchAction, fetchJobs, fetchjobID, login, updateAction } from './api.functions';
 import logger, { logTimeToHistory } from '../logger';
 import Job from '../models/Job';
-import { log } from 'console';
-
-
-
 
 
 /* ----------------------------------------SYNC CreateJObs-------------------------------------------------- */
 const syncJobs = async (job: any) => {
     let result = 'Passed'.bgBlue;
+
+    if(job.status_name == 'Début'){
+        console.log("Job is waiting".yellow);
+        return;
+    }
     //get Action from Gestimum (Job.id = Action.XXX_KZIDM)
     const action: Array<Action> = await fetchAction(job.id);
     // console.log('action: '.cyan, action);
@@ -21,36 +22,41 @@ const syncJobs = async (job: any) => {
         return result;
     }
 
+    const formatedDate = (date: Date) => {
+        var tzoffset = (new Date(date)).getTimezoneOffset() * 60000; //offset in milliseconds
+        var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0, -1);
+        return localISOTime;
+    }
+
     //check if Action.XXX_KZDTE < Job.updated_at
-    if(!action[0].XXX_KZDT || !(new Date(action[0].XXX_KZDT).getTime()+2 > job.updated_at)){
-        // console.log(`${new Date(action[0].XXX_KZDT).getTime()} < ${job.updated_at}`.yellow, new Date(action[0].XXX_KZDT).getTime() < job.updated_at)
+    console.log(`${new Date(action[0].XXX_KZDT).getTime()+2} < ${job.updated_at+3600*1000}: `, new Date(action[0].XXX_KZDT).getTime()+2 > job.updated_at+3600*1000)
+    // console.log(`${(new Date(action[0].XXX_KZDT).toISOString())} < ${new Date(job.updated_at+3600*1000).toISOString()}: `.yellow, new Date(action[0].XXX_KZDT) < job.updated_at+3600*1000)
+    if(!action[0].XXX_KZDT || !(new Date(action[0].XXX_KZDT).getTime()+2 > job.updated_at+3600*1000)){
         console.log('Action need to be updated'.yellow);
-        //get Job from Kaze
+        logTimeToHistory(`[getJobsScript] Action ${action[0].ACT_NUMERO} besoin de mise à jour : ${new Date().toISOString()}`);
         const jobID = await fetchjobID(job.id);
-        // console.log('jobID: '.cyan, jobID);
 
         if(!jobID){
             console.log('No jobID found'.red);
+            logger.error(`Pas de mission trouvée pour l'action ${action[0].ACT_NUMERO}`)
             return 'No jobID found'.red;
         }
-
-        // const workflow: any = jobID.workflow;
-        // console.log('workflow: '.cyan, workflow.children[1].children[0].children[0].data);
         
         // dataMapper
         const data: any = dataMapper(jobID, 'Actions');
-
+       
         const newAction = {
             XXX_KZIDM: data.XXX_KZIDM,
-            XXX_KZDT: new Date(data.XXX_KZDT),
+            XXX_KZDT:  formatedDate(new Date(data.XXX_KZDT)),
             ACT_OBJET: data.ACT_OBJET,
-            // ACT_NUMERO: data.ACT_NUMERO,
-            ACT_DATE: new Date(data.ACT_DATE) ,
-            ACT_DATFIN: new Date(data.ACT_DATFIN),
-            ACT_DATECH: new Date(data.ACT_DATECH),
+            ACT_DATE:  formatedDate(new Date(data.ACT_DATE)) ,
+            ACT_DATFIN:  formatedDate(new Date(data.ACT_DATFIN)),
+            ACT_DATECH:  formatedDate(new Date(data.ACT_DATECH)),
             ACT_DESC: data.ACT_DESC,
+            ACT_DTMAJ: formatedDate(new Date(data.XXX_KZDT)),
             XXX_KZURL: jobID.bwa_link,
-            ACT_ETAT: 'Terminée',
+            ACT_ETAT: job.status_name,
+            XXX_KZETAT: "MIS A JOUR le " + formatedDate(new Date()),
         }
 
         //update Action with data
@@ -63,7 +69,7 @@ const syncJobs = async (job: any) => {
 
         // console.log('update: '.cyan, update);
         result = `Action ${action[0].ACT_NUMERO} updated`.bgGreen;
-        logTimeToHistory(`[getJobsScript] Action ${action[0].ACT_NUMERO} updated at: ${new Date().toISOString()}`);
+        logTimeToHistory(`[getJobsScript] Action ${action[0].ACT_NUMERO} mise à jour à: ${new Date().toISOString()}`);
     }
     else{
         result = `Action already up to date`.bgBlue;
@@ -75,39 +81,24 @@ const syncJobs = async (job: any) => {
 /* ----------------------------------------Main-------------------------------------------------- */
 const main = async () => {
     console.log('main()'.red.underline);
-    logTimeToHistory(`[getJobsScript] Script executed at: ${new Date().toISOString()}`)    
+    logTimeToHistory(`[getJobsScript] Début de l'exécution du script à: ${new Date().toISOString()}`)    
     
     
     //fetching Finish Jobs from Kaze
     const finish: Object = {
         filter: {
-            status: "completed",
+            status: "initial,in_progress,completed,assigned",
         }
     }
     const jobs: Array<Job> = await fetchJobs(finish);
     console.log('jobs finished: '.cyan, jobs.length);
-    logTimeToHistory(`[getJobsScript] jobs finished: ${jobs.length}`);
+    logTimeToHistory(`[getJobsScript] Nombres de mission terminées: ${jobs.length}`);
 
     if (!jobs) {
         console.log('No finished jobs found'.red);
+        logTimeToHistory(`[getJobsScript] Psa de mission terminées trouvées à: ${new Date().toISOString()}`);
         return 'No finished jobs found';
     }
-
-    // const not_started: Object = { 
-    //     filter: {
-    //         status: "waiting",
-    //     }
-    // }
-    // const jobsNotStarted: Array<Job> = await fetchJobs(not_started);
-    // console.log('jobs not started: '.cyan, jobsNotStarted.length);
-    // logTimeToHistory(`[getJobsScript] jobs not started: ${jobsNotStarted.length}`);
-
-    // if (!jobsNotStarted) {
-    //     console.log('No not started jobs found'.red);
-    //     return 'No not started jobs found';
-    // }
-
-    //TODO: if there is an ERP update and the job is not started, we need to update the job
    
     //foreach job 
     for (const job of jobs) {
@@ -116,7 +107,7 @@ const main = async () => {
         try {
             await syncJobs(job)
             .then(async (result) => {
-                logTimeToHistory(`[getJobsScript] Result for job ${job.id}: ${result}`);
+                logTimeToHistory(`[getJobsScript] Résultat pour la mission ${job.id}: ${result}`);
                 console.log(`Result for job ${jobID}: ${result}`);
                 console.log('--------------------------------------------------------------'.america + '\n')
             })
@@ -127,12 +118,12 @@ const main = async () => {
         }
         catch (error: any) {
             console.log(`Error processing job ${jobID}`, error);
-            logger.error(new Error(error));
+            logger.error(`Erreur lors du traitement de la mission ${jobID}: ${error}`);
         }
 
     }
 
-    logTimeToHistory(`[getJobsScript] Script finished at: ${new Date().toISOString()} \n`);
+    logTimeToHistory(`[getJobsScript] Fin d'exécution du script à: ${new Date().toISOString()} \n`);
 }
 
 //lauch main
@@ -141,5 +132,5 @@ login().then(() => {
 })
 .catch((error) => {
     console.log(error);
-    logger.error(new Error(error));
+    logger.error(`Erreur du lancement du script: ${error}`);
 });

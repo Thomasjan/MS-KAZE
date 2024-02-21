@@ -31,7 +31,7 @@ const gestimumController = {
             })
             .catch((error) => {
                 console.log(error);
-                logger.error(new Error('getAffaires error -> ' + error.response.data));
+                logger.error(new Error('Erreur de récupération des Affaires ' + error.response.data));
                 return res.send(error);
             });
     },
@@ -55,7 +55,7 @@ const gestimumController = {
             })
             .catch((error) => {
                 console.log(error);
-                logger.error(new Error('getActions error -> ' + error.response.data));
+                logger.error(new Error('Erreur de récupération des Actions -> ' + error.response.data));
                 return res.send(error);
             });
     },
@@ -76,7 +76,7 @@ const gestimumController = {
             })
             .catch((error) => {
                 console.log("getTier Error: ", error.response.data);
-                logger.error(new Error('getTiers error -> ' + error.response.data));
+                logger.error(new Error('Erreur de récupération des Tiers -> ' + error.response.data));
                 return res.send(error.response.data);
             });
     },
@@ -96,7 +96,7 @@ const gestimumController = {
             })
             .catch((error) => {
                 console.log(error);
-                logger.error(new Error('getContact error -> ' + error.response.data));
+                logger.error(new Error('Erreur de récupération du Contact -> ' + error.response.data));
                 return res.send(error);
             });
     },
@@ -117,7 +117,7 @@ const gestimumController = {
             })
             .catch((error) => {
                 console.log(error);
-                logger.error(new Error('updateAction error -> ' + error.response.data));
+                logger.error(new Error("Erreur lors de la mise à jour de l'Action -> " + error.response.data));
                 return res.send(error);
             });
     },

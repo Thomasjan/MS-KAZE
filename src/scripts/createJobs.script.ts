@@ -4,7 +4,7 @@ import workflow_template from '../data/worflowID';
 
 import jsonMapper from '../utils/jsonMapper';
 import Action from '../models/Action';
-import { fetchActions, fetchContact, fetchTiers, login, postJob, postJobFromWorkflowID, updateAction } from './api.functions';
+import { fetchActions, fetchContact, fetchTiers, fetchjobID, login, postJob, postJobFromWorkflowID, updateAction, updateJobID } from './api.functions';
 import logger, { logTimeToHistory } from '../logger';
 
 
@@ -19,13 +19,11 @@ const createJob = async (action: Action) => {
     let contact;
     if(!action?.CCT_NUMERO ){
         contact = "";
-        // await updateAction(action.ACT_NUMERO, {XXX_KZETAT: "Echec - Le Contact doit être renseigné"}) 
-        // return 'No CCT_NUMERO found'.red;
     }
     else{
         contact = await fetchContact(action.CCT_NUMERO);
         if(contact.Erreur) {
-            logger.error(`fetchContact (${action.CCT_NUMERO}) -> `, contact.Erreur)
+            logger.error(`Erreur lors de la récupération du Contact (${action.CCT_NUMERO}) -> `, contact.Erreur)
             await updateAction(action.ACT_NUMERO, {XXX_KZETAT: contact.Erreur})
             return contact.Erreur;
         } 
@@ -34,7 +32,7 @@ const createJob = async (action: Action) => {
     //fetch tier and contact
     const tier = await fetchTiers(action.PCF_CODE)
     if(tier.Erreur) {
-        logger.error(`fetchTiers (${action.PCF_CODE}) -> `, tier.Erreur)
+        logger.error(`Erreur lors de la récupération du Tiers (${action.PCF_CODE}) -> `, tier.Erreur)
         await updateAction(action.ACT_NUMERO, {XXX_KZETAT: tier.Erreur})
         return tier.Erreur;
     }
@@ -43,7 +41,7 @@ const createJob = async (action: Action) => {
         //handle Errors
         if(!tier){
             console.log('No tier found'.red);
-            logger.error('No tier found');
+            logger.error('Erreur - Pas de Tiers trouvé');
         }
 
         //data to send to kaze
@@ -85,21 +83,13 @@ const createJob = async (action: Action) => {
         for (const field of requiredFields) {
             const fieldID = `${field}`.yellow;
             if(!fields[field]){
-                logger.error(`Missing required field ${field} for action ${action.ACT_NUMERO}}`);
+                logger.error(`Champs manquants (${field}) pour l'action ${action.ACT_NUMERO}}`);
                 const data = {
                     XXX_KZETAT: `Echec - Le champ "${field}" doit être renseigné`
                 }
                 await updateAction(action.ACT_NUMERO, data);
                 return `Missing required field ${fieldID}`.red;
             }
-            // if(!fields.CCT_EMAIL && !fields.CCT_TELM){
-            //     logger.error(`Missing required field CCT_EMAIL or CCT_TELM for action ${action.ACT_NUMERO}}`);
-            //     const data = {
-            //         XXX_KZETAT: `Echec - L'Email et/ou le Téléphone du contact doit être renseigné`
-            //     }
-            //     await updateAction(action.ACT_NUMERO, data);
-            //     return `Missing required field CCT_EMAIL or CCT_TELM`.red;
-            // }
         }
 
         //this is the final json to send to kaze
@@ -117,7 +107,7 @@ const createJob = async (action: Action) => {
             //insert response.id into Action XXX_KZIDM
             if(!response.id){
                 console.log(`No id found (${action.ACT_NUMERO})`.red);
-                logger.error(`No id found (${action.ACT_NUMERO})`);
+                logger.error(`Erreur lors de la création de la mission (${action.ACT_NUMERO})`);
                 result = 'Fail'.bgRed;
                 return;
             }
@@ -132,7 +122,7 @@ const createJob = async (action: Action) => {
 
             console.log(`updating action... (${action.ACT_NUMERO})`.magenta);
             await updateAction(action.ACT_NUMERO, data);
-            logTimeToHistory(`[createJobsScript] Job ${response.id} created for action ${action.ACT_NUMERO}`);
+            logTimeToHistory(`[createJobsScript] Mission ${response.id} créée pour l'action ${action.ACT_NUMERO}`);
             result = 'Success'.bgGreen;
         })
 
@@ -140,21 +130,155 @@ const createJob = async (action: Action) => {
         return result;
 }
 
+
+//UPDATE JOB
+const updateJob = async (action: any) => {
+    const Job = await fetchjobID(action.XXX_KZIDM);
+    if(!Job){
+        console.log(`ID de mission non trouvé (${action.XXX_KZIDM})`.red);
+        logger.error(`ID de mission non trouvé (${action.XXX_KZIDM})`);
+    }
+    // console.log('Job: '.cyan, Job);
+    if(Job.status_name != 'Début' && action.XXX_KZETAT != 'Erreur - La mission est déjà commencée, veuillez la modifier dans Kaze'){
+        console.log(`La mission n'est pas en état "Début" (${action.XXX_KZIDM})`.red);
+        logTimeToHistory(`[createJobsScript] La mission n'est pas en état "Début" (${action.XXX_KZIDM})`);
+        updateAction(action.ACT_NUMERO, {XXX_KZETAT: `Erreur - La mission est déjà commencée, veuillez la modifier dans Kaze`});
+    }
+
+    return;
+    if(!action?.PCF_CODE ) {
+        await updateAction(action.ACT_NUMERO, {XXX_KZETAT: "Echec - Le Tiers doit être renseigné"})
+        return 'No PCF_CODE found'.red;
+    }
+    let contact;
+    if(!action?.CCT_NUMERO ){
+        contact = "";
+    }
+    else{
+        contact = await fetchContact(action.CCT_NUMERO);
+        if(contact.Erreur) {
+            logger.error(`Erreur lors de la récupération du Contact (${action.CCT_NUMERO}) -> `, contact.Erreur)
+            await updateAction(action.ACT_NUMERO, {XXX_KZETAT: contact.Erreur})
+            return contact.Erreur;
+        } 
+    }
+
+    //fetch tier and contact
+    const tier = await fetchTiers(action.PCF_CODE)
+    if(tier.Erreur) {
+        logger.error(`Erreur lors de la récupération du Tiers (${action.PCF_CODE}) -> `, tier.Erreur)
+        await updateAction(action.ACT_NUMERO, {XXX_KZETAT: tier.Erreur})
+        return tier.Erreur;
+    }
+    
+        //handle Errors
+        if(!tier){
+            console.log('No tier found'.red);
+            logger.error('Pas de Tiers trouvé');
+        }
+
+        //data to send to kaze
+        const data = {
+            ...action,
+            ...tier.client,
+            ...contact?.utilisateur,
+        }
+
+        //create fields object
+        const fields = {
+            ACT_NUMERO: data.ACT_NUMERO,
+            ACT_OBJET: data.ACT_OBJET,
+            CCT_NUMERO: data.CCT_NUMERO,
+            CCT_TELM: data.CCT_TELM || '',
+            CCT_EMAIL: data.CCT_EMAIL || '',
+            PCF_CODE: data.PCF_CODE,
+            PCF_RUE: data.PCF_RUE,
+            PCF_CP: data.PCF_CP,
+            PCF_VILLE: data.PCF_VILLE,
+            ACT_DATE: data.ACT_DATE,
+            ACT_DATFIN: data.ACT_DATFIN,
+            //+ 1h to ACT_DATECH
+            ACT_DATECH: new Date(data.ACT_DATECH).getTime(),
+            ACT_TYPE: data.ACT_TYPE,
+            ACT_DESC: data.ACT_DESC,
+            PCF_RS: data.PCF_RS,
+            PCF_EMAIL: data.PCF_EMAIL || '',
+            XXX_KZIDM: data.XXX_KZIDM,
+            CCT_NOM: data.CCT_NOM,
+            CCT_PRENOM: data.CCT_PRENOM,
+        }
+
+
+        // console.log('fields: '.yellow, fields)
+        const requiredFields = ['ACT_NUMERO', 'PCF_CODE', 'ACT_OBJET', 'ACT_TYPE', 'PCF_RS', 'PCF_VILLE', 'PCF_CP', 'PCF_RUE', 'ACT_DATE'];
+
+        //check if required fields are present
+        for (const field of requiredFields) {
+            const fieldID = `${field}`.yellow;
+            if(!fields[field]){
+                logger.error(`Champs manquants (${field}) pour l'action ${action.ACT_NUMERO}}`);
+                const data = {
+                    XXX_KZETAT: `Echec - Le champ "${field}" doit être renseigné`
+                }
+                await updateAction(action.ACT_NUMERO, data);
+                return `Missing required field ${fieldID}`.red;
+            }
+        }
+
+        //this is the final json to send to kaze
+        let json = JSON.parse(JSON.stringify(workflow_template));
+        const finalWorkflow: any = jsonMapper(json, fields);
+
+        const updatedJob = `${action.ACT_NUMERO}`.rainbow;
+        //post job to kaze
+        console.log(`updating job (${updatedJob}) ...`.yellow);
+        // console.log('finalWorkflow: '.cyan, finalWorkflow);
+
+        const widgets = finalWorkflow.data;
+
+        //passing widgets to updateJobID
+        updateJobID(Job.id, widgets);
+
+
+
+    return;
+}
+    
+
 /* ----------------------------------------Main-------------------------------------------------- */
 const main = async () => {
     console.log('main()'.red.underline)
-    logTimeToHistory(`[createJobsScript] Script executed at: ${new Date().toISOString()}`)
+    logTimeToHistory(`[createJobsScript] Début de l'exécution du script à: ${new Date().toISOString()}`)
     
     //fetching actions
     const actions: Array<Action> = await fetchActions();
-    // console.log('actions: '.cyan, actions)
 
     if (!actions) {
         console.log('No actions found'.red);
-        throw new Error('No action found');
+        logger.error('Pas d\'actions trouvées dans Gestimum \n');
     }
 
-    //actiions without XXX_KZIDM (No Job created in kaze)
+    //MISE A JOUR DES MISSIONS
+    //TODO: update Job if action is modified in Gestimum
+    const actionsWithKazeID: Array<Action> = actions.filter((action) => {
+        return action.XXX_KZIDM;
+    });
+
+    console.log('actionsWithKazeID: '.cyan, actionsWithKazeID.length);
+    logTimeToHistory(`[createJobsScript] Nombre d'actions synchronisée avec Kaze: ${actionsWithKazeID.length}`);
+
+    actionsWithKazeID?.forEach((action) => {
+        console.log('action: '.cyan, action.ACT_NUMERO);
+        //if (action.ACT_DTMAJ || ACT_DTCRE) > XXX_KZDT, get Job and update Job with Action data, then update action.XXX_KZDT
+        if(action.ACT_DTMAJ > action.XXX_KZDT){
+            console.log(`Une Action a été modifiée dans Gestimum: ${action.ACT_NUMERO}`.cyan);
+            logTimeToHistory(`[createJobsScript] Une Action a été modifiée dans Gestimum: ${action.ACT_NUMERO}`);
+            updateJob(action);
+        }
+    })
+
+    ///CREATION DES MISSIONS
+    //actions without XXX_KZIDM (No Job created in kaze)
     const actionsWithoutKazeID: Array<Action> = actions.filter((action) => {
         return !action.XXX_KZIDM;
     });
@@ -162,19 +286,18 @@ const main = async () => {
 
     if(actionsWithoutKazeID.length === 0){
         console.log('No actions to create'.yellow);
-        return;
+        logTimeToHistory(`[createJobsScript] Pas d'actions a créées dans Kaze \n`);
     }
 
     //create job for each action
-    for (const action of actionsWithoutKazeID) {
-
+    actionsWithoutKazeID?.forEach(async (action) => {
         const jobID = `${action.ACT_NUMERO}`.green.bold;
         console.log(`creating job(${jobID})`.yellow);
 
         try {
             await createJob(action)
             .then(async (result) => {
-                logTimeToHistory(`[createJobsScript] Result for action ${action.ACT_NUMERO}: ${result}`);
+                logTimeToHistory(`[createJobsScript] Resultat pour l'action ${action.ACT_NUMERO}: ${result}`);
                 console.log(`Result for action ${jobID}: ${result}`);
                 console.log('--------------------------------------------------------------'.america + '\n');
             })
@@ -184,9 +307,10 @@ const main = async () => {
         } catch (error) {
             console.log(`Error processing action ${jobID}`, error);
         }
-    }
+    })
 
-    logTimeToHistory(`[createJobsScript] Script finished at: ${new Date().toISOString()} \n`)
+
+    logTimeToHistory(`[createJobsScript] Fin d'exécution du script à: ${new Date().toISOString()} \n`)
 }
 
 

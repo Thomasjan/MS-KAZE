@@ -10,21 +10,21 @@ const login = async () => {
         console.log(response.data);
     })
     .catch((error: any) => {
-        logger.error(new Error('login error -> ' + error.response));
+        logger.error(new Error("Erreur d'authentification -> " + error.response));
     });
 }
 
 //fetch actions from gestimum with Sync kaze = 1
 const fetchActions = async () => {
     console.log('fetchActions()'.magenta)
-    const display = `?display=["ACT_NUMERO","PCF_CODE","CCT_NUMERO","ACT_OBJET","ACT_TYPE","ACT_DESC","ACT_DATE","ACT_DATFIN", "ACT_DATECH", "XXX_KZDT", "XXX_KZIDM", "XXX_KAZE"]`
+    const display = `?display=["ACT_NUMERO","PCF_CODE","CCT_NUMERO","ACT_OBJET","ACT_TYPE","ACT_DESC","ACT_DATE","ACT_DATFIN", "ACT_DATECH", "ACT_DTCRE", "ACT_DTMAJ", "XXX_KZETAT", "XXX_KZDT", "XXX_KZIDM", "XXX_KAZE"]`
     const select = `&XXX_KAZE=1`
     try{
         const response = await axios.get(`http://localhost:3000/api/v1/gestimum/actions/${display}${select}`);
         return response.data.actions;
     }
     catch(error: any){
-        logger.error(new Error('fetchActions error -> ' + error.response.data));
+        logger.error(new Error('Erreur de récupération des Actions -> ' + error.response.data));
     }
 }
 
@@ -39,7 +39,7 @@ const fetchAction = async (id: String) => {
         return response.data.actions;
     }
     catch(error: any){
-        logger.error(new Error('fetchAction error -> ' + error.response.data));
+        logger.error(new Error("Erreur de récupération de l'Action -> " + error.response.data));
     }
 }
 
@@ -56,7 +56,7 @@ const fetchJobs = async (body: Object) => {
         return response.data.data;
     }
     catch(error: any){
-        logger.error(new Error('fetchJobs error -> ' + error.response.data));
+        logger.error(new Error('Erreur de récupération des Missions Kaze -> ' + error.response.data));
     }
 }
 
@@ -69,7 +69,7 @@ const fetchjobID = async (id: String) => {
         return response.data;
     }
     catch(error: any){
-        logger.error(new Error('fetchjobID error -> ' + error.response.data));
+        logger.error(new Error('Erreur de récupération de la Mission Kaze -> ' + error.response.data));
     }
 }
 
@@ -84,7 +84,7 @@ const updateAction = async (id: string, data: Object) => {
     }
     catch(error: any){
         console.log(`UPDATE ERROR ${id}`.red);
-        logger.error(new Error('updateAction error -> ' + error.response.data));
+        logger.error(new Error("Erreur lors de la mise à jour de l'Action-> " + error.response.data));
     }
 }
 
@@ -98,7 +98,7 @@ const fetchTiers = async (id: string) => {
         return response.data;
     }
     catch(error: any){
-        logger.error(new Error('fetchTiers error -> ' + error.response.data));
+        logger.error(new Error('Erreur de récupération des Tiers -> ' + error.response.data));
         return error
     }
 }
@@ -113,7 +113,7 @@ const fetchContact = async (id: string) => {
     }
     catch(error: any){
         console.log('error fectching Contact'.red);
-        logger.error(new Error('fetchContact error -> ' + error.response.data));
+        logger.error(new Error('Erreur de récupération du Contact -> ' + error.response.data));
     }
 }
 
@@ -128,7 +128,7 @@ const postJob = async (job: Object) => {
     }
     catch(error: any){
         console.log(`POST ERROR`.red);
-        logger.error(new Error('postJob error -> ' + error.response.data));
+        logger.error(new Error('Erreur lors de la création de la Mission -> ' + error.response.data));
     }
 }
 
@@ -144,9 +144,22 @@ const postJobFromWorkflowID = async (workflowID: string, job: Object) => {
     }
     catch(error: any){
         console.log(`POST ERROR`.red);
-        logger.error(new Error('postJobFromWorkflowID error -> ' + error.response.data));
+        logger.error(new Error('Erreur lors de la création de la Mission -> ' + error.response.data));
     }
 }
+
+const updateJobID = async (jobID: string, data) => {
+    const ID = `${jobID}`.green;
+    console.log(`updateJobID(${ID})`.magenta)
+    // console.log("data", data)
+
+   
+
+
+    return data;
+   
+}
+
 
 
 
@@ -160,5 +173,6 @@ export {
     fetchTiers, 
     fetchContact,
     postJob,
-    postJobFromWorkflowID
+    postJobFromWorkflowID,
+    updateJobID
 }

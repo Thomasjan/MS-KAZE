@@ -15,6 +15,9 @@ type Action = {
     ACT_DESC: string;
     PCF_RS: string;
     PCF_EMAIL: string;
+    ACT_DTCRE: string;
+    ACT_DTMAJ: string;
+    XXX_KZETAT: string;
     XXX_KZIDM: string;
     XXX_KZDT: string;
     XXX_KAZE: string;

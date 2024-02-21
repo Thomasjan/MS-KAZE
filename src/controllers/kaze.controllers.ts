@@ -110,11 +110,14 @@ const kazeController = {
         },
 
         updateJob: async (req: Request, res: Response) => {
-            const id = req.params.id;
+            const { id, widget_id } = req.params;
+            console.log('id: '.yellow, id);
+            console.log('widget_id: '.yellow, widget_id);
             const authToken = await getAuthToken();
             const json: JSON = req.body;
+            console.log('json: '.blue, json);
             try{
-                const response = await axios.put(`https://app.kaze.so/api/jobs/${id}.json`, json, {
+                const response = await axios.put(`https://app.kaze.so/api/jobs/${id}/cells/${widget_id}.json`, json, {
                     headers: {
                         Authorization: `${authToken}`,
                         "Content-Type": "application/json"
