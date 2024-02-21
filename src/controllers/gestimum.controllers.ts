@@ -18,7 +18,7 @@ const gestimumController = {
         console.log('getAffaires()'.yellow);
         const config = {
             'headers': {
-                'x-api-key': process.env.GESTIMUM_API_KEY
+                'x-api-key': process.env.TOKEN_SECRET
             }
         };
         const query = Object.keys(req.query).map(key => key + '=' + req.query[key]).join('&');
@@ -42,7 +42,7 @@ const gestimumController = {
         console.log('getActions()'.yellow);
         const config = {
             'headers': {
-                'x-api-key': process.env.GESTIMUM_API_KEY
+                'x-api-key': process.env.TOKEN_SECRET
             }
         };
         const query = Object.keys(req.query).map(key => key + '=' + req.query[key]).join('&')
@@ -65,7 +65,7 @@ const gestimumController = {
         console.log('getTiers()'.yellow);
         const config = {
             'headers': {
-                'x-api-key': process.env.GESTIMUM_API_KEY
+                'x-api-key': process.env.TOKEN_SECRET
             }
         };
 
@@ -85,7 +85,7 @@ const gestimumController = {
         console.log('getContact()'.yellow);
         const config = {
             'headers': {
-                'x-api-key': process.env.GESTIMUM_API_KEY
+                'x-api-key': process.env.TOKEN_SECRET
             }
         };
 
@@ -106,7 +106,7 @@ const gestimumController = {
         console.log('updateAction()'.yellow);
         const config = {
             'headers': {
-                'x-api-key': process.env.GESTIMUM_API_KEY
+                'x-api-key': process.env.TOKEN_SECRET
             }
         };
 
