@@ -2,6 +2,7 @@
 import  { Request, Response } from 'express';
 import { getAuthToken } from './auth.controllers';
 import axios from 'axios';
+import { login } from '../scripts/api.functions';
 
 
 const kazeController = {
@@ -11,10 +12,18 @@ const kazeController = {
     },
     
     testConnection: async (req: Request, res: Response) => {
-       const authToken = getAuthToken();
-        console.log(authToken);
-
-        res.send(authToken);
+        try{
+            await login();
+            const token = getAuthToken();
+            if(token === null){
+                return res.status(500).send({status: 'error', message: 'Connection failed'});
+            }
+            return res.status(200).send({status: 'ok', message: 'Connection successful'});
+        }
+        catch(error){
+            console.log(error);
+            return res.status(500).send(error)
+        }
     },
 
     //get all jobs from Kaze

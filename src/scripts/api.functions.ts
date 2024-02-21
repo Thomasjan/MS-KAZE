@@ -8,9 +8,11 @@ const login = async () => {
     await axios.post('http://localhost:3000/api/v1/kaze/login')
     .then((response) => {
         console.log(response.data);
+        return response.data;
     })
     .catch((error: any) => {
         logger.error(new Error("Erreur d'authentification -> " + error.response));
+        return error;
     });
 }
 

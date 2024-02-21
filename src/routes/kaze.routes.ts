@@ -9,13 +9,12 @@ router.get('/index', kazeController.index);
 
 router.post('/login', /*validateData(['username', 'password']),*/ async (req: Request, res: Response) => {
     const { username, password } = req.body;
-  
     try {
       await login(username, password);
-        res.status(200).send('Login successful');
+         res.status(200).json({ status: 'ok', message: 'Login successful' });
     } catch (error) {
       console.error(error);
-      res.status(500).send('Login failed');
+        res.status(500).json({ status: 'error', message: 'Login failed' });
     }
 });
 

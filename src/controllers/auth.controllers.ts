@@ -5,7 +5,7 @@ require('dotenv').config();
 let authToken: string | null = null;
 
 // Login to Kaze
-export const login = async (username: string, password: string): Promise<void> => {
+export const login = async (username?: string, password?: string): Promise<void> => {
     console.log('login()'.cyan);
 
     const user = {
