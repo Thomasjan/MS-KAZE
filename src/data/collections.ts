@@ -12,9 +12,6 @@ export const collectionClients = {
                 "pcf_code": {
                     "data": "PCF_CODE"
                 },
-                "pcf_type": {
-                    "data": "PCF_TYPE"
-                },
                 "pcf_rue": {
                     "data": "PDC_RUE"
                 },
@@ -46,9 +43,6 @@ export const collectionContacts = {
                 },
                 "cct_prenom": {
                     "data": "CCT_PRENOM"
-                },
-                "cct_numero": {
-                    "data": "CCT_NUMERO"
                 },
                 "cct_telm": {
                     "data": "CCT_TELM"

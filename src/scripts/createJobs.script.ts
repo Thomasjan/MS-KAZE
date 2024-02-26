@@ -6,7 +6,7 @@ import jsonMapper from '../utils/jsonMapper';
 import Action from '../models/Action';
 import { fetchActions, fetchContact, fetchTiers, fetchjobID, insertIntoCollectionFunction, login, postJob, postJobFromWorkflowID, updateAction, updateJobID } from './api.functions';
 import logger, { logTimeToHistory } from '../logger';
-import { collectionAdresses, collectionClients, collectionContacts } from '../data/collections';
+import { collectionClients, collectionContacts } from '../data/collections';
 
 
 
@@ -65,6 +65,7 @@ const createJob = async (action: Action) => {
             PCF_RUE: data.PCF_RUE,
             PCF_CP: data.PCF_CP,
             PCF_VILLE: data.PCF_VILLE,
+            PCF_COMP: data.PCF_COMP,
             ACT_DATE: data.ACT_DATE,
             ACT_DATFIN: data.ACT_DATFIN,
             //+ 1h to ACT_DATECH
@@ -90,9 +91,6 @@ const createJob = async (action: Action) => {
                 },
                 pcf_rs: {
                     data: data.PCF_RS
-                },
-                pcf_type: {
-                    data: data.PCF_TYPE
                 },
                 pcf_rue: {
                     data: data.PCF_RUE
@@ -123,9 +121,6 @@ const createJob = async (action: Action) => {
                 cct_prenom: {
                     data: data.CCT_PRENOM
                 },
-                cct_numero: {
-                    data: data.CCT_NUMERO
-                },
                 cct_telm: {
                     data: data.CCT_TELM
                 },
@@ -136,30 +131,7 @@ const createJob = async (action: Action) => {
         }
         await insertIntoCollectionFunction(collectionContacts.id , contacts_items);
 
-        const adresses_items = collectionAdresses.items
-        adresses_items.item = {
-            ...adresses_items.item,
-            name: data.PCF_RS,
-            reference: data.PCF_CODE,
-            widget_data: {
-                ...adresses_items.item.widget_data,
-                pcf_ville: {
-                    data: data.PCF_VILLE
-                },
-                pcf_rue: {
-                    data: data.PCF_RUE
-                },
-                pcf_cp: {
-                    data: data.PCF_CP
-                },
-                pcf_comp: {
-                    data: data.PCF_COMP
-                }
-            }
-        }
-        await insertIntoCollectionFunction(collectionAdresses.id , adresses_items);
-
-        
+       
 
         // console.log('fields: '.yellow, fields)
         const requiredFields = ['ACT_NUMERO', 'PCF_CODE', 'ACT_OBJET', 'ACT_TYPE', 'PCF_RS', 'PCF_VILLE', 'PCF_CP', 'PCF_RUE', 'ACT_DATE'];
