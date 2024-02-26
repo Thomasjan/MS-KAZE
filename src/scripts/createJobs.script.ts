@@ -4,8 +4,9 @@ import workflow_template from '../data/worflowID';
 
 import jsonMapper from '../utils/jsonMapper';
 import Action from '../models/Action';
-import { fetchActions, fetchContact, fetchTiers, fetchjobID, login, postJob, postJobFromWorkflowID, updateAction, updateJobID } from './api.functions';
+import { fetchActions, fetchContact, fetchTiers, fetchjobID, insertIntoCollectionFunction, login, postJob, postJobFromWorkflowID, updateAction, updateJobID } from './api.functions';
 import logger, { logTimeToHistory } from '../logger';
+import { collectionAdresses, collectionClients, collectionContacts } from '../data/collections';
 
 
 
@@ -58,6 +59,8 @@ const createJob = async (action: Action) => {
             CCT_NUMERO: data.CCT_NUMERO,
             CCT_TELM: data.CCT_TELM || '',
             CCT_EMAIL: data.CCT_EMAIL || '',
+            CCT_NOM: data.CCT_NOM,
+            CCT_PRENOM: data.CCT_PRENOM,
             PCF_CODE: data.PCF_CODE,
             PCF_RUE: data.PCF_RUE,
             PCF_CP: data.PCF_CP,
@@ -71,10 +74,92 @@ const createJob = async (action: Action) => {
             PCF_RS: data.PCF_RS,
             PCF_EMAIL: data.PCF_EMAIL || '',
             XXX_KZIDM: data.XXX_KZIDM,
-            CCT_NOM: data.CCT_NOM,
-            CCT_PRENOM: data.CCT_PRENOM,
+            
         }
 
+        console.log('inserting into collections...'.yellow);
+        const clients_items = collectionClients.items
+        clients_items.item = {
+            ...clients_items.item,
+            name: data.PCF_RS,
+            reference: data.PCF_CODE,
+            widget_data: {
+                ...clients_items.item.widget_data,
+                pcf_code: {
+                    data: data.PCF_CODE
+                },
+                pcf_rs: {
+                    data: data.PCF_RS
+                },
+                pcf_type: {
+                    data: data.PCF_TYPE
+                },
+                pcf_rue: {
+                    data: data.PCF_RUE
+                },
+                pcf_comp: {
+                    data: data.PCF_COMP
+                },
+                pcf_cp: {
+                    data: data.PCF_CP
+                },
+                pcf_ville: {
+                    data: data.PCF_VILLE
+                },
+            }
+        }
+        await insertIntoCollectionFunction(collectionClients.id , clients_items);
+
+        const contacts_items = collectionContacts.items
+        contacts_items.item = {
+            ...contacts_items.item,
+            name: data.CCT_NOM,
+            reference: data.CCT_NUMERO,
+            widget_data: {
+                ...contacts_items.item.widget_data,
+                cct_nom: {
+                    data: data.CCT_NOM
+                },
+                cct_prenom: {
+                    data: data.CCT_PRENOM
+                },
+                cct_numero: {
+                    data: data.CCT_NUMERO
+                },
+                cct_telm: {
+                    data: data.CCT_TELM
+                },
+                cct_email: {
+                    data: data.CCT_EMAIL
+                },
+            }
+        }
+        await insertIntoCollectionFunction(collectionContacts.id , contacts_items);
+
+        const adresses_items = collectionAdresses.items
+        adresses_items.item = {
+            ...adresses_items.item,
+            name: data.PCF_RS,
+            reference: data.PCF_CODE,
+            widget_data: {
+                ...adresses_items.item.widget_data,
+                pcf_ville: {
+                    data: data.PCF_VILLE
+                },
+                pcf_rue: {
+                    data: data.PCF_RUE
+                },
+                pcf_cp: {
+                    data: data.PCF_CP
+                },
+                pcf_comp: {
+                    data: data.PCF_COMP
+                }
+            }
+        }
+        await insertIntoCollectionFunction(collectionAdresses.id , adresses_items);
+
+        
 
         // console.log('fields: '.yellow, fields)
         const requiredFields = ['ACT_NUMERO', 'PCF_CODE', 'ACT_OBJET', 'ACT_TYPE', 'PCF_RS', 'PCF_VILLE', 'PCF_CP', 'PCF_RUE', 'ACT_DATE'];
@@ -260,9 +345,7 @@ const main = async () => {
 
     //MISE A JOUR DES MISSIONS
     //TODO: update Job if action is modified in Gestimum
-    const actionsWithKazeID: Array<Action> = actions.filter((action) => {
-        return action.XXX_KZIDM;
-    });
+    const actionsWithKazeID: Array<Action> = actions.filter((action) => action.XXX_KZIDM);
 
     console.log('actionsWithKazeID: '.cyan, actionsWithKazeID.length);
     logTimeToHistory(`[createJobsScript] Nombre d'actions synchronisée avec Kaze: ${actionsWithKazeID.length}`);
@@ -279,9 +362,7 @@ const main = async () => {
 
     ///CREATION DES MISSIONS
     //actions without XXX_KZIDM (No Job created in kaze)
-    const actionsWithoutKazeID: Array<Action> = actions.filter((action) => {
-        return !action.XXX_KZIDM;
-    });
+    const actionsWithoutKazeID: Array<Action> = actions.filter((action) => !action.XXX_KZIDM);
     console.log('actionsWithoutKazeID: '.cyan, actionsWithoutKazeID.length);
 
     if(actionsWithoutKazeID.length === 0){
@@ -308,7 +389,6 @@ const main = async () => {
             console.log(`Error processing action ${jobID}`, error);
         }
     })
-
 
     logTimeToHistory(`[createJobsScript] Fin d'exécution du script à: ${new Date().toISOString()} \n`)
 }

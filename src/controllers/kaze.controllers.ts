@@ -3,6 +3,7 @@ import  { Request, Response } from 'express';
 import { getAuthToken } from './auth.controllers';
 import axios from 'axios';
 import { login } from '../scripts/api.functions';
+import logger from '../logger';
 
 
 const kazeController = {
@@ -132,7 +133,6 @@ const kazeController = {
                         "Content-Type": "application/json"
                     }
                 });
-                console.log(response.data);
                 res.send(response.data);
             }
             catch(error){
@@ -140,6 +140,27 @@ const kazeController = {
                 res.status(500).send(error);
             }
         },
+
+        insertIntoCollection: async (req: Request, res: Response) => {
+            const authToken = await getAuthToken();
+            const { id } = req.params;
+            const json: JSON = req.body;
+
+            try{
+                const response = await axios.post(`https://app.kaze.so/api/collections/${id}/items.json`, json, {
+                    headers: {
+                        Authorization: `${authToken}`,
+                        "Content-Type": "application/json"
+                    }
+                });
+                res.send(response.data);
+            }
+            catch(error){
+                logger.error(`Erreur lors de l\'insertion dans la collection: ${id} `, error);
+                res.status(500).send(error);
+            }
+        }
+
 
 
 }

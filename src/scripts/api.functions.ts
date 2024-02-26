@@ -154,12 +154,23 @@ const updateJobID = async (jobID: string, data) => {
     const ID = `${jobID}`.green;
     console.log(`updateJobID(${ID})`.magenta)
     // console.log("data", data)
-
-   
-
-
     return data;
    
+}
+
+const insertIntoCollectionFunction = async (id: string, data: Object) => {
+    const collection_id = `${id}`.green;
+    console.log(`insertIntoCollectionFunction(${collection_id})`.magenta)
+
+    try{
+        const response = await axios.post(`http://localhost:3000/api/v1/kaze/insertIntoCollection/${id}`, data);
+        console.log('Insert Success'.bgBlue)
+        return response.data;
+    }
+    catch(error: any){
+        console.log(`POST ERROR`.red);
+        logger.error(new Error("Erreur lors de l'ajout à la collection -> " + error.response.data));
+    }
 }
 
 
@@ -176,5 +187,6 @@ export {
     fetchContact,
     postJob,
     postJobFromWorkflowID,
-    updateJobID
+    updateJobID,
+    insertIntoCollectionFunction
 }

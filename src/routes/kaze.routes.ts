@@ -23,5 +23,6 @@ router.get('/getJobs', kazeController.getJobs);
 router.get('/getJobs/:id', kazeController.getJob);
 router.post('/createJob', kazeController.createJob);
 router.post('/createJobFromWorkflowID/:id', kazeController.createJobFromWorkflowID);
+router.post('/insertIntoCollection/:id', kazeController.insertIntoCollection);
 
 export default router;
