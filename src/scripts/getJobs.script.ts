@@ -3,6 +3,9 @@ import Action from '../models/Action';
 import { fetchAction, fetchJobs, fetchjobID, login, updateAction } from './api.functions';
 import logger, { logTimeToHistory } from '../logger';
 import Job from '../models/Job';
+import moment from 'moment';
+moment.locale('fr');
+const now = moment();
 
 
 /* ----------------------------------------SYNC CreateJObs-------------------------------------------------- */
@@ -33,7 +36,7 @@ const syncJobs = async (job: any) => {
     // console.log(`${(new Date(action[0].XXX_KZDT).toISOString())} < ${new Date(job.updated_at+3600*1000).toISOString()}: `.yellow, new Date(action[0].XXX_KZDT) < job.updated_at+3600*1000)
     if(!action[0].XXX_KZDT || !(new Date(action[0].XXX_KZDT).getTime()+2 > job.updated_at+3600*1000)){
         console.log('Action need to be updated'.yellow);
-        logTimeToHistory(`[getJobsScript] Action ${action[0].ACT_NUMERO} besoin de mise à jour : ${new Date().toISOString()}`);
+        logTimeToHistory(`[getJobsScript] Action ${action[0].ACT_NUMERO} besoin de mise à jour :${moment().format()}`);
         const jobID = await fetchjobID(job.id);
 
         if(!jobID){
@@ -69,7 +72,7 @@ const syncJobs = async (job: any) => {
 
         // console.log('update: '.cyan, update);
         result = `Action ${action[0].ACT_NUMERO} updated`.bgGreen;
-        logTimeToHistory(`[getJobsScript] Action ${action[0].ACT_NUMERO} mise à jour à: ${new Date().toISOString()}`);
+        logTimeToHistory(`[getJobsScript] Action ${action[0].ACT_NUMERO} mise à jour le: ${moment().format()}`);
     }
     else{
         result = `Action already up to date`.bgBlue;
@@ -81,7 +84,7 @@ const syncJobs = async (job: any) => {
 /* ----------------------------------------Main-------------------------------------------------- */
 const main = async () => {
     console.log('main()'.red.underline);
-    logTimeToHistory(`[getJobsScript] Début de l'exécution du script à: ${new Date().toISOString()}`)    
+    logTimeToHistory(`[getJobsScript] Début de l'exécution du script le: ${moment().format()}`)    
     
     
     //fetching Finish Jobs from Kaze
@@ -96,7 +99,7 @@ const main = async () => {
 
     if (!jobs) {
         console.log('No finished jobs found'.red);
-        logTimeToHistory(`[getJobsScript] Psa de mission terminées trouvées à: ${new Date().toISOString()}`);
+        logTimeToHistory(`[getJobsScript] Psa de mission terminées trouvées le: ${moment().format()}`);
         return 'No finished jobs found';
     }
    
@@ -123,7 +126,7 @@ const main = async () => {
 
     }
 
-    logTimeToHistory(`[getJobsScript] Fin d'exécution du script à: ${new Date().toISOString()} \n`);
+    logTimeToHistory(`[getJobsScript] Fin d'exécution du script le: ${moment().format()} \n`);
 }
 
 //lauch main

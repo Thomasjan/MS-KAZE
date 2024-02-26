@@ -1,13 +1,11 @@
 import express, {NextFunction, Request, Response} from 'express';
 import 'colors';
 import cors from 'cors';
-
 const app = express();
 const port = 3000;
 
 import router from './routes/router';
 import logger from './logger';
-
 
 
 app.use(express.json());

@@ -7,7 +7,9 @@ import Action from '../models/Action';
 import { fetchActions, fetchContact, fetchTiers, fetchjobID, insertIntoCollectionFunction, login, postJob, postJobFromWorkflowID, updateAction, updateJobID } from './api.functions';
 import logger, { logTimeToHistory } from '../logger';
 import { collectionClients, collectionContacts } from '../data/collections';
-
+import moment from 'moment';
+moment.locale('fr');
+const now = moment();
 
 
 /* ----------------------------------------SYNC CreateJobs-------------------------------------------------- */
@@ -305,7 +307,7 @@ const updateJob = async (action: any) => {
 /* ----------------------------------------Main-------------------------------------------------- */
 const main = async () => {
     console.log('main()'.red.underline)
-    logTimeToHistory(`[createJobsScript] Début de l'exécution du script à: ${new Date().toISOString()}`)
+    logTimeToHistory(`[createJobsScript] Début de l'exécution du script le: ${moment().format()}`)
     
     //fetching actions
     const actions: Array<Action> = await fetchActions();
@@ -362,7 +364,7 @@ const main = async () => {
         }
     })
 
-    logTimeToHistory(`[createJobsScript] Fin d'exécution du script à: ${new Date().toISOString()} \n`)
+    logTimeToHistory(`[createJobsScript] Fin d'exécution du script le: ${moment().format()} \n`)
 }
 
 
