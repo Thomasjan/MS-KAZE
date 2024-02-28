@@ -150,11 +150,38 @@ const postJobFromWorkflowID = async (workflowID: string, job: Object) => {
     }
 }
 
-const updateJobID = async (jobID: string, data) => {
+const updateJobID = async (jobID: string, data: Object) => {
     const ID = `${jobID}`.green;
     console.log(`updateJobID(${ID})`.magenta)
-    // console.log("data", data)
-    return data;
+    console.log("data: ", data)
+
+    let cells: Array<Object> = []
+
+    for (const [key, value] of Object.entries(data)) {
+        console.log(`Key: ${key}`);
+        if (typeof value === 'object' && value !== null) {
+            for (const [innerKey, innerValue] of Object.entries(value)) {
+                const cell = {
+                    "widget_id": innerKey,
+                    "value": innerValue
+                }
+                cells.push(cell)
+                // console.log(`Inner Key: ${innerKey}`);
+                // console.log('Inner Value:', innerValue);
+            }
+        } else {
+            const cell = {
+                "widget_id": key,
+                "value": value
+            }
+            cells.push(cell)
+            // console.log('Value:', value);
+        }
+
+        console.log('Cells:', cells);
+    }
+    
+    return cells;
    
 }
 

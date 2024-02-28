@@ -71,12 +71,13 @@ const gestimumController = {
 
         axios.get(`${GESTIMUM_API_URL}/clients/code/${req.params.id}`, config)
             .then((response) => {
+                if(!response.data.found) return res.status(404).send('pas de Tiers trouvé');
                 console.log('retrieved tier code: '.yellow + ' ' + `${response.data.client.code}`.green.bold);
                 return res.send(response.data);
             })
             .catch((error) => {
                 console.log("getTier Error: ", error.response.data);
-                logger.error(new Error('Erreur de récupération des Tiers -> ' + error.response.data));
+                logger.error(new Error('Erreur de récupération des Tiers -> ' + error?.response?.data));
                 return res.send(error.response.data);
             });
     },
@@ -91,13 +92,15 @@ const gestimumController = {
 
         axios.get(`${GESTIMUM_API_URL}/utilisateurs/code/${req.params.id}`, config)
             .then((response) => {
+                console.log(response)
+                if(!response.data.found) return res.status(404).send('Pas de contact trouvé');
                 console.log('retrieved contact: '.yellow + ' ' + `${response.data.utilisateur.CCT_NUMERO}`.green.bold);
                 return res.send(response.data);
             })
             .catch((error) => {
                 console.log(error);
-                logger.error(new Error('Erreur de récupération du Contact -> ' + error.response.data));
-                return res.send(error);
+                logger.error(new Error('Erreur de récupération du Contact -> ' + error?.response?.data));
+                return res.status(500).send(error);
             });
     },
 

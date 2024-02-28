@@ -204,7 +204,6 @@ const updateJob = async (action: any) => {
         updateAction(action.ACT_NUMERO, {XXX_KZETAT: `Erreur - La mission est déjà commencée, veuillez la modifier dans Kaze`});
     }
 
-    return;
     if(!action?.PCF_CODE ) {
         await updateAction(action.ACT_NUMERO, {XXX_KZETAT: "Echec - Le Tiers doit être renseigné"})
         return 'No PCF_CODE found'.red;
