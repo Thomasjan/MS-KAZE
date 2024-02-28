@@ -3,6 +3,7 @@ import  { Request, Response } from 'express';
 import { exec } from 'child_process';
 import logger from '../logger';
 import fs from 'fs';
+import moment from 'moment';
 
 const scriptController = {
     startCreateJobsScript: (req: Request, res: Response) => {
@@ -32,6 +33,8 @@ const scriptController = {
         // Check if the history log contains a line with a timestamp within the last 5 minutes
         const lines = historyLog.split('\n').reverse();
         let scriptExecuted = false;
+        let lastExecutedTimestamp: Date | null = null;
+
         for (let line of lines) {
             if (line.includes('[createJobsScript] Début de l\'exécution du script le:')) {
                 // Extract the timestamp from the log line
@@ -41,16 +44,24 @@ const scriptController = {
                 // Check if the timestamp is earlier than 5 minutes ago
                 if (timestamp.getTime() >= fiveMinutesAgo.getTime()) {
                     console.log(`${timestamp} < ${fiveMinutesAgo}`)
+                    console.log(timestampString)
                     scriptExecuted = true;
                     break;
+                } 
+                if (!lastExecutedTimestamp) {
+                    lastExecutedTimestamp = timestamp;
                 }
             }
         }
-    
+
         if (scriptExecuted) {
             return res.status(200).send({ status: 'success', message: "Le script s'est exécuté dans les 5 dernières minutes" });
         } else {
-            return res.status(200).send({ status: 'warning', message: "Le script ne s'est pas exécuté dans les 5 dernières minutes" });
+            if (lastExecutedTimestamp) {
+                return res.status(200).send({ status: 'warning', message: `Le script ne s'est pas exécuté depuis le ${moment(lastExecutedTimestamp).format('DD/MM/YYYY HH:mm:ss')}` });
+            } else {
+                return res.status(200).send({ status: 'warning', message: "Le script ne s'est jamais exécuté." });
+            }
         }
     },
 
@@ -93,37 +104,48 @@ const scriptController = {
     },
 
     statusGetJobsScript: (req: Request, res: Response) => {
-       // Read the content of the history.log file
-       const historyLog = fs.readFileSync('history.log', 'utf8');
+        // Read the content of the history.log file
+        const historyLog = fs.readFileSync('history.log', 'utf8');
     
-       // Get the current time minus 5 minutes
-       const currentTime = new Date();
-       const fiveMinutesAgo = new Date(currentTime.getTime() - 5 * 60000); // 5 minutes * 60 seconds * 1000 milliseconds
-   
-       // Check if the history log contains a line with a timestamp within the last 5 minutes
-       const lines = historyLog.split('\n').reverse();
-       let scriptExecuted = false;
-       for (let line of lines) {
-           if (line.includes('[getJobsScript] Début de l\'exécution du script le:')) {
-               // Extract the timestamp from the log line
-               const timestampString = line.split('[getJobsScript] Début de l\'exécution du script le: ')[1];
-               const timestamp = new Date(timestampString);
-   
-               // Check if the timestamp is earlier than 5 minutes ago
-               if (timestamp.getTime() >= fiveMinutesAgo.getTime()) {
-                   console.log(`${timestamp} < ${fiveMinutesAgo}`)
-                   scriptExecuted = true;
-                   break;
-               }
-           }
-       }
-   
-       if (scriptExecuted) {
-           return res.status(200).send({ status: 'success', message: "Le script s'est exécuté dans les 5 dernières minutes" });
-       } else {
-           return res.status(200).send({ status: 'warning', message: "Le script ne s'est pas exécuté dans les 5 dernières minutes" });
-       }
+        // Get the current time minus 5 minutes
+        const currentTime = new Date();
+        const fiveMinutesAgo = new Date(currentTime.getTime() - 5 * 60000); // 5 minutes * 60 seconds * 1000 milliseconds
+    
+        // Check if the history log contains a line with a timestamp within the last 5 minutes
+        const lines = historyLog.split('\n').reverse();
+        let scriptExecuted = false;
+        let lastExecutedTimestamp: Date | null = null;
+    
+        for (let line of lines) {
+            if (line.includes('[getJobsScript] Début de l\'exécution du script le:')) {
+                // Extract the timestamp from the log line
+                const timestampString = line.split('[getJobsScript] Début de l\'exécution du script le: ')[1];
+                const timestamp = new Date(timestampString);
+    
+                // Check if the timestamp is earlier than 5 minutes ago
+                if (timestamp.getTime() >= fiveMinutesAgo.getTime()) {
+                    console.log(`${timestamp} < ${fiveMinutesAgo}`)
+                    console.log(timestampString)
+                    scriptExecuted = true;
+                    break;
+                } 
+                if (!lastExecutedTimestamp) {
+                    lastExecutedTimestamp = timestamp;
+                }
+            }
+        }
+    
+        if (scriptExecuted) {
+            return res.status(200).send({ status: 'success', message: "Le script s'est exécuté dans les 5 dernières minutes" });
+        } else {
+            if (lastExecutedTimestamp) {
+                return res.status(200).send({ status: 'warning', message: `Le script ne s'est pas exécuté depuis le ${moment(lastExecutedTimestamp).format('DD/MM/YYYY HH:mm:ss')}` });
+            } else {
+                return res.status(200).send({ status: 'warning', message: "Le script ne s'est jamais exécuté." });
+            }
+        }
     },
+    
 
     stopGetJobsScript: (req: Request, res: Response) => {
         //kill npm run start-getJobs
