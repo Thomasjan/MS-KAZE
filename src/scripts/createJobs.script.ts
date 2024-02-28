@@ -8,8 +8,9 @@ import { fetchActions, fetchContact, fetchTiers, fetchjobID, insertIntoCollectio
 import logger, { logTimeToHistory } from '../logger';
 import { collectionClients, collectionContacts } from '../data/collections';
 import moment from 'moment';
+import { formatedDate } from '../utils/functions';
 moment.locale('fr');
-const now = moment();
+
 
 
 /* ----------------------------------------SYNC CreateJobs-------------------------------------------------- */
@@ -70,8 +71,7 @@ const createJob = async (action: Action) => {
             PCF_COMP: data.PCF_COMP,
             ACT_DATE: data.ACT_DATE,
             ACT_DATFIN: data.ACT_DATFIN,
-            //+ 1h to ACT_DATECH
-            ACT_DATECH: new Date(data.ACT_DATECH).getTime(),
+            ACT_DATECH: formatedDate(new Date(data.ACT_DATECH)),
             ACT_TYPE: data.ACT_TYPE,
             ACT_DESC: data.ACT_DESC,
             PCF_RS: data.PCF_RS,
@@ -173,7 +173,7 @@ const createJob = async (action: Action) => {
 
             const data = {
                 XXX_KZIDM: response.id,
-                XXX_KZDT: new Date(),
+                XXX_KZDT: formatedDate(new Date()),
                 XXX_KZETAT: 'Mission créée dans Kaze',
                 ACT_ETAT: 'Début',
             }
@@ -255,8 +255,7 @@ const updateJob = async (action: any) => {
             PCF_VILLE: data.PCF_VILLE,
             ACT_DATE: data.ACT_DATE,
             ACT_DATFIN: data.ACT_DATFIN,
-            //+ 1h to ACT_DATECH
-            ACT_DATECH: new Date(data.ACT_DATECH).getTime(),
+            ACT_DATECH: formatedDate(new Date(data.ACT_DATECH)),
             ACT_TYPE: data.ACT_TYPE,
             ACT_DESC: data.ACT_DESC,
             PCF_RS: data.PCF_RS,
@@ -296,6 +295,9 @@ const updateJob = async (action: any) => {
 
         //passing widgets to updateJobID
         updateJobID(Job.id, widgets);
+
+        //update Action DTMAJ 2024-02-28 15:25:39.853
+        await updateAction(action.ACT_NUMERO, {XXX_KZDT: formatedDate(new Date())});
 
 
 
@@ -344,24 +346,24 @@ const main = async () => {
     }
 
     //create job for each action
-    actionsWithoutKazeID?.forEach(async (action) => {
-        const jobID = `${action.ACT_NUMERO}`.green.bold;
-        console.log(`creating job(${jobID})`.yellow);
+    // actionsWithoutKazeID?.forEach(async (action) => {
+    //     const jobID = `${action.ACT_NUMERO}`.green.bold;
+    //     console.log(`creating job(${jobID})`.yellow);
 
-        try {
-            await createJob(action)
-            .then(async (result) => {
-                logTimeToHistory(`[createJobsScript] Resultat pour l'action ${action.ACT_NUMERO}: ${result}`);
-                console.log(`Result for action ${jobID}: ${result}`);
-                console.log('--------------------------------------------------------------'.america + '\n');
-            })
-            .catch((error) => {
-                console.log(`Error processing action ${jobID}`, error);
-            });
-        } catch (error) {
-            console.log(`Error processing action ${jobID}`, error);
-        }
-    })
+    //     try {
+    //         await createJob(action)
+    //         .then(async (result) => {
+    //             logTimeToHistory(`[createJobsScript] Resultat pour l'action ${action.ACT_NUMERO}: ${result}`);
+    //             console.log(`Result for action ${jobID}: ${result}`);
+    //             console.log('--------------------------------------------------------------'.america + '\n');
+    //         })
+    //         .catch((error) => {
+    //             console.log(`Error processing action ${jobID}`, error);
+    //         });
+    //     } catch (error) {
+    //         console.log(`Error processing action ${jobID}`, error);
+    //     }
+    // })
 
     logTimeToHistory(`[createJobsScript] Fin d'exécution du script le: ${moment().format()} \n`)
 }

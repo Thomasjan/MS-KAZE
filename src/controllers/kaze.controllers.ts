@@ -120,20 +120,27 @@ const kazeController = {
         },
 
         updateJob: async (req: Request, res: Response) => {
+            console.log('updateJob'.red)
             const { id, widget_id } = req.params;
             console.log('id: '.yellow, id);
             console.log('widget_id: '.yellow, widget_id);
-            const authToken = await getAuthToken();
-            const json: JSON = req.body;
-            console.log('json: '.blue, json);
+            const authToken = getAuthToken();
+
+            const body = {
+                data: {
+                    [widget_id]: req.body.value
+                },
+                "skip_version_check": 1
+            }
+            console.log('body: '.yellow, body)
             try{
-                const response = await axios.put(`https://app.kaze.so/api/jobs/${id}/cells/${widget_id}.json`, json, {
+                const response = await axios.put(`https://app.kaze.so/api/jobs/${id}/cells/${widget_id}.json`, body, {
                     headers: {
                         Authorization: `${authToken}`,
                         "Content-Type": "application/json"
                     }
                 });
-                res.send(response.data);
+                res.status(200).send(response.data);
             }
             catch(error){
                 console.log(error);

@@ -1,11 +1,15 @@
 import axios from 'axios';
 import 'colors';
 import logger from '../logger';
+import dotenv from 'dotenv';
+dotenv.config();
+
+const SERVER_URL = process.env.SERVER_URL || 'http://localhost:3000';
 
 //login to kaze
 const login = async () => {
     console.log('login()...'.cyan)
-    await axios.post('http://localhost:3000/api/v1/kaze/login')
+    await axios.post(`${SERVER_URL}/api/v1/kaze/login`)
     .then((response) => {
         console.log(response.data);
         return response.data;
@@ -22,7 +26,7 @@ const fetchActions = async () => {
     const display = `?display=["ACT_NUMERO","PCF_CODE","CCT_NUMERO","ACT_OBJET","ACT_TYPE","ACT_DESC","ACT_DATE","ACT_DATFIN", "ACT_DATECH", "ACT_DTCRE", "ACT_DTMAJ", "XXX_KZETAT", "XXX_KZDT", "XXX_KZIDM", "XXX_KAZE"]`
     const select = `&XXX_KAZE=1`
     try{
-        const response = await axios.get(`http://localhost:3000/api/v1/gestimum/actions/${display}${select}`);
+        const response = await axios.get(`${SERVER_URL}/api/v1/gestimum/actions/${display}${select}`);
         return response.data.actions;
     }
     catch(error: any){
@@ -37,7 +41,7 @@ const fetchAction = async (id: String) => {
     const display = `?display=["ACT_NUMERO","PCF_CODE","CCT_NUMERO","ACT_OBJET","ACT_TYPE","ACT_DESC","ACT_DATE","ACT_DATFIN", "ACT_DATECH", "XXX_KZDT", "XXX_KZIDM", "XXX_KAZE"]`
     const select = `&XXX_KAZE=1&XXX_KZIDM=${id}`
     try{
-        const response = await axios.get(`http://localhost:3000/api/v1/gestimum/actions/${display}${select}`);
+        const response = await axios.get(`${SERVER_URL}/api/v1/gestimum/actions/${display}${select}`);
         return response.data.actions;
     }
     catch(error: any){
@@ -49,7 +53,7 @@ const fetchAction = async (id: String) => {
 const fetchJobs = async (body: Object) => {
     console.log('fetchJobs()'.magenta)
     try{
-        const response = await axios.get(`http://localhost:3000/api/v1/kaze/getJobs/`, {
+        const response = await axios.get(`${SERVER_URL}/api/v1/kaze/getJobs/`, {
             headers: {
                 "Content-Type": "application/json"
             },
@@ -67,7 +71,7 @@ const fetchjobID = async (id: String) => {
     const ID = `${id}`.green;
     console.log(`fetchjobID(${ID})`.magenta)
     try{
-        const response = await axios.get(`http://localhost:3000/api/v1/kaze/getJobs/${id}`);
+        const response = await axios.get(`${SERVER_URL}/api/v1/kaze/getJobs/${id}`);
         return response.data;
     }
     catch(error: any){
@@ -80,7 +84,7 @@ const updateAction = async (id: string, data: Object) => {
     const ID = `${id}`.green;
     console.log(`updateAction(${ID})`.magenta)
     try{
-        const response = await axios.put(`http://localhost:3000/api/v1/gestimum/updateAction/${id}`, data);
+        const response = await axios.put(`${SERVER_URL}/api/v1/gestimum/updateAction/${id}`, data);
         console.log('PUT Success'.green,)
         return response.data;
     }
@@ -96,7 +100,7 @@ const fetchTiers = async (id: string) => {
     const ID = `${id}`.green;
     console.log(`fetchTiers(${ID})`.magenta)
     try{
-        const response = await axios.get(`http://localhost:3000/api/v1/gestimum/getTiers/${id}`);
+        const response = await axios.get(`${SERVER_URL}/api/v1/gestimum/getTiers/${id}`);
         return response.data;
     }
     catch(error: any){
@@ -110,7 +114,7 @@ const fetchContact = async (id: string) => {
     const ID = `${id}`.green;
     console.log(`fetchContact(${ID})`.magenta)
     try{
-        const response = await axios.get(`http://localhost:3000/api/v1/gestimum/getContact/${id}`);
+        const response = await axios.get(`${SERVER_URL}/api/v1/gestimum/getContact/${id}`);
         return response.data;
     }
     catch(error: any){
@@ -124,7 +128,7 @@ const postJob = async (job: Object) => {
     console.log(`postJob()`.magenta)
     
     try{
-        const response = await axios.post('http://localhost:3000/api/v1/kaze/createJob', job);
+        const response = await axios.post(`${SERVER_URL}/api/v1/kaze/createJob`, job);
         console.log('POST Success'.bgBlue, response.data)
         return response.data;
     }
@@ -140,7 +144,7 @@ const postJobFromWorkflowID = async (workflowID: string, job: Object) => {
     console.log(`postJobFromWorkflowID(${ID})`.magenta)
     
     try{
-        const response = await axios.post(`http://localhost:3000/api/v1/kaze/createJobFromWorkflowID/${workflowID}`, job);
+        const response = await axios.post(`${SERVER_URL}/api/v1/kaze/createJobFromWorkflowID/${workflowID}`, job);
         console.log('POST Success'.bgBlue, response.data)
         return response.data;
     }
@@ -153,34 +157,39 @@ const postJobFromWorkflowID = async (workflowID: string, job: Object) => {
 const updateJobID = async (jobID: string, data: Object) => {
     const ID = `${jobID}`.green;
     console.log(`updateJobID(${ID})`.magenta)
-    console.log("data: ", data)
 
     let cells: Array<Object> = []
 
     for (const [key, value] of Object.entries(data)) {
+        let cell: any = {}
+
         console.log(`Key: ${key}`);
         if (typeof value === 'object' && value !== null) {
             for (const [innerKey, innerValue] of Object.entries(value)) {
-                const cell = {
-                    "widget_id": innerKey,
-                    "value": innerValue
+                 cell = {
+                    widget_id: innerKey,
+                    value: innerValue
                 }
                 cells.push(cell)
-                // console.log(`Inner Key: ${innerKey}`);
-                // console.log('Inner Value:', innerValue);
             }
         } else {
-            const cell = {
-                "widget_id": key,
-                "value": value
+             cell = {
+                widget_id: key,
+                value: value
             }
             cells.push(cell)
-            // console.log('Value:', value);
         }
-
-        console.log('Cells:', cells);
+        cells.forEach(async (cell: any) => {
+            try{
+                const response = await axios.post(`${SERVER_URL}/api/v1/kaze/updateJob/${jobID}/${cell.widget_id}`, cell)
+                return response.data;
+            }
+            catch(error: any){
+                console.log(`POST ERROR`.red);
+                logger.error(new Error("Erreur lors de la mise à jour de la Mission -> " + error.response.data));
+            }
+        })
     }
-    
     return cells;
    
 }
@@ -190,7 +199,7 @@ const insertIntoCollectionFunction = async (id: string, data: Object) => {
     console.log(`insertIntoCollectionFunction(${collection_id})`.magenta)
 
     try{
-        const response = await axios.post(`http://localhost:3000/api/v1/kaze/insertIntoCollection/${id}`, data);
+        const response = await axios.post(`${SERVER_URL}/api/v1/kaze/insertIntoCollection/${id}`, data);
         console.log('Insert Success'.bgBlue)
         return response.data;
     }

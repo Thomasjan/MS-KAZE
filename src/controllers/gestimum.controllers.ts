@@ -92,7 +92,6 @@ const gestimumController = {
 
         axios.get(`${GESTIMUM_API_URL}/utilisateurs/code/${req.params.id}`, config)
             .then((response) => {
-                console.log(response)
                 if(!response.data.found) return res.status(404).send('Pas de contact trouvé');
                 console.log('retrieved contact: '.yellow + ' ' + `${response.data.utilisateur.CCT_NUMERO}`.green.bold);
                 return res.send(response.data);

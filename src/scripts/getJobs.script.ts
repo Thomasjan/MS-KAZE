@@ -4,8 +4,9 @@ import { fetchAction, fetchJobs, fetchjobID, login, updateAction } from './api.f
 import logger, { logTimeToHistory } from '../logger';
 import Job from '../models/Job';
 import moment from 'moment';
+import { formatedDate } from '../utils/functions';
 moment.locale('fr');
-const now = moment();
+
 
 
 /* ----------------------------------------SYNC CreateJObs-------------------------------------------------- */
@@ -25,11 +26,7 @@ const syncJobs = async (job: any) => {
         return result;
     }
 
-    const formatedDate = (date: Date) => {
-        var tzoffset = (new Date(date)).getTimezoneOffset() * 60000; //offset in milliseconds
-        var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0, -1);
-        return localISOTime;
-    }
+    
 
     //check if Action.XXX_KZDTE < Job.updated_at
     console.log(`${new Date(action[0].XXX_KZDT).getTime()+2} < ${job.updated_at+3600*1000}: `, new Date(action[0].XXX_KZDT).getTime()+2 > job.updated_at+3600*1000)
@@ -52,7 +49,7 @@ const syncJobs = async (job: any) => {
             XXX_KZIDM: data.XXX_KZIDM,
             XXX_KZDT:  formatedDate(new Date(data.XXX_KZDT)),
             ACT_OBJET: data.ACT_OBJET,
-            ACT_DATE:  formatedDate(new Date(data.ACT_DATE)) ,
+            ACT_DATE:  formatedDate(new Date(data.ACT_DATE)),
             ACT_DATFIN:  formatedDate(new Date(data.ACT_DATFIN)),
             ACT_DATECH:  formatedDate(new Date(data.ACT_DATECH)),
             ACT_DESC: data.ACT_DESC,
