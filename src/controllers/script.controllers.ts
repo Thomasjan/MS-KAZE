@@ -72,22 +72,24 @@ const scriptController = {
             }
 
             return res.status(500).send({ status: 'error', message: stdout });
-            });
+        });
     },
 
     startGetJobsScript: (req: Request, res: Response) => {
-        exec('npm run start-getJobs', (error, stdout, stderr) => {
-            if (error) {
-                console.error(`Erreur lors du lancement du script : ${error.message}`);
-                logger.error(new Error(`Erreur lors du lancement du script : ${error.message}`));
-                return;
-            }
-            if (stderr) {
-                console.error(`Erreur script: ${stderr}`);
-                return;
-            }
-            console.log(`Script output: ${stdout}`);
+
+        // Start the script with output redirection
+        const childProcess = exec('npm run start-getJobs');
+
+        childProcess.on('error', (error) => {
+            console.error(`Error starting script: ${error.message}`);
         });
+
+        childProcess.on('exit', (code, signal) => {
+            console.log(`Script exited with code ${code} and signal ${signal}`);
+        });
+
+        // Send a response to the client immediately
+        res.status(200).send({ status: 'success', message: 'Script started successfully' });
     },
 
     statusGetJobsScript: (req: Request, res: Response) => {
