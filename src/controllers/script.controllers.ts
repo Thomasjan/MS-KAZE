@@ -127,7 +127,7 @@ const scriptController = {
 
     stopGetJobsScript: (req: Request, res: Response) => {
         //kill npm run start-getJobs
-        exec('pkill -f "npm run start-getJobs"', (error, stdout, stderr) => {
+        exec('taskkill /IM node.exe /F /FI "WINDOWTITLE eq start-getJobs"', (error, stdout, stderr) => {
             if (error) {
                 console.error(`Erreur lors de l'arrêt du script : ${error.message}`);
                 logger.error(new Error(`Erreur lors de l'arrêt du script : ${error.message}`));
