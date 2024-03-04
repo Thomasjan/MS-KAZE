@@ -1,6 +1,6 @@
 
 const workflowID = {
-    "workflow_id": "1ae90d89-d1ac-4ce3-a297-995d64ebab10",
+    "workflow_id": "",
     "target_id": "my-company-id",
     "data": {
         "f8816f82-3393-49f4-af78-fbc5d8616cd4": {

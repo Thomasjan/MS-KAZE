@@ -85,7 +85,6 @@ const kazeController = {
                         "Content-Type": "application/json"
                     }
                 });
-                console.log(response.data);
                 res.send(response.data);
             }
             catch(error){
@@ -110,12 +109,11 @@ const kazeController = {
                         "Content-Type": "application/json"
                     }
                 });
-                console.log(response.data);
                 res.send(response.data);
             }
-            catch(error){
-                console.log(error);
-                res.status(500).send(error);
+            catch(error: any){
+                logger.error(`Erreur lors de la création de la mission à partir du workflowID: ${workflowID} `, JSON.stringify(error?.response?.data));
+                res.status(500).send(error.response.data);
             }
         },
 

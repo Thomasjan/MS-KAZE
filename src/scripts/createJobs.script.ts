@@ -77,7 +77,7 @@ const createJob = async (action: Action) => {
             PCF_RS: data.PCF_RS,
             PCF_EMAIL: data.PCF_EMAIL || '',
             XXX_KZIDM: data.XXX_KZIDM,
-            
+            XXX_KZPARC: data.XXX_KCPARC,
         }
 
         console.log('inserting into collections...'.yellow);
@@ -131,11 +131,18 @@ const createJob = async (action: Action) => {
                 },
             }
         }
-        await insertIntoCollectionFunction(collectionContacts.id , contacts_items);
+        // await insertIntoCollectionFunction(collectionContacts.id , contacts_items);
 
-       
+       if(!data.XXX_KZPARC && data.XXX_KZETAT != 'Echec - Vous devez renseigner le parcours de mission (XXX_KZPARC)'){
+            console.log('No parc found'.red);
+            logger.error(`Erreur - L'action ${action.ACT_NUMERO} n'a pas de parcours de mission (XXX_KZPARC)`);
+            const data = {
+                XXX_KZETAT: `Echec - Vous devez renseigner le parcours de mission (XXX_KZPARC)`
+            }
+            await updateAction(action.ACT_NUMERO, data);
+            return `Missing required field XXX_KZPARC`.red;
+       }
 
-        // console.log('fields: '.yellow, fields)
         const requiredFields = ['ACT_NUMERO', 'PCF_CODE', 'ACT_OBJET', 'ACT_TYPE', 'PCF_RS', 'PCF_VILLE', 'PCF_CP', 'PCF_RUE', 'ACT_DATE'];
 
         //check if required fields are present
@@ -154,6 +161,7 @@ const createJob = async (action: Action) => {
         //this is the final json to send to kaze
         let json = JSON.parse(JSON.stringify(workflow_template));
         const finalWorkflow: any = jsonMapper(json, fields);
+        finalWorkflow.workflow_id = data.XXX_KZPARC;
 
         const postingJob = `${action.ACT_NUMERO}`.rainbow;
         //post job to kaze
@@ -163,6 +171,11 @@ const createJob = async (action: Action) => {
 
         await postJobFromWorkflowID(workflowID, finalWorkflow)
         .then(async (response) => {
+            console.log('.THEN'.green, response)
+            if(response.error){
+                updateAction(action.ACT_NUMERO, {XXX_KZETAT: 'Erreur -' + response.error});
+                return;
+            }
             //insert response.id into Action XXX_KZIDM
             if(!response.id){
                 console.log(`No id found (${action.ACT_NUMERO})`.red);
@@ -184,6 +197,12 @@ const createJob = async (action: Action) => {
             logTimeToHistory(`[createJobsScript] Mission ${response.id} créée pour l'action ${action.ACT_NUMERO}`);
             result = 'Success'.bgGreen;
         })
+        .catch((error) => {
+            console.log('.CATCH'.red, error)
+            console.log(`Error posting job (${action.ACT_NUMERO})`, error);
+            logger.error(`Erreur lors de la création de la mission (${action.ACT_NUMERO}) -> `, error);
+            result = 'Fail'.bgRed;
+        });
 
         //result
         return result;
@@ -317,7 +336,6 @@ const main = async () => {
     }
 
     //MISE A JOUR DES MISSIONS
-    //TODO: update Job if action is modified in Gestimum
     const actionsWithKazeID: Array<Action> = actions.filter((action) => action.XXX_KZIDM);
 
     console.log('actionsWithKazeID: '.cyan, actionsWithKazeID.length);
@@ -334,7 +352,6 @@ const main = async () => {
     })
 
     ///CREATION DES MISSIONS
-    //actions without XXX_KZIDM (No Job created in kaze)
     const actionsWithoutKazeID: Array<Action> = actions.filter((action) => !action.XXX_KZIDM);
     console.log('actionsWithoutKazeID: '.cyan, actionsWithoutKazeID.length);
 

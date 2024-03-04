@@ -23,7 +23,7 @@ const login = async () => {
 //fetch actions from gestimum with Sync kaze = 1
 const fetchActions = async () => {
     console.log('fetchActions()'.magenta)
-    const display = `?display=["ACT_NUMERO","PCF_CODE","CCT_NUMERO","ACT_OBJET","ACT_TYPE","ACT_DESC","ACT_DATE","ACT_DATFIN", "ACT_DATECH", "ACT_DTCRE", "ACT_DTMAJ", "XXX_KZETAT", "XXX_KZDT", "XXX_KZIDM", "XXX_KAZE"]`
+    const display = `?display=["ACT_NUMERO","PCF_CODE","CCT_NUMERO","ACT_OBJET","ACT_TYPE","ACT_DESC","ACT_DATE","ACT_DATFIN", "ACT_DATECH", "ACT_DTCRE", "ACT_DTMAJ", "XXX_KZETAT", "XXX_KZDT", "XXX_KZIDM", "XXX_KAZE", "XXX_KZPARC"]`
     const select = `&XXX_KAZE=1`
     try{
         const response = await axios.get(`${SERVER_URL}/api/v1/gestimum/actions/${display}${select}`);
@@ -38,7 +38,7 @@ const fetchActions = async () => {
 const fetchAction = async (id: String) => {
     const ID = `${id}`.green;
     console.log(`fetchAction(${ID})`.magenta)
-    const display = `?display=["ACT_NUMERO","PCF_CODE","CCT_NUMERO","ACT_OBJET","ACT_TYPE","ACT_DESC","ACT_DATE","ACT_DATFIN", "ACT_DATECH", "XXX_KZDT", "XXX_KZIDM", "XXX_KAZE"]`
+    const display = `?display=["ACT_NUMERO","PCF_CODE","CCT_NUMERO","ACT_OBJET","ACT_TYPE","ACT_DESC","ACT_DATE","ACT_DATFIN", "ACT_DATECH", "XXX_KZDT", "XXX_KZIDM", "XXX_KAZE", "XXX_KZPARC"]`
     const select = `&XXX_KAZE=1&XXX_KZIDM=${id}`
     try{
         const response = await axios.get(`${SERVER_URL}/api/v1/gestimum/actions/${display}${select}`);
@@ -150,7 +150,8 @@ const postJobFromWorkflowID = async (workflowID: string, job: Object) => {
     }
     catch(error: any){
         console.log(`POST ERROR`.red);
-        logger.error(new Error('Erreur lors de la création de la Mission -> ' + error.response.data));
+        logger.error(new Error('Erreur lors de la création de la Mission -> ' + JSON.stringify(error.response.data)));
+        return error?.response?.data
     }
 }
 
@@ -186,7 +187,7 @@ const updateJobID = async (jobID: string, data: Object) => {
             }
             catch(error: any){
                 console.log(`POST ERROR`.red);
-                logger.error(new Error("Erreur lors de la mise à jour de la Mission -> " + error.response.data));
+                logger.error(new Error("Erreur lors de la mise à jour de la Mission -> " + JSON.stringify(error.response.data)));
             }
         })
     }
