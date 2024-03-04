@@ -76,7 +76,7 @@ const gestimumController = {
                 return res.send(response.data);
             })
             .catch((error) => {
-                console.log("getTier Error: ", error.response.data);
+                console.log("getTiers Error: ", error.response.data);
                 logger.error(new Error('Erreur de récupération des Tiers -> ' + error?.response?.data));
                 return res.send(error.response.data);
             });
