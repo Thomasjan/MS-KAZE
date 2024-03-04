@@ -346,24 +346,24 @@ const main = async () => {
     }
 
     //create job for each action
-    // actionsWithoutKazeID?.forEach(async (action) => {
-    //     const jobID = `${action.ACT_NUMERO}`.green.bold;
-    //     console.log(`creating job(${jobID})`.yellow);
+    actionsWithoutKazeID?.forEach(async (action) => {
+        const jobID = `${action.ACT_NUMERO}`.green.bold;
+        console.log(`creating job(${jobID})`.yellow);
 
-    //     try {
-    //         await createJob(action)
-    //         .then(async (result) => {
-    //             logTimeToHistory(`[createJobsScript] Resultat pour l'action ${action.ACT_NUMERO}: ${result}`);
-    //             console.log(`Result for action ${jobID}: ${result}`);
-    //             console.log('--------------------------------------------------------------'.america + '\n');
-    //         })
-    //         .catch((error) => {
-    //             console.log(`Error processing action ${jobID}`, error);
-    //         });
-    //     } catch (error) {
-    //         console.log(`Error processing action ${jobID}`, error);
-    //     }
-    // })
+        try {
+            await createJob(action)
+            .then(async (result) => {
+                logTimeToHistory(`[createJobsScript] Resultat pour l'action ${action.ACT_NUMERO}: ${result}`);
+                console.log(`Result for action ${jobID}: ${result}`);
+                console.log('--------------------------------------------------------------'.america + '\n');
+            })
+            .catch((error) => {
+                console.log(`Error processing action ${jobID}`, error);
+            });
+        } catch (error) {
+            console.log(`Error processing action ${jobID}`, error);
+        }
+    })
 
     logTimeToHistory(`[createJobsScript] Fin d'exécution du script le: ${moment().format()} \n`)
 }
