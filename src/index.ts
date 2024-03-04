@@ -6,6 +6,9 @@ const port = 3000;
 
 import router from './routes/router';
 import logger from './logger';
+import moment from 'moment';
+import { fetchTiers } from './scripts/api.functions';
+moment.locale('fr');
 
 
 app.use(express.json());
@@ -22,6 +25,13 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 app.get('/api', (req: Request, res: Response) => {
   console.log('GET /api');
   res.status(200).send({status: 'ok', message: 'Kaze-api is running!'});
+});
+
+app.get('/api/error', (req: Request, res: Response) => {
+  console.log('GET /error');
+  fetchTiers('1');
+  logger.error(new Error('This is an error message'));
+  res.status(200).send({status: 'ok', message: 'Error logged!'});
 });
 
 app.get('/api/connexionERP', async (req: Request, res: Response) => {

@@ -299,8 +299,6 @@ const updateJob = async (action: any) => {
         //update Action DTMAJ 2024-02-28 15:25:39.853
         await updateAction(action.ACT_NUMERO, {XXX_KZDT: formatedDate(new Date())});
 
-
-
     return;
 }
     

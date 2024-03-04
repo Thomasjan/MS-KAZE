@@ -1,12 +1,21 @@
 //gestimumController
 import  { Request, Response } from 'express';
 import fs from 'fs';
+import moment from 'moment';
+moment.locale('fr');
+
+const formatLogTimestamp = (timestamp: string) => {
+    return moment(timestamp).format('YYYY-MM-DD HH:mm:ss');
+};
+
 
 const logsController = {
     history: (req: Request, res: Response) => {
         //get history.log file
         console.log('GET /v1/logs/history'.blue)
-        const data = fs.readFileSync('history.log', 'utf8');
+        let data = fs.readFileSync('history.log', 'utf8');
+        //reverse the data
+        // data = data.split('\n').reverse().join('\n');
         return res.json(data);
     },
 
@@ -42,7 +51,8 @@ const logsController = {
     errors: (req: Request, res: Response) => {
         //get error.log file
         console.log('GET /v1/logs/errors'.blue)
-        const data = fs.readFileSync('error.log', 'utf8');
+        let data = fs.readFileSync('error.log', 'utf8');
+        data = data.split('\n').reverse().join('\n');
         return res.json(data);
     },
 
@@ -50,6 +60,8 @@ const logsController = {
         console.log('UPDATE /v1/logs/errors'.blue)
         const { date } = req.body;
         console.log(date)
+        console.log('moment date', moment(date).format('YYYY-MM-DD HH:mm:ss'))
+        const formatedDate = moment(date).format('YYYY-MM-DD HH:mm:ss')
         // Read the contents of the error.log file
         const data = fs.readFileSync('error.log', 'utf8');
         const logs = data.split('\n');
@@ -57,17 +69,16 @@ const logsController = {
     
         // Iterate through each log entry
         logs.forEach((log: string) => {
-            if (log.trim() !== '') { // Ensure the log entry is not empty
-                try {
-                    const logObj = JSON.parse(log); // Parse the log entry as JSON
-                    const logTimestamp = new Date(logObj.timestamp); // Extract the timestamp from the log entry
+            // Extract the date part of the log entry
+            const logDateStr = log.match(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}/)?.[0];
+            if (logDateStr) {
+                // Extract the date string from the log entry
+                const logDate = new Date(logDateStr);
+                const providedDate = new Date(formatedDate);
     
-                    // Compare the log timestamp with the provided date
-                    if (logTimestamp >= new Date(date)) {
-                        newLogs += log + '\n'; // Append the log entry to newLogs if it meets the criteria
-                    }
-                } catch (error) {
-                    console.error('Error parsing log entry:', error);
+                // Compare dates
+                if (logDate >= providedDate) {
+                    newLogs += log + '\n';
                 }
             }
         });
