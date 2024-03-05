@@ -108,7 +108,6 @@ const createJob = async (action: Action) => {
                 },
             }
         }
-        await insertIntoCollectionFunction(collectionClients.id , clients_items);
 
         const contacts_items = collectionContacts.items
         contacts_items.item = {
@@ -131,9 +130,8 @@ const createJob = async (action: Action) => {
                 },
             }
         }
-        // await insertIntoCollectionFunction(collectionContacts.id , contacts_items);
 
-       if(!data.XXX_KZPARC && data.XXX_KZETAT != 'Echec - Vous devez renseigner le parcours de mission (XXX_KZPARC)'){
+       if(!data.XXX_KZPARC){
             console.log('No parc found'.red);
             logger.error(`Erreur - L'action ${action.ACT_NUMERO} n'a pas de parcours de mission (XXX_KZPARC)`);
             const data = {
@@ -171,7 +169,6 @@ const createJob = async (action: Action) => {
 
         await postJobFromWorkflowID(workflowID, finalWorkflow)
         .then(async (response) => {
-            console.log('.THEN'.green, response)
             if(response.error){
                 updateAction(action.ACT_NUMERO, {XXX_KZETAT: 'Erreur -' + response.error});
                 return;
@@ -198,8 +195,6 @@ const createJob = async (action: Action) => {
             result = 'Success'.bgGreen;
         })
         .catch((error) => {
-            console.log('.CATCH'.red, error)
-            console.log(`Error posting job (${action.ACT_NUMERO})`, error);
             logger.error(`Erreur lors de la création de la mission (${action.ACT_NUMERO}) -> `, error);
             result = 'Fail'.bgRed;
         });
@@ -216,12 +211,19 @@ const updateJob = async (action: any) => {
         console.log(`ID de mission non trouvé (${action.XXX_KZIDM})`.red);
         logger.error(`ID de mission non trouvé (${action.XXX_KZIDM})`);
     }
+
     // console.log('Job: '.cyan, Job);
-    if(Job.status_name != 'Début' && action.XXX_KZETAT != 'Erreur - La mission est déjà commencée, veuillez la modifier dans Kaze'){
+    if(Job.status_name != 'Début'){
         console.log(`La mission n'est pas en état "Début" (${action.XXX_KZIDM})`.red);
         logTimeToHistory(`[createJobsScript] La mission n'est pas en état "Début" (${action.XXX_KZIDM})`);
         updateAction(action.ACT_NUMERO, {XXX_KZETAT: `Erreur - La mission est déjà commencée, veuillez la modifier dans Kaze`});
     }
+
+    // console.log('WORKFLOW ID: '.cyan,  Job)
+    // console.log('XXX_KZPARC: '.cyan,  action.XXX_KZPARC)
+    // if(Job.status_name == 'Début' && action.XXX_KZPARC != Job.workflow.id){
+    //     updateAction(action.ACT_NUMERO, {XXX_KZETAT: `Erreur → La mission a été envoyé sur KAZE, il n'est plus possible de modifier le parcours. `});
+    // }
 
     if(!action?.PCF_CODE ) {
         await updateAction(action.ACT_NUMERO, {XXX_KZETAT: "Echec - Le Tiers doit être renseigné"})

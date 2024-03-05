@@ -124,7 +124,7 @@ export const createCollections = async (): Promise<void> => {
     const collections: Array<Object> = [
         {name: "ClientsTest", children: collectionsClients},
         {name: "ContactsTest", children: collectionsContacts},
-        {name: "AdressesTest", children: collectionsAdresses}
+        // {name: "AdressesTest", children: collectionsAdresses}
     ];
 
     collections.forEach(async (collection: any) => {
