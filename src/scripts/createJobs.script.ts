@@ -4,7 +4,7 @@ import workflow_template from '../data/worflowID';
 
 import jsonMapper from '../utils/jsonMapper';
 import Action from '../models/Action';
-import { fetchActions, fetchContact, fetchTiers, fetchjobID, insertIntoCollectionFunction, login, postJob, postJobFromWorkflowID, updateAction, updateJobID } from './api.functions';
+import { fetchActions, fetchContact, fetchTiers, fetchjobID, login, postJobFromWorkflowID, updateAction, updateJobID } from './api.functions';
 import logger, { logTimeToHistory } from '../logger';
 import { collectionClients, collectionContacts } from '../data/collections';
 import moment from 'moment';
@@ -212,18 +212,20 @@ const updateJob = async (action: any) => {
         logger.error(`ID de mission non trouvé (${action.XXX_KZIDM})`);
     }
 
-    // console.log('Job: '.cyan, Job);
     if(Job.status_name != 'Début'){
         console.log(`La mission n'est pas en état "Début" (${action.XXX_KZIDM})`.red);
         logTimeToHistory(`[createJobsScript] La mission n'est pas en état "Début" (${action.XXX_KZIDM})`);
         updateAction(action.ACT_NUMERO, {XXX_KZETAT: `Erreur - La mission est déjà commencée, veuillez la modifier dans Kaze`});
+        return "La mission n'est pas en état 'Début'";
     }
 
     // console.log('WORKFLOW ID: '.cyan,  Job)
     // console.log('XXX_KZPARC: '.cyan,  action.XXX_KZPARC)
-    // if(Job.status_name == 'Début' && action.XXX_KZPARC != Job.workflow.id){
-    //     updateAction(action.ACT_NUMERO, {XXX_KZETAT: `Erreur → La mission a été envoyé sur KAZE, il n'est plus possible de modifier le parcours. `});
-    // }
+    if(Job.status_name == 'Début' && action.XXX_KZPARC != Job.workflow.id){
+        console.log('La mission a été envoyé sur KAZE, il n\'est plus possible de modifier le parcours'.red);
+        updateAction(action.ACT_NUMERO, {XXX_KZETAT: `Erreur → La mission a été envoyé sur KAZE, il n'est plus possible de modifier le parcours. `});
+        return "La mission a été envoyé sur KAZE, il n'est plus possible de modifier le parcours";
+    }
 
     if(!action?.PCF_CODE ) {
         await updateAction(action.ACT_NUMERO, {XXX_KZETAT: "Echec - Le Tiers doit être renseigné"})
@@ -318,7 +320,7 @@ const updateJob = async (action: any) => {
         updateJobID(Job.id, widgets);
 
         //update Action DTMAJ 2024-02-28 15:25:39.853
-        await updateAction(action.ACT_NUMERO, {XXX_KZDT: formatedDate(new Date())});
+        await updateAction(action.ACT_NUMERO, {XXX_KZDT: formatedDate(new Date()), XXX_KZETAT: 'Mission modifiée dans Kaze'});
 
     return;
 }
@@ -345,7 +347,6 @@ const main = async () => {
 
     actionsWithKazeID?.forEach((action) => {
         console.log('action: '.cyan, action.ACT_NUMERO);
-        //if (action.ACT_DTMAJ || ACT_DTCRE) > XXX_KZDT, get Job and update Job with Action data, then update action.XXX_KZDT
         if(action.ACT_DTMAJ > action.XXX_KZDT){
             console.log(`Une Action a été modifiée dans Gestimum: ${action.ACT_NUMERO}`.cyan);
             logTimeToHistory(`[createJobsScript] Une Action a été modifiée dans Gestimum: ${action.ACT_NUMERO}`);

@@ -56,7 +56,7 @@ const syncJobs = async (job: any) => {
             ACT_DTMAJ: formatedDate(new Date(data.XXX_KZDT)),
             XXX_KZURL: jobID.bwa_link,
             ACT_ETAT: job.status_name,
-            XXX_KZETAT: "MIS A JOUR le " + moment().format(),
+            XXX_KZETAT: "MIS A JOUR le " + moment().format('LLL'),
         }
 
         //update Action with data
