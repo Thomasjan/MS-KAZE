@@ -63,9 +63,6 @@ const main = async () => {
     const collectionContactsID = newCollections.data.find((collection) => collection.name === "ContactsCollection").id;
     const collectionContacts = await getCollection(collectionContactsID);
 
-    // console.log(collectionClients);
-    // console.log(collectionContacts);
-
     //create new Tiers and new Contacts
     if(tiers?.clients?.length){
         tiers.clients.forEach(async (client) => {
