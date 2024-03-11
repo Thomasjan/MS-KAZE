@@ -23,7 +23,6 @@ export const login = async (username?: string, password?: string): Promise<void>
 
     authToken = response.data.token;
     console.log('login ' + 'successful'.green);
-    console.log('authToken: ', authToken?.red);
     
   } catch (error: any) {
     console.log('login ' + 'failed'.red);

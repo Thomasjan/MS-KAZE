@@ -1,5 +1,104 @@
+//TODO: change ClientsCollection to Clients
+//TODO: change ContactsCollection to Contacts
+export const fieldsCollectionClients = {
+    "collection": {
+        "name": "ClientsCollection",
+        "icon": "plumber",
+        "structure_json": {
+            "type": "structure",
+            "children":  [
+                {
+                    "type": "section",
+                    "label": "Section",
+                    "children": [
+                        {
+                            "type": "widget_text",
+                            "id": "PCF_CODE".toLocaleLowerCase(),
+                            "label": "Code Tiers"
+                        },
+                        {
+                            "type": "widget_text",
+                            "id": "PCF_TYPE".toLocaleLowerCase(),
+                            "label": "Type Tiers"
+                        },
+                        {
+                            "type": "widget_text",
+                            "id": "PCF_RS".toLocaleLowerCase(),
+                            "label": "Raison sociale"
+                        },
+                        {
+                            "type": "widget_text",
+                            "id": "PCF_RUE".toLocaleLowerCase(),
+                            "label": "Rue"
+                        },
+                        {
+                            "type": "widget_text",
+                            "id": "PCF_COMP".toLocaleLowerCase(),
+                            "label": "Complément rue"
+                        },
+                        {
+                            "type": "widget_text",
+                            "id": "PCF_CP".toLocaleLowerCase(),
+                            "label": "Code postal Facturation"
+                        },
+                        {
+                            "type": "widget_text",
+                            "id": "PCF_VILLE".toLocaleLowerCase(),
+                            "label": "Ville Facturation"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+};
+
+export const fieldsCollectionContacts = {
+    "collection": {
+        "name": "ContactsCollection",
+        "icon": "plumber",
+        "structure_json": {
+            "type": "structure",
+            "children":  [
+                {
+                    "type": "section",
+                    "label": "Section",
+                    "children": [
+                        {
+                            "type": "widget_text",
+                            "id": "CCT_NUMERO".toLocaleLowerCase(),
+                            "label": "Code Contact Interne"
+                        },
+                        {
+                            "type": "widget_text",
+                            "id": "CCT_NOM".toLocaleLowerCase(),
+                            "label": "Nom"
+                        },
+                        {
+                            "type": "widget_text",
+                            "id": "CCT_PRENOM".toLocaleLowerCase(),
+                            "label": "Prénom"
+                        },
+                        {
+                            "type": "widget_text",
+                            "id": "CCT_TELM".toLocaleLowerCase(),
+                            "label": "Téléphone"
+                        },
+                        {
+                            "type": "widget_text",
+                            "id": "CCT_EMAIL".toLocaleLowerCase(),
+                            "label": "Email"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+};
+
+
+
 export const collectionClients = {
-    id: "046d8aa7-015b-4348-bd1d-d7b48fbfb413",
     items:{
         "item": {
             "name": "PCF_RS",
@@ -11,6 +110,9 @@ export const collectionClients = {
                 },
                 "pcf_code": {
                     "data": "PCF_CODE"
+                },
+                "pcf_type": {
+                    "data": "PCF_TYPE"
                 },
                 "pcf_rue": {
                     "data": "PDC_RUE"
@@ -31,13 +133,15 @@ export const collectionClients = {
 }
 
 export const collectionContacts = {
-    id: "5cf8e51e-890a-469b-8de2-75b3f606b266",
     items:{
         "item": {
             "name": "CCT_NOM",
             "reference": "CCT_NUMERO",
     
             "widget_data": {
+                "cct_numero": {
+                    "data": "CCT_NUMERO"
+                },
                 "cct_nom": {
                     "data": "CCT_NOM"
                 },
@@ -49,32 +153,6 @@ export const collectionContacts = {
                 },
                 "cct_email": {
                     "data": "CCT_EMAIL"
-                },
-                
-            }
-        }
-    }
-}
-
-export const collectionAdresses = {
-    id: "723e02f6-6dd9-4d4d-9f9c-579e85127e23",
-    items:{
-        "item": {
-            "name": "PCF_RS",
-            "reference": "PCF_CODE",
-    
-            "widget_data": {
-                "pcf_ville": {
-                    "data": "PCF_VILLE"
-                },
-                "pcf_rue": {
-                    "data": "PCF_RUE"
-                },
-                "pcf_cp": {
-                    "data": "PCF_CP"
-                },
-                "pcf_comp": {
-                    "data": "PCF_COMP"
                 },
                 
             }

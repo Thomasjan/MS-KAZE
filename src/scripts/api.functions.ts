@@ -18,7 +18,7 @@ const login = async () => {
         logger.error(new Error("Erreur d'authentification -> " + error.response));
         return error;
     });
-}
+};
 
 //fetch actions from gestimum with Sync kaze = 1
 const fetchActions = async () => {
@@ -32,7 +32,7 @@ const fetchActions = async () => {
     catch(error: any){
         logger.error(new Error('Erreur de récupération des Actions -> ' + error.response.data));
     }
-}
+};
 
 //fetch action from gestimum with Sync kaze = 1
 const fetchAction = async (id: String) => {
@@ -47,7 +47,7 @@ const fetchAction = async (id: String) => {
     catch(error: any){
         logger.error(new Error("Erreur de récupération de l'Action -> " + error.response.data));
     }
-}
+};
 
 //fetch jobs from Kaze
 const fetchJobs = async (body: Object) => {
@@ -64,7 +64,7 @@ const fetchJobs = async (body: Object) => {
     catch(error: any){
         logger.error(new Error('Erreur de récupération des Missions Kaze -> ' + error.response.data));
     }
-}
+};
 
 //fetch jobID from Kaze
 const fetchjobID = async (id: String) => {
@@ -77,7 +77,7 @@ const fetchjobID = async (id: String) => {
     catch(error: any){
         logger.error(new Error('Erreur de récupération de la Mission Kaze -> ' + error.response.data));
     }
-}
+};
 
 //update action in Gestimum
 const updateAction = async (id: string, data: Object) => {
@@ -85,17 +85,61 @@ const updateAction = async (id: string, data: Object) => {
     console.log(`updateAction(${ID})`.magenta)
     try{
         const response = await axios.put(`${SERVER_URL}/api/v1/gestimum/updateAction/${id}`, data);
-        console.log('PUT Success'.green,)
+        console.log('PUT Success'.green)
         return response.data;
     }
     catch(error: any){
         console.log(`UPDATE ERROR ${id}`.red);
         logger.error(new Error("Erreur lors de la mise à jour de l'Action-> " + error.response.data));
     }
-}
+};
 
+//updateTiers
+const updateTiers = async (id: string, data: Object) => {
+    const ID = `${id}`.green;
+    console.log(`updateTiers(${ID})`.magenta)
+    try{
+        const response = await axios.put(`${SERVER_URL}/api/v1/gestimum/updateTiers/${id}`, data);
+        console.log('PUT Success'.green)
+        return response.data;
+    }
+    catch(error: any){
+        console.log(`UPDATE ERROR ${id}`.red);
+        logger.error(new Error("Erreur lors de la mise à jour du Tiers-> " + error.response.data));
+    }
+};
 
-//fetch tier of the action
+//updateContact
+const updateContact = async (id: string, data: Object) => {
+    const ID = `${id}`.green;
+    console.log(`updateContact(${ID})`.magenta)
+    try{
+        const response = await axios.put(`${SERVER_URL}/api/v1/gestimum/updateContact/${id}`, data);
+        console.log('PUT Success'.green)
+        return response.data;
+    }
+    catch(error: any){
+        console.log(`UPDATE ERROR ${id}`.red);
+        logger.error(new Error("Erreur lors de la mise à jour du Contact-> " + error.response.data));
+    }
+};
+
+//fetch all tiers where XXX_KAZE = 1
+const fetchAllTiers = async () => {
+    console.log('fetchAllTiers()'.magenta)
+    const display = `?display=["PCF_CODE","PCF_RS","PCF_TYPE","PCF_RUE","PCF_COMP","PCF_VILLE","PCF_CP","XXX_KAZE", "XXX_KZIDT", "XXX_KZDT"]`;
+    const select = `&XXX_KAZE=1`;
+    try{
+       //fetch all tiers where XXX_KAZE = 1
+        const response = await axios.get(`${SERVER_URL}/api/v1/gestimum/getTiers/${display}${select}`);
+        return response.data;
+    }
+    catch(error: any){
+        logger.error(new Error('Erreur de récupération des Tiers -> ' + error.response.data));
+    }
+};
+
+//fetch Tiers
 const fetchTiers = async (id: string) => {
     const ID = `${id}`.green;
     console.log(`fetchTiers(${ID})`.magenta)
@@ -104,10 +148,24 @@ const fetchTiers = async (id: string) => {
         return response.data;
     }
     catch(error: any){
-        logger.error(new Error('Erreur de récupération des Tiers -> ' + error.response.data));
+        logger.error(new Error('Erreur de récupération du Tiers -> ' + error.response.data));
         return error
     }
 }
+
+//fetch all contacts
+const fetchAllContacts = async () => {
+    console.log('fetchAllContacts()'.magenta)
+    const display = `?display=["CCT_NUMERO","CCT_NOM","CCT_PRENOM","CCT_TELB","CCT_TELM","CCT_EMAIL","XXX_KAZE", "XXX_KZIDCT", "XXX_KZDT"]`;
+    const select = `&XXX_KAZE=1`;
+    try{
+        const response = await axios.get(`${SERVER_URL}/api/v1/gestimum/getContacts/${display}${select}`);
+        return response.data;
+    }
+    catch(error: any){
+        logger.error(new Error('Erreur de récupération des Contacts -> ' + error.response.data));
+    }
+};
 
 //fetch contact of the action
 const fetchContact = async (id: string) => {
@@ -121,7 +179,7 @@ const fetchContact = async (id: string) => {
         console.log('error fectching Contact'.red);
         logger.error(new Error('Erreur de récupération du Contact -> ' + error.response.data));
     }
-}
+};
 
 //post job to kaze
 const postJob = async (job: Object) => {
@@ -136,7 +194,7 @@ const postJob = async (job: Object) => {
         console.log(`POST ERROR`.red);
         logger.error(new Error('Erreur lors de la création de la Mission -> ' + error.response.data));
     }
-}
+};
 
 //post job from WorkflowID to kaze
 const postJobFromWorkflowID = async (workflowID: string, job: Object) => {
@@ -153,8 +211,9 @@ const postJobFromWorkflowID = async (workflowID: string, job: Object) => {
         logger.error(new Error('Erreur lors de la création de la Mission -> ' + JSON.stringify(error.response.data)));
         return error?.response?.data
     }
-}
+};
 
+//update jobID
 const updateJobID = async (jobID: string, data: Object) => {
     const ID = `${jobID}`.green;
     console.log(`updateJobID(${ID})`.magenta)
@@ -193,7 +252,7 @@ const updateJobID = async (jobID: string, data: Object) => {
     }
     return cells;
    
-}
+};
 
 const insertIntoCollectionFunction = async (id: string, data: Object) => {
     const collection_id = `${id}`.green;
@@ -208,7 +267,7 @@ const insertIntoCollectionFunction = async (id: string, data: Object) => {
         console.log(`POST ERROR`.red);
         logger.error(new Error("Erreur lors de l'ajout à la collection -> " + error.response.data));
     }
-}
+};
 
 
 
@@ -219,8 +278,12 @@ export {
     fetchAction, 
     fetchJobs, 
     fetchjobID, 
-    updateAction, 
-    fetchTiers, 
+    updateAction,
+    updateTiers,
+    updateContact,
+    fetchAllTiers, 
+    fetchTiers,
+    fetchAllContacts,
     fetchContact,
     postJob,
     postJobFromWorkflowID,

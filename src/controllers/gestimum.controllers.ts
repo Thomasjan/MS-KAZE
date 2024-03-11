@@ -36,7 +36,6 @@ const gestimumController = {
             });
     },
 
-
     //get all actions from Gestimum
     getActions: (req: Request, res: Response) => {
         console.log('getActions()'.yellow);
@@ -46,6 +45,7 @@ const gestimumController = {
             }
         };
         const query = Object.keys(req.query).map(key => key + '=' + req.query[key]).join('&')
+        console.log('query: ', query)
         
         axios.get(`${GESTIMUM_API_URL}/actions/?${query}`, config)
             .then((response) => {
@@ -56,6 +56,29 @@ const gestimumController = {
             .catch((error) => {
                 console.log(error);
                 logger.error(new Error('Erreur de récupération des Actions -> ' + error.response.data));
+                return res.send(error);
+            });
+    },
+
+    //récupération de tous les Tiers
+    getAllTiers: (req: Request, res: Response) => {
+        console.log('getAllTiers()'.yellow);
+
+        const config = {
+            'headers': {
+                'x-api-key': process.env.TOKEN_SECRET
+            }
+        };
+        const query = Object.keys(req.query).map(key => key + '=' + req.query[key]).join('&')
+        
+        axios.get(`${GESTIMUM_API_URL}/clients/?${query}`, config)
+            .then((response) => {
+                console.log('retrieved'.yellow + ' ' + `${response.data.count}`.green.bold + ' ' + 'tiers'.yellow);
+                return res.send(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+                logger.error(new Error('Erreur de récupération des Tiers -> ' + error?.response?.data));
                 return res.send(error);
             });
     },
@@ -72,7 +95,7 @@ const gestimumController = {
         axios.get(`${GESTIMUM_API_URL}/clients/code/${req.params.id}`, config)
             .then((response) => {
                 if(!response.data.found) return res.status(404).send('pas de Tiers trouvé');
-                console.log('retrieved tier code: '.yellow + ' ' + `${response.data.client.code}`.green.bold);
+                console.log('retrieved tier code: '.yellow + ' ' + `${response?.data?.client?.code}`.green.bold);
                 return res.send(response.data);
             })
             .catch((error) => {
@@ -82,6 +105,30 @@ const gestimumController = {
             });
     },
 
+    //récupération de tous les Contacts
+    getAllContacts: async (req: Request, res: Response) => {
+        console.log('fetchAllContacts()'.yellow);
+        const config = {
+            'headers': {
+                'x-api-key': process.env.TOKEN_SECRET
+            }
+        };
+
+        const query = Object.keys(req.query).map(key => key + '=' + req.query[key]).join('&');
+
+        try{
+            const response = await axios.get(`${GESTIMUM_API_URL}/utilisateurs/contacts?${query}`, config);
+            console.log('retrieved'.yellow + ' ' + `${response.data.count}`.green.bold + ' ' + 'contacts'.yellow);
+            return res.send(response.data);
+        }
+        catch(error: any){
+            console.log(error);
+            logger.error(new Error('Erreur de récupération des Contacts -> ' + error.response.data));
+            return res.send(error);
+        }
+    },
+
+    //get Contact from Gestimum
     getContact: (req: Request, res: Response) => {
         console.log('getContact()'.yellow);
         const config = {
@@ -114,7 +161,7 @@ const gestimumController = {
 
         axios.put(`${GESTIMUM_API_URL}/actions/updateAction/${req.params.id}`, req.body, config)
             .then((response) => {
-                console.log('updated action: '.yellow + ' ' + `${response.data.action.id}`.green.bold);
+                console.log('updated action: '.yellow + ' ' + `${response?.data?.action?.id}`.green.bold);
                 return res.send(response.data);
             })
             .catch((error) => {
@@ -123,9 +170,48 @@ const gestimumController = {
                 return res.send(error);
             });
     },
-    
-    
 
+    //update Tiers in Gestimum
+    updateTiers: (req: Request, res: Response) => {
+        console.log('updateTiers()'.yellow);
+        const config = {
+            'headers': {
+                'x-api-key': process.env.TOKEN_SECRET
+            }
+        };
+
+        axios.put(`${GESTIMUM_API_URL}/clients/update/${req.params.id}`, req.body, config)
+            .then((response) => {
+                console.log('updated client: '.yellow + ' ' + `${response?.data?.tier?.id}`.green.bold);
+                return res.send(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+                logger.error(new Error("Erreur lors de la mise à jour du Tiers -> " + error.response.data));
+                return res.send(error);
+            });
+    },
+
+    //update Contact in Gestimum
+    updateContact: (req: Request, res: Response) => {
+        console.log('updateContact()'.yellow);
+        const config = {
+            'headers': {
+                'x-api-key': process.env.TOKEN_SECRET
+            }
+        };
+
+        axios.put(`${GESTIMUM_API_URL}/utilisateurs/update/${req.params.id}`, req.body, config)
+            .then((response) => {
+                console.log('updated contact: '.yellow + ' ' + `${response?.data?.utilisateur?.id}`.green.bold);
+                return res.send(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+                logger.error(new Error("Erreur lors de la mise à jour du Contact -> " + error.response.data));
+                return res.send(error);
+            });
+    }
     
 }
 
