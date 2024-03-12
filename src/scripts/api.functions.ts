@@ -30,7 +30,8 @@ const fetchActions = async () => {
         return response.data.actions;
     }
     catch(error: any){
-        logger.error(new Error('Erreur de récupération des Actions -> ' + error.response.data));
+        logger.error(new Error('Erreur de récupération des Actions -> ' + error?.response?.data));
+        return error;
     }
 };
 
@@ -45,7 +46,8 @@ const fetchAction = async (id: String) => {
         return response.data.actions;
     }
     catch(error: any){
-        logger.error(new Error("Erreur de récupération de l'Action -> " + error.response.data));
+        logger.error(new Error("Erreur de récupération de l'Action -> " + error?.response?.data));
+        return error;
     }
 };
 
@@ -62,7 +64,8 @@ const fetchJobs = async (body: Object) => {
         return response.data.data;
     }
     catch(error: any){
-        logger.error(new Error('Erreur de récupération des Missions Kaze -> ' + error.response.data));
+        logger.error(new Error('Erreur de récupération des Missions Kaze -> ' + error?.response?.data));
+        return error;
     }
 };
 
@@ -75,7 +78,8 @@ const fetchjobID = async (id: String) => {
         return response.data;
     }
     catch(error: any){
-        logger.error(new Error('Erreur de récupération de la Mission Kaze -> ' + error.response.data));
+        logger.error(new Error('Erreur de récupération de la Mission Kaze -> ' + error?.response?.data));
+        return error;
     }
 };
 
@@ -90,7 +94,8 @@ const updateAction = async (id: string, data: Object) => {
     }
     catch(error: any){
         console.log(`UPDATE ERROR ${id}`.red);
-        logger.error(new Error("Erreur lors de la mise à jour de l'Action-> " + error.response.data));
+        logger.error(new Error("Erreur lors de la mise à jour de l'Action-> " + error?.response?.data));
+        return error;
     }
 };
 
@@ -105,7 +110,8 @@ const updateTiers = async (id: string, data: Object) => {
     }
     catch(error: any){
         console.log(`UPDATE ERROR ${id}`.red);
-        logger.error(new Error("Erreur lors de la mise à jour du Tiers-> " + error.response.data));
+        logger.error(new Error("Erreur lors de la mise à jour du Tiers-> " + error?.response?.data));
+        return error;
     }
 };
 
@@ -120,7 +126,8 @@ const updateContact = async (id: string, data: Object) => {
     }
     catch(error: any){
         console.log(`UPDATE ERROR ${id}`.red);
-        logger.error(new Error("Erreur lors de la mise à jour du Contact-> " + error.response.data));
+        logger.error(new Error("Erreur lors de la mise à jour du Contact-> " + error?.response?.data));
+        return error;
     }
 };
 
@@ -135,7 +142,8 @@ const fetchAllTiers = async () => {
         return response.data;
     }
     catch(error: any){
-        logger.error(new Error('Erreur de récupération des Tiers -> ' + error.response.data));
+        logger.error(new Error('Erreur de récupération des Tiers -> ' + error?.response?.data));
+        return error;
     }
 };
 
@@ -148,7 +156,7 @@ const fetchTiers = async (id: string) => {
         return response.data;
     }
     catch(error: any){
-        logger.error(new Error('Erreur de récupération du Tiers -> ' + error.response.data));
+        logger.error(new Error('Erreur de récupération du Tiers -> ' + error?.response?.data));
         return error
     }
 }
@@ -163,7 +171,8 @@ const fetchAllContacts = async () => {
         return response.data;
     }
     catch(error: any){
-        logger.error(new Error('Erreur de récupération des Contacts -> ' + error.response.data));
+        logger.error(new Error('Erreur de récupération des Contacts -> ' + error?.response?.data));
+        return error;
     }
 };
 
@@ -177,7 +186,8 @@ const fetchContact = async (id: string) => {
     }
     catch(error: any){
         console.log('error fectching Contact'.red);
-        logger.error(new Error('Erreur de récupération du Contact -> ' + error.response.data));
+        logger.error(new Error('Erreur de récupération du Contact -> ' + error?.response?.data));
+        return error;
     }
 };
 
@@ -192,7 +202,8 @@ const postJob = async (job: Object) => {
     }
     catch(error: any){
         console.log(`POST ERROR`.red);
-        logger.error(new Error('Erreur lors de la création de la Mission -> ' + error.response.data));
+        logger.error(new Error('Erreur lors de la création de la Mission -> ' + error?.response?.data));
+        return error;
     }
 };
 
@@ -208,7 +219,7 @@ const postJobFromWorkflowID = async (workflowID: string, job: Object) => {
     }
     catch(error: any){
         console.log(`POST ERROR`.red);
-        logger.error(new Error('Erreur lors de la création de la Mission -> ' + JSON.stringify(error.response.data)));
+        logger.error(new Error('Erreur lors de la création de la Mission -> ' + JSON.stringify(error?.response?.data)));
         return error?.response?.data
     }
 };
@@ -246,7 +257,8 @@ const updateJobID = async (jobID: string, data: Object) => {
             }
             catch(error: any){
                 console.log(`POST ERROR`.red);
-                logger.error(new Error("Erreur lors de la mise à jour de la Mission -> " + JSON.stringify(error.response.data)));
+                logger.error(new Error("Erreur lors de la mise à jour de la Mission -> " + JSON.stringify(error?.response?.data)));
+                return error;
             }
         })
     }
@@ -265,7 +277,8 @@ const insertIntoCollectionFunction = async (id: string, data: Object) => {
     }
     catch(error: any){
         console.log(`POST ERROR`.red);
-        logger.error(new Error("Erreur lors de l'ajout à la collection -> " + error.response.data));
+        logger.error(new Error("Erreur lors de l'ajout à la collection -> " + error?.response?.data));
+        return error;
     }
 };
 

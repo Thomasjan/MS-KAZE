@@ -94,7 +94,7 @@ const main = async () => {
     console.log('jobs finished: '.cyan, jobs.length);
     logTimeToHistory(`[getJobsScript] Nombres de mission terminées: ${jobs.length}`);
 
-    if (!jobs) {
+    if (!jobs.length) {
         console.log('No finished jobs found'.red);
         logTimeToHistory(`[getJobsScript] Psa de mission terminées trouvées le: ${moment().format()}`);
         return 'No finished jobs found';

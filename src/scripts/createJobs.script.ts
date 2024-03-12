@@ -26,7 +26,7 @@ const createJob = async (action: Action) => {
     }
     else{
         contact = await fetchContact(action.CCT_NUMERO);
-        if(contact.Erreur) {
+        if(contact?.Erreur) {
             logger.error(`Erreur lors de la récupération du Contact (${action.CCT_NUMERO}) -> `, contact.Erreur)
             await updateAction(action.ACT_NUMERO, {XXX_KZETAT: contact.Erreur})
             return contact.Erreur;
@@ -35,7 +35,7 @@ const createJob = async (action: Action) => {
 
     //fetch tier and contact
     const tier = await fetchTiers(action.PCF_CODE)
-    if(tier.Erreur) {
+    if(tier?.Erreur) {
         logger.error(`Erreur lors de la récupération du Tiers (${action.PCF_CODE}) -> `, tier.Erreur)
         await updateAction(action.ACT_NUMERO, {XXX_KZETAT: tier.Erreur})
         return tier.Erreur;
@@ -334,9 +334,10 @@ const main = async () => {
     //fetching actions
     const actions: Array<Action> = await fetchActions();
 
-    if (!actions) {
+    if (!actions.length) {
         console.log('No actions found'.red);
         logger.error('Pas d\'actions trouvées dans Gestimum \n');
+        return 'No actions found';
     }
 
     //MISE A JOUR DES MISSIONS
