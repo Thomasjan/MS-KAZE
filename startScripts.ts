@@ -4,8 +4,8 @@ dotenv.config();
 
 console.log('Starting scripts');
 
-const intervalTimeForJobs: number = Number(process.env.COLLECTIONS_INTERVAL) || 1000;
-const intervalTimeForCollections: number = Number(process.env.JOBS_INTERVAL) || 1000;
+const intervalTimeForJobs: number = Number(process.env.JOBS_INTERVAL) *1000 || 10000;
+const intervalTimeForCollections: number = Number(process.env.COLLECTIONS_INTERVAL) *1000 || 10000;
 
 setInterval(() => {
     execSync('ts-node src/scripts/createJobs.script.ts', { stdio: [0, 1, 2] });
