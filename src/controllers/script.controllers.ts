@@ -4,6 +4,8 @@ import { exec } from 'child_process';
 import logger from '../logger';
 import fs from 'fs';
 import moment from 'moment';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const scriptController = {
     startCreateJobsScript: (req: Request, res: Response) => {
@@ -28,7 +30,7 @@ const scriptController = {
     
         // Get the current time minus 5 minutes
         const currentTime = new Date();
-        const fiveMinutesAgo = new Date(currentTime.getTime() - 5 * 60000); // 5 minutes * 60 seconds * 1000 milliseconds
+        const fiveMinutesAgo = new Date(currentTime.getTime() - (Number(process.env.JOBS_INTERVAL) * 1000));
     
         // Check if the history log contains a line with a timestamp within the last 5 minutes
         const lines = historyLog.split('\n').reverse();
@@ -43,8 +45,6 @@ const scriptController = {
     
                 // Check if the timestamp is earlier than 5 minutes ago
                 if (timestamp.getTime() >= fiveMinutesAgo.getTime()) {
-                    console.log(`${timestamp} < ${fiveMinutesAgo}`)
-                    console.log(timestampString)
                     scriptExecuted = true;
                     break;
                 } 
@@ -109,7 +109,7 @@ const scriptController = {
     
         // Get the current time minus 5 minutes
         const currentTime = new Date();
-        const fiveMinutesAgo = new Date(currentTime.getTime() - 5 * 60000); // 5 minutes * 60 seconds * 1000 milliseconds
+        const fiveMinutesAgo = new Date(currentTime.getTime() - (Number(process.env.JOBS_INTERVAL) * 1000)); // 5 minutes * 60 seconds * 1000 milliseconds
     
         // Check if the history log contains a line with a timestamp within the last 5 minutes
         const lines = historyLog.split('\n').reverse();
@@ -124,8 +124,6 @@ const scriptController = {
     
                 // Check if the timestamp is earlier than 5 minutes ago
                 if (timestamp.getTime() >= fiveMinutesAgo.getTime()) {
-                    console.log(`${timestamp} < ${fiveMinutesAgo}`)
-                    console.log(timestampString)
                     scriptExecuted = true;
                     break;
                 } 

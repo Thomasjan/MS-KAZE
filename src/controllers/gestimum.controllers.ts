@@ -45,12 +45,10 @@ const gestimumController = {
             }
         };
         const query = Object.keys(req.query).map(key => key + '=' + req.query[key]).join('&')
-        console.log('query: ', query)
         
         axios.get(`${GESTIMUM_API_URL}/actions/?${query}`, config)
             .then((response) => {
                 console.log('retrieved'.yellow + ' ' + `${response.data.count}`.green.bold + ' ' + 'actions'.yellow);
-                console.log(`getActions return data: ${response.data}`)
                 return res.send(response.data);
             })
             .catch((error) => {
