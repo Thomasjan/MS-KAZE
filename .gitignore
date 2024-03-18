@@ -3,6 +3,8 @@ node_modules
 
 .env
 
+lastExec.txt
+
 package-lock.json
 
 build
