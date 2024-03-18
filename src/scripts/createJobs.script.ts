@@ -17,7 +17,7 @@ moment.locale('fr');
 const createJob = async (action: Action) => {
     let result = 'Passed';
     if(!action?.PCF_CODE ) {
-        await updateAction(action.ACT_NUMERO, {XXX_KZETAT: "Echec - Le Tiers doit être renseigné"})
+        await updateAction(action.ACT_NUMERO, {XXX_KZETAT: "Echec: Le Tiers doit être renseigné"})
         return 'No PCF_CODE found'.red;
     }
     let contact;
@@ -45,7 +45,7 @@ const createJob = async (action: Action) => {
         //handle Errors
         if(!tier){
             console.log('No tier found'.red);
-            logger.error('Erreur - Pas de Tiers trouvé');
+            logger.error('Erreur: Pas de Tiers trouvé');
         }
 
         //data to send to kaze
@@ -133,9 +133,9 @@ const createJob = async (action: Action) => {
 
        if(!data.XXX_KZPARC){
             console.log('No parc found'.red);
-            logger.error(`Erreur - L'action ${action.ACT_NUMERO} n'a pas de parcours de mission (XXX_KZPARC)`);
+            logger.error(`Erreur: L'action ${action.ACT_NUMERO} n'a pas de parcours de mission (XXX_KZPARC)`);
             const data = {
-                XXX_KZETAT: `Echec - Vous devez renseigner le parcours de mission (XXX_KZPARC)`
+                XXX_KZETAT: `Echec: Vous devez renseigner le parcours de mission (XXX_KZPARC)`
             }
             await updateAction(action.ACT_NUMERO, data);
             return `Missing required field XXX_KZPARC`.red;
@@ -149,7 +149,7 @@ const createJob = async (action: Action) => {
             if(!fields[field]){
                 logger.error(`Champs manquants (${field}) pour l'action ${action.ACT_NUMERO}}`);
                 const data = {
-                    XXX_KZETAT: `Echec - Le champ "${field}" doit être renseigné`
+                    XXX_KZETAT: `Echec: Le champ "${field}" doit être renseigné`
                 }
                 await updateAction(action.ACT_NUMERO, data);
                 return `Missing required field ${fieldID}`.red;
@@ -228,7 +228,7 @@ const updateJob = async (action: any) => {
     }
 
     if(!action?.PCF_CODE ) {
-        await updateAction(action.ACT_NUMERO, {XXX_KZETAT: "Echec - Le Tiers doit être renseigné"})
+        await updateAction(action.ACT_NUMERO, {XXX_KZETAT: "Echec: Le Tiers doit être renseigné"})
         return 'No PCF_CODE found'.red;
     }
     let contact;
@@ -292,14 +292,35 @@ const updateJob = async (action: any) => {
         // console.log('fields: '.yellow, fields)
         const requiredFields = ['ACT_NUMERO', 'PCF_CODE', 'ACT_OBJET', 'ACT_TYPE', 'PCF_RS', 'PCF_VILLE', 'PCF_CP', 'PCF_RUE', 'ACT_DATE'];
 
+        // if(!data.ACT_OBJET){
+        //     console.log('No object found'.red);
+        //     logger.error(`Erreur: L'action ${action.ACT_NUMERO} n'a pas d'objet`);
+        //     const data = {
+        //         XXX_KZETAT: `Echec: Le champ "Objet" doit être renseigné`
+        //     }
+        //     await updateAction(action.ACT_NUMERO, data);
+        //     return `Missing required field ACT_OBJET`.red;
+        // }
+
         //check if required fields are present
         for (const field of requiredFields) {
             const fieldID = `${field}`.yellow;
             if(!fields[field]){
                 logger.error(`Champs manquants (${field}) pour l'action ${action.ACT_NUMERO}}`);
+                let res: string = '';
+                if(field === 'ACT_OBJET') res = `Echec: Le champ "Objet" doit être renseigné`;
+                if(field === 'ACT_DATE') res = `Echec: Le champ "Date" doit être renseigné`;
+                if(field === 'PCF_CODE') res = `Echec: Le champ "Tiers" doit être renseigné`;
+                if(field === 'ACT_TYPE') res = `Echec: Le champ "Type" doit être renseigné`;
+                if(field === 'PCF_RS') res = `Echec: Le champ "Raison sociale" doit être renseigné`;
+                if(field === 'PCF_VILLE') res = `Echec: Le champ "Ville" doit être renseigné`;
+                if(field === 'PCF_CP') res = `Echec: Le champ "Code postal" doit être renseigné`;
+                if(field === 'PCF_RUE') res = `Echec: Le champ "Rue" doit être renseigné`;
+                
                 const data = {
-                    XXX_KZETAT: `Echec - Le champ "${field}" doit être renseigné`
+                    XXX_KZETAT: res || `Echec: Le champ "${field}" doit être renseigné`
                 }
+
                 await updateAction(action.ACT_NUMERO, data);
                 return `Missing required field ${fieldID}`.red;
             }
