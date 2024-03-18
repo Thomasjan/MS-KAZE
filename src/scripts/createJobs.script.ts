@@ -170,7 +170,7 @@ const createJob = async (action: Action) => {
         await postJobFromWorkflowID(workflowID, finalWorkflow)
         .then(async (response) => {
             if(response.error){
-                updateAction(action.ACT_NUMERO, {XXX_KZETAT: 'Erreur -' + response.error});
+                updateAction(action.ACT_NUMERO, {XXX_KZETAT: 'Erreur: ' + response.error});
                 return;
             }
             //insert response.id into Action XXX_KZIDM
@@ -215,7 +215,7 @@ const updateJob = async (action: any) => {
     if(Job.status_name != 'Début'){
         console.log(`La mission n'est pas en état "Début" (${action.XXX_KZIDM})`.red);
         logTimeToHistory(`[createJobsScript] La mission n'est pas en état "Début" (${action.XXX_KZIDM})`);
-        updateAction(action.ACT_NUMERO, {XXX_KZETAT: `Erreur - La mission est déjà commencée, veuillez la modifier dans Kaze`});
+        updateAction(action.ACT_NUMERO, {XXX_KZETAT: `Erreur: La mission est déjà commencée, veuillez la modifier dans Kaze`});
         return "La mission n'est pas en état 'Début'";
     }
 
@@ -223,7 +223,7 @@ const updateJob = async (action: any) => {
     // console.log('XXX_KZPARC: '.cyan,  action.XXX_KZPARC)
     if(Job.status_name == 'Début' && action.XXX_KZPARC != Job.workflow.id){
         console.log('La mission a été envoyé sur KAZE, il n\'est plus possible de modifier le parcours'.red);
-        updateAction(action.ACT_NUMERO, {XXX_KZETAT: `Erreur → La mission a été envoyé sur KAZE, il n'est plus possible de modifier le parcours. `});
+        updateAction(action.ACT_NUMERO, {XXX_KZETAT: `Erreur: La mission a été envoyé sur KAZE, il n'est plus possible de modifier le parcours. `});
         return "La mission a été envoyé sur KAZE, il n'est plus possible de modifier le parcours";
     }
 
