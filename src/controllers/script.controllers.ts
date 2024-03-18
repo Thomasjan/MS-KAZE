@@ -4,7 +4,10 @@ import { exec } from 'child_process';
 import logger from '../logger';
 import fs from 'fs';
 import moment from 'moment';
+moment.locale('fr');
 import dotenv from 'dotenv';
+import { getLastTimeRun } from '../constant';
+
 dotenv.config();
 
 const scriptController = {
@@ -25,43 +28,19 @@ const scriptController = {
     },
 
     statusCreateJobsScript: (req: Request, res: Response) => {
-        // Read the content of the history.log file
-        const historyLog = fs.readFileSync('history.log', 'utf8');
-    
-        // Get the current time minus 5 minutes
+        //lastTime format 18 mars 2024 09:41
+        const lastTimeRunApp = getLastTimeRun();
+        console.log('lastTimeRun', lastTimeRunApp);
         const currentTime = new Date();
-        const fiveMinutesAgo = new Date(currentTime.getTime() - (Number(process.env.JOBS_INTERVAL) * 1000));
-    
-        // Check if the history log contains a line with a timestamp within the last 5 minutes
-        const lines = historyLog.split('\n').reverse();
-        let scriptExecuted = false;
-        let lastExecutedTimestamp: Date | null = null;
 
-        for (let line of lines) {
-            if (line.includes('[createJobsScript] Début de l\'exécution du script le:')) {
-                // Extract the timestamp from the log line
-                const timestampString = line.split('[createJobsScript] Début de l\'exécution du script le: ')[1];
-                const timestamp = new Date(timestampString);
-    
-                // Check if the timestamp is earlier than 5 minutes ago
-                if (timestamp.getTime() >= fiveMinutesAgo.getTime()) {
-                    scriptExecuted = true;
-                    break;
-                } 
-                if (!lastExecutedTimestamp) {
-                    lastExecutedTimestamp = timestamp;
-                }
-            }
-        }
+        //check if lastTimeRun + process.env.JOBS_INTERVAL is greater than currentTime
+        const lastTimeRunPlusInterval = moment(lastTimeRunApp, 'LLL').add(Number(process.env.JOBS_INTERVAL)+60, 'seconds');
+        const scriptExecuted = lastTimeRunPlusInterval.isAfter(currentTime);
 
         if (scriptExecuted) {
-            return res.status(200).send({ status: 'success', message: "Le script s'est exécuté dans les 5 dernières minutes" });
+            return res.status(200).send({ status: 'success', message: "Le script s'est correctement exécuté" });
         } else {
-            if (lastExecutedTimestamp) {
-                return res.status(200).send({ status: 'warning', message: `Le script ne s'est pas exécuté depuis le ${moment(lastExecutedTimestamp).format('DD/MM/YYYY HH:mm:ss')}` });
-            } else {
-                return res.status(200).send({ status: 'warning', message: "Le script ne s'est jamais exécuté." });
-            }
+            return res.status(400).send({ status: 'warning', message: `Le script ne s'est pas exécuté depuis le ${lastTimeRunApp}` });
         }
     },
 
@@ -104,43 +83,18 @@ const scriptController = {
     },
 
     statusGetJobsScript: (req: Request, res: Response) => {
-        // Read the content of the history.log file
-        const historyLog = fs.readFileSync('history.log', 'utf8');
-    
-        // Get the current time minus 5 minutes
+        //lastTime format 18 mars 2024 09:41
+        const lastTimeRunApp = getLastTimeRun();
         const currentTime = new Date();
-        const fiveMinutesAgo = new Date(currentTime.getTime() - (Number(process.env.JOBS_INTERVAL) * 1000)); // 5 minutes * 60 seconds * 1000 milliseconds
-    
-        // Check if the history log contains a line with a timestamp within the last 5 minutes
-        const lines = historyLog.split('\n').reverse();
-        let scriptExecuted = false;
-        let lastExecutedTimestamp: Date | null = null;
-    
-        for (let line of lines) {
-            if (line.includes('[getJobsScript] Début de l\'exécution du script le:')) {
-                // Extract the timestamp from the log line
-                const timestampString = line.split('[getJobsScript] Début de l\'exécution du script le: ')[1];
-                const timestamp = new Date(timestampString);
-    
-                // Check if the timestamp is earlier than 5 minutes ago
-                if (timestamp.getTime() >= fiveMinutesAgo.getTime()) {
-                    scriptExecuted = true;
-                    break;
-                } 
-                if (!lastExecutedTimestamp) {
-                    lastExecutedTimestamp = timestamp;
-                }
-            }
-        }
-    
+
+        //check if lastTimeRun + process.env.JOBS_INTERVAL is greater than currentTime
+        const lastTimeRunPlusInterval = moment(lastTimeRunApp, 'LLL').add(Number(process.env.JOBS_INTERVAL)+60, 'seconds');
+        const scriptExecuted = lastTimeRunPlusInterval.isAfter(currentTime);
+
         if (scriptExecuted) {
-            return res.status(200).send({ status: 'success', message: "Le script s'est exécuté dans les 5 dernières minutes" });
+            return res.status(200).send({ status: 'success', message: "Le script s'est correctement exécuté" });
         } else {
-            if (lastExecutedTimestamp) {
-                return res.status(200).send({ status: 'warning', message: `Le script ne s'est pas exécuté depuis le ${moment(lastExecutedTimestamp).format('DD/MM/YYYY HH:mm:ss')}` });
-            } else {
-                return res.status(200).send({ status: 'warning', message: "Le script ne s'est jamais exécuté." });
-            }
+            return res.status(400).send({ status: 'warning', message: `Le script ne s'est pas exécuté depuis le ${lastTimeRunApp}` });
         }
     },
     

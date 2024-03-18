@@ -7,13 +7,18 @@ const port = 3000;
 import router from './routes/router';
 import logger from './logger';
 import moment from 'moment';
-import { fetchTiers } from './scripts/api.functions';
 moment.locale('fr');
+import { fetchTiers } from './scripts/api.functions';
+
+
 
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cors());
+
+let lastTimeRun: string | null = moment().format('LLL');
+app.locals.lastTimeRun = lastTimeRun;
 
 //error handling
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {

@@ -9,15 +9,15 @@ const SERVER_URL = process.env.SERVER_URL || 'http://localhost:3000';
 //login to kaze
 const login = async () => {
     console.log('login()...'.cyan)
-    await axios.post(`${SERVER_URL}/api/v1/kaze/login`)
-    .then((response) => {
+    try {
+        const response = await axios.post(`${SERVER_URL}/api/v1/kaze/login`)
         console.log(response.data);
         return response.data;
-    })
-    .catch((error: any) => {
-        logger.error(new Error("Erreur d'authentification -> " + error.response));
+    }
+    catch (error: any) {
+        logger.error(new Error(`Erreur d'authentification -> ${error.response}`));
         return error;
-    });
+    }
 };
 
 //fetch actions from gestimum with Sync kaze = 1

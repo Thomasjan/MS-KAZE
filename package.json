@@ -11,7 +11,7 @@
     "start-getJobs": "node -e \"console.log('Starting getJobs script'); setInterval(() => { require('child_process').execSync('ts-node src/scripts/getJobs.script.ts', {stdio:[0,1,2]}); }, process.env.TIME)\"",
     "start-createJobs": "node -e \"console.log('Starting createJobs script'); setInterval(() => { require('child_process').execSync('ts-node src/scripts/createJobs.script.ts', {stdio:[0,1,2]}); }, process.env.TIME)\"",
     "start-collections": "node -e \"console.log('Starting collections script'); setInterval(() => { require('child_process').execSync('ts-node src/scripts/collections.script.ts', {stdio:[0,1,2]}); }, process.env.TIME)\"",
-    "start-scripts": "nodemon startScripts.ts"
+    "start-scripts": "nodemon src/startScripts.ts"
   },
   "keywords": [],
   "author": "",
