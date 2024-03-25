@@ -5,9 +5,12 @@ import fs from 'fs';
 let lastTimeRun: string | null = moment().format('LLL');
 
 export const setLastTimeRun = (date: any) => {
-    //write date in lastExec.txt
-    fs.writeFileSync('lastExec.txt', date);
-    lastTimeRun = date;
+    try {
+        fs.writeFileSync('lastExec.txt', date);
+        lastTimeRun = date;
+    } catch (error) {
+        console.error('Error writing lastExec.txt:', error);
+    }
     return lastTimeRun;
 };
 

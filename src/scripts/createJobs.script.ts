@@ -135,7 +135,7 @@ const createJob = async (action: Action) => {
             console.log('No parc found'.red);
             logger.error(`Erreur: L'action ${action.ACT_NUMERO} n'a pas de parcours de mission (XXX_KZPARC)`);
             const data = {
-                XXX_KZETAT: `Echec: Vous devez renseigner le parcours de mission (XXX_KZPARC)`
+                XXX_KZETAT: `Echec : Veuillez sélectionner le parcours de mission`
             }
             await updateAction(action.ACT_NUMERO, data);
             return `Missing required field XXX_KZPARC`.red;
