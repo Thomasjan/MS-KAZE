@@ -6,7 +6,7 @@ let lastTimeRun: string | null = moment().format('LLL');
 
 export const setLastTimeRun = (date: any) => {
     try {
-        fs.writeFileSync('lastExec.txt', date);
+        // fs.writeFileSync('lastExec.txt', date);
         console.log('lastExec.txt updated:', date)
         lastTimeRun = date;
     } catch (error) {
