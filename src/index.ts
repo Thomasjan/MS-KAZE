@@ -12,7 +12,6 @@ import { fetchTiers } from './scripts/api.functions';
 
 
 
-
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cors());
@@ -60,6 +59,8 @@ app.use('/api/v1', router);
 app.listen(port, () => {
   console.log(`Kaze-api running on http://localhost:${port}`.magenta.bold);
 });
+
+
 
 
 export default app;

@@ -1,5 +1,5 @@
 # Use an official Node.js runtime as a parent image
-FROM node:18
+FROM node:20
 
 # Set the working directory in the container
 WORKDIR /usr/src/app
@@ -13,6 +13,8 @@ RUN npm install
 # Copy the application files to the container
 COPY . .
 
+RUN npm run build
+
 # Copy the custom entrypoint script
 COPY entrypoint.sh .
 
@@ -21,5 +23,7 @@ RUN chmod +x entrypoint.sh
 # Expose the port that your app is running on
 EXPOSE 3000
 
+RUN npm run start
+
 # Run the custom entrypoint script
-CMD ["bash", "entrypoint.sh"]
+CMD ["npm", "run", "start-scripts"]

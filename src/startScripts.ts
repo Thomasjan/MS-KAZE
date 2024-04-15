@@ -13,12 +13,12 @@ const intervalTimeForCollections: number = Number(process.env.COLLECTIONS_INTERV
 
 setInterval(() => {
     console.log("Running jobs script", getLastTimeRun())
-    // execSync('ts-node src/scripts/createJobs.script.ts', { stdio: [0, 1, 2] });
-    // execSync('ts-node src/scripts/getJobs.script.ts', { stdio: [0, 1, 2] });
+    execSync('ts-node src/scripts/createJobs.script.ts', { stdio: [0, 1, 2] });
+    execSync('ts-node src/scripts/getJobs.script.ts', { stdio: [0, 1, 2] });
     setLastTimeRun(moment().format('LLL'));
 }, intervalTimeForJobs);
 
 
 setInterval(() => {
-    // execSync('ts-node src/scripts/collections.script.ts', { stdio: [0, 1, 2] });
+    execSync('ts-node src/scripts/collections.script.ts', { stdio: [0, 1, 2] });
 }, intervalTimeForCollections);

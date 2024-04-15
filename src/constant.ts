@@ -6,11 +6,10 @@ let lastTimeRun: string | null = moment().format('LLL');
 
 export const setLastTimeRun = (date: any) => {
     try {
-        // fs.writeFileSync('lastExec.txt', date);
-        console.log('lastExec.txt updated:', date)
+        fs.writeFileSync('lastExec', date);
         lastTimeRun = date;
     } catch (error) {
-        console.error('Error writing lastExec.txt:', error);
+        console.error('Error writing lastExec:', error);
     }
     return lastTimeRun;
 };
@@ -18,9 +17,9 @@ export const setLastTimeRun = (date: any) => {
 export const getLastTimeRun = () => {
     //get string in lastExec.txt
     //create lastExec.txt if it doesn't exist
-    if (!fs.existsSync('lastExec.txt')) {
-        fs.writeFileSync('lastExec.txt', moment().format('LLL'));
+    if (!fs.existsSync('lastExec')) {
+        fs.writeFileSync('lastExec', moment().format('LLL'));
     }
-    const lastExec = fs.readFileSync('lastExec.txt', 'utf8');
+    const lastExec = fs.readFileSync('lastExec', 'utf8');
     return lastExec;
 };
