@@ -23,7 +23,4 @@ RUN chmod +x entrypoint.sh
 # Expose the port that your app is running on
 EXPOSE 3000
 
-RUN npm run start
-
-# Run the custom entrypoint script
-CMD ["npm", "run", "start-scripts"]
+CMD ["npm", "run", "start", "&&", "npm", "run", "start-scripts"]
