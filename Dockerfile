@@ -1,5 +1,5 @@
 # Use an official Node.js runtime as a parent image
-FROM node:20
+FROM node:18
 
 # Set the working directory in the container
 WORKDIR /usr/src/app
@@ -23,4 +23,6 @@ RUN chmod +x entrypoint.sh
 # Expose the port that your app is running on
 EXPOSE 3000
 
-CMD ["npm", "run", "start", "&&", "npm", "run", "start-scripts"]
+
+# Run the custom entrypoint script
+CMD ["bash", "entrypoint.sh"]
