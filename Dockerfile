@@ -13,7 +13,7 @@ RUN npm install
 # Copy the application files to the container
 COPY . .
 
-RUN npm run build
+# RUN npm run build
 
 # Copy the custom entrypoint script
 COPY entrypoint.sh .
