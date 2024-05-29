@@ -99,9 +99,9 @@ const kazeController = {
             const authToken = await getAuthToken();
 
             const workflowID: String = req.params.id;
-            const json: JSON = req.body;
+            const json: any = req.body;
 
-            console.log('json: '.yellow, json);
+            console.log('json: '.yellow, json.data);
             try{
                 const response = await axios.post(`https://app.kaze.so/api/job_workflows/${workflowID}/job.json`, json, {
                     headers: {

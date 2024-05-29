@@ -37,7 +37,6 @@ export const getCollections = async () => {
     await login();
 
     const token = await getAuthToken();
-
     const response = await axios.get('https://app.kaze.so/api/collections.json', {
         headers: {
             Authorization: `${token}`

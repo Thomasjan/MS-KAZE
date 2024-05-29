@@ -167,6 +167,8 @@ const createJob = async (action: Action) => {
         
         const workflowID = finalWorkflow.workflow_id;
 
+        console.log('workflowID: '.cyan, workflowID);
+        console.log('finalWorkflow: '.cyan, finalWorkflow.data);
         await postJobFromWorkflowID(workflowID, finalWorkflow)
         .then(async (response) => {
             if(response.error){

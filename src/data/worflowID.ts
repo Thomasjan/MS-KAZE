@@ -32,11 +32,11 @@ const workflowID = {
                 "data": "ACT_TYPE"
             }
         },
-        "vierge":{
-            "job_description": {
-                "data": "ACT_DESC"
-            }
-        },
+        // "vierge":{
+        //     "job_description": {
+        //         "data": "ACT_DESC"
+        //     }
+        // },
         "navigation": {
             "navigation": {
                 "city": "PCF_VILLE",

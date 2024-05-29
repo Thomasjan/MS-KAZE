@@ -29,9 +29,10 @@ const syncJobs = async (job: any) => {
     
 
     //check if Action.XXX_KZDTE < Job.updated_at
-    console.log(`${new Date(action[0].XXX_KZDT).getTime()+2} < ${job.updated_at+3600*1000}: `, new Date(action[0].XXX_KZDT).getTime()+2 > job.updated_at+3600*1000)
-    // console.log(`${(new Date(action[0].XXX_KZDT).toISOString())} < ${new Date(job.updated_at+3600*1000).toISOString()}: `.yellow, new Date(action[0].XXX_KZDT) < job.updated_at+3600*1000)
-    if(!action[0].XXX_KZDT || !(new Date(action[0].XXX_KZDT).getTime()+2 > job.updated_at+3600*1000)){
+    console.log(`Gestimum(${new Date(action[0].XXX_KZDT).getTime()+2}) < Kaze( ${job.updated_at}) : `, new Date(action[0].XXX_KZDT).getTime()+2 > job.updated_at+3600*1000)
+    console.log('JOB UPDATED AT: '.cyan, new Date(job.updated_at).toISOString())
+
+    if(!action[0].XXX_KZDT || (new Date(action[0].XXX_KZDT).getTime()+2 < job.updated_at)){
         console.log('Action need to be updated'.yellow);
         logTimeToHistory(`[getJobsScript] Action ${action[0].ACT_NUMERO} besoin de mise à jour :${moment().format()}`);
         const jobID = await fetchjobID(job.id);

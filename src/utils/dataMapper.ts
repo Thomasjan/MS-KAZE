@@ -20,12 +20,7 @@ export const dataMapper = (data: any, table: string) => {
                 ACT_DATE: data.workflow.children[0]?.job_start_date,
                 ACT_DATFIN: data.workflow.children[0]?.job_end_date,
                 ACT_DATECH: data.workflow.children[0]?.job_due_date,
-                ACT_DESC: data.workflow.children[1]?.children[0]?.children[0]?.data,
-
-                // XXX_GKNAV: template_navigation(data.workflow.children[2]),
-                // XXX_GKIMA: template_photo(data.workflow.children[3]),
-                // XXX_GKSIGN: template_signature(data.workflow.children[4]), 
-                // XXX_GKVIDE: template_blank(data.workflow.children[5]),
+                // ACT_DESC: data.workflow.children[1]?.children[0]?.children[0]?.data || null,
             }
 
             return fields;
